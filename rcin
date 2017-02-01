@@ -1,0 +1,101 @@
+#!/bin/bash
+
+
+function fullpath(){ # {{{
+  f=$@
+  if [ -d "$f" ]; then
+    base=""
+    dir="$f"
+  else
+    base="/$(basename "$f")"
+    dir=`dirname "$f"`
+  fi
+  dir=`cd "$dir" && pwd`
+  echo "$dir$base"
+} # }}}
+readonly DOTFILESROOT=$(fullpath `dirname $0`)
+readonly SUBCMDDIR="$DOTFILESROOT/subcmd"
+readonly SUBCMDS=`ls $SUBCMDDIR| awk -F. '{print $1}'`
+readonly BAKPREF="dotfilesbak"
+readonly BAKDIR=`date +"${HOME}/${BAKPREF}%Y%m%d%H%M%S"`
+readonly TRUE="hoge"
+readonly FALSE=""
+DRYRUN=${FALSE}
+function _(){ # {{{
+  if [ "$UID" -eq 0 ]; then
+    echo -n "# "
+  else
+    echo -n "% "
+  fi
+  echo $*
+
+  if [ ${DRYRUN} ]; then
+    return 0
+  fi
+  eval $*
+  return $?
+} # }}}
+function _failsafe(){ # {{{
+  # 引数に受け取った文字列を実行して
+  # 終了コードが0でなかったらプログラム終了
+  eval $*
+  local exitcode=$?
+  if [ ${exitcode} -ne 0 ]; then
+    echo "exit with ${exitcode}" 1>&2
+    exit ${exitcode}
+  fi
+  return 0
+} # }}}
+function bakForDeploy(){ # {{{
+  if [ -e $BAKDIR ] && ! [ -d $BAKDIR ]; then
+    echo "$BAKDIR exists. try again." >&2
+    exit 1
+  fi
+  mkdir -p $BAKDIR
+  mv $1 $BAKDIR
+} # }}}
+function newDir(){ # {{{
+  if [ -e $1 ] && ! [ -d $1 ]; then
+    bakForDeploy $1
+  fi
+  mkdir -p $1
+} # }}}
+function newSym(){ # {{{
+  # 絶対パス
+  from=$(fullpath $1)
+  to=$2
+  if [ -e $to ]; then
+    if ! [ -h $to ] || [ `readlink $to` != $from ]; then
+      bakForDeploy $to
+    fi
+  else
+    ln -s $from $to
+  fi
+} # }}}
+
+function main(){
+  local i=0
+  for i in $@; do if [ $i = '-d' ] || [ $i = '--dry-run'  ]; then DRYRUN=$TRUE; fi done
+  local getcmds=$FALSE
+  for i in $SUBCMDS; do
+    if [ $i = "$1" ]; then
+      local cmd=$1; getcmds=$TRUE
+      . $SUBCMDDIR/$cmd.sh $@
+    fi
+  done
+  if ! [ $getcmds ]; then
+    showHelp
+  fi
+  return 0;
+}
+
+function showHelp(){ # {{{
+  echo "Usage: $0 [subcommand] [option] ... "
+  echo "  subcommand"
+  local i=0
+  for i in ${SUBCMDS[@]}; do echo "    ${i}"; done
+  return 0
+} # }}}
+
+main $@
+# vim: foldmethod=marker:
