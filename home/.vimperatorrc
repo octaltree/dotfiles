@@ -1,7 +1,7 @@
 " vim: set ft=vim:
 
 " ## プラグイン
-source ~/.vimperator/plugins/vimppm/plugin/vimppm.js
+source ~/.vimperator/vimppm/plugin/vimppm.js
 vimppm '_smooziee.js'
 "vimppm 'auto_reload.js'
 "vimppm 'nextlink.js'

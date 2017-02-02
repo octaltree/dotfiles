@@ -2,7 +2,7 @@
 	path = home/.zsh/plugins/zplug
 	url = https://github.com/zplug/zplug
 [submodule "home/.vimperator/plugins/vimppm"]
-	path = home/.vimperator/plugins/vimppm
+	path = home/.vimperator/vimppm
 	url = https://github.com/cd01/vimppm
 [submodule "home/.vim/plugins/dein.vim"]
 	path = home/.vim/plugins/dein.vim
