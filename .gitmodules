@@ -1,0 +1,12 @@
+[submodule "home/.zsh/plugins/zplug"]
+	path = home/.zsh/plugins/zplug
+	url = https://github.com/zplug/zplug
+[submodule "home/.vimperator/plugins/vimppm"]
+	path = home/.vimperator/plugins/vimppm
+	url = https://github.com/cd01/vimppm
+[submodule "home/.vim/plugins/dein.vim"]
+	path = home/.vim/plugins/dein.vim
+	url = https://github.com/shougo/dein.vim
+[submodule "home/.tmux/plugins/tpm"]
+	path = home/.tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
