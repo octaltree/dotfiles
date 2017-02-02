@@ -27,7 +27,7 @@ hi HintActive z-index:0; background-color: DarkGreen; color: White;"Orange; colo
 " ## 設定
 set statuslinevisibility=visible
 set defsearch=google
-set hintchars=asdf wer
+set hintchars=asdfwev
 set editor=gvim
 set fullscreen
 
