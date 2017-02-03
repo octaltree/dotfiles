@@ -3,6 +3,7 @@
 " ## プラグイン
 source ~/.vimperator/vimppm/plugin/vimppm.js
 vimppm '_smooziee.js'
+vimppm 'auto_source.js'
 "vimppm 'auto_reload.js'
 "vimppm 'nextlink.js'
 "vimppm 'auto_detect_link.js'
