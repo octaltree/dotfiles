@@ -11,10 +11,6 @@ vimppm '_smooziee.js'
 " _smooziee
 let g:smooziee_scroll_amount="20"
 let g:smoozie_scroll_interval="5"
-
-" MyBookmarks
-command! -nargs=0 -description="for plugin named MyBookmarks" myBookmarks tabopen about:mybookmarks
-nnoremap <silent> b :<c-u>myBookmarks<CR>
 " Tree Style Tab
 nnoremap <silent> e :<c-u>javascript TreeStyleTabBrowserAutoHide.toggleMode()<CR>
 
