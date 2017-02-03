@@ -7,7 +7,7 @@
 	url = https://github.com/cd01/vimppm
 	ignore = dirty
 [submodule "home/.vim/plugins/dein.vim"]
-	path = home/.vim/plugins/dein.vim
+	path = home/.config/nvim/dein/repos/github.com/Shougo/dein.vim
 	url = https://github.com/shougo/dein.vim
 	ignore = dirty
 [submodule "home/.tmux/plugins/tpm"]
