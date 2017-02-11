@@ -2,6 +2,7 @@
 
 " ## プラグイン
 source ~/.vimperator/vimppm/plugin/vimppm.js
+vimppm 'octaltree/aboutbmarks.js'
 vimppm '_smooziee.js'
 vimppm 'auto_source.js'
 "vimppm 'auto_reload.js'
@@ -14,6 +15,9 @@ let g:smooziee_scroll_amount="20"
 let g:smoozie_scroll_interval="5"
 " Tree Style Tab
 nnoremap <silent> e :<c-u>javascript TreeStyleTabBrowserAutoHide.toggleMode()<CR>
+" octaltree/aboutbmarks.js
+autocmd DOMLoad http://example.com/ aboutbmarks
+nnoremap <silent> b :<c-u>tabopen http://example.com/<cr>
 
 " ## カラー
 colorscheme abyss
