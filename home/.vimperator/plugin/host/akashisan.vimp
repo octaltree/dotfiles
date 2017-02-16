@@ -1,1 +1,1 @@
-autocmd DOMLoad * zoom 170
+autocmd DOMLoad .* zoom 160
