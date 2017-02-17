@@ -21,7 +21,7 @@ nnoremap <silent> b :<c-u>tabopen http://example.com/<cr>
 
 " ## カラー
 colorscheme abyss
-hi Hint z-index:20000000; font-size: 16px; font-weight: normal; color: white; background-color: rgba(0, 0, 0, 0.9); border: solid 1px LightGray; position:absolute; font-family: monospace;
+hi Hint z-index:20000000; font-size: 12px; font-weight: normal; color: white; background-color: rgba(0, 0, 0, 0.9); border: solid 1px LightGray; position:absolute; font-family: monospace;
 hi HintElem z-index:0; background-color: DarkSlateGray; color: Black;"Khaki; color: Black;
 hi HintActive z-index:0; background-color: DarkGreen; color: White;"Orange; color: White;
 
