@@ -1,4 +1,4 @@
-autocmd DOMLoad .* zoom 200
+"autocmd DOMLoad .* zoom 200
 hi CmdLine            font-family: ricty; font-size: 20pt;
 hi CompResult         font-family: ricty;
 hi CompDesc           font-size: 20pt;
