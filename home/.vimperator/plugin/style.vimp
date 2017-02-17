@@ -417,6 +417,7 @@ color: #eee !important;
 }
 tab, tab * {
 background-color: rgba(20, 20, 20, 0.3) !important;
+font-size: 20px;
 }
 @-moz-document url-prefix(about:blank){
   * { background-color: #141414 !important; }
