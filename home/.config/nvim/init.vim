@@ -13,6 +13,7 @@ set virtualedit=block
 set list
 set listchars=eol:'
 set background=dark
+set clipboard=unnamed,unnamedplus
 
 " ## file ##########
 set fileformat=unix
