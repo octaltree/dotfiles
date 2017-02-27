@@ -3,6 +3,7 @@
 
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
+exec --no-startup-id terminal
 
 # set default desktop layout (default is tiling)
 # workspace_layout tabbed <stacking|tabbed>
@@ -237,6 +238,8 @@ mode "$mode_system" {
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
     bindsym Escape mode "default"
+    bindsym Ctrl+[ mode "default"
+    bindsym Ctrl+c mode "default"
 }
 
 # Resize window (you can also use the mouse for that)
@@ -261,6 +264,8 @@ mode "resize" {
         # exit resize mode: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
+        bindsym Ctrl+[ mode "default"
+        bindsym Ctrl+c mode "default"
 }
 
 # Lock screen
@@ -352,6 +357,8 @@ mode "$mode_gaps" {
         bindsym i      mode "$mode_gaps_inner"
         bindsym Return mode "default"
         bindsym Escape mode "default"
+        bindsym Ctrl+[ mode "default"
+        bindsym Ctrl+c mode "default"
 }
 mode "$mode_gaps_inner" {
         bindsym plus  gaps inner current plus 5
@@ -364,6 +371,8 @@ mode "$mode_gaps_inner" {
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
+        bindsym Ctrl+[ mode "default"
+        bindsym Ctrl+c mode "default"
 }
 mode "$mode_gaps_outer" {
         bindsym plus  gaps outer current plus 5
@@ -376,4 +385,6 @@ mode "$mode_gaps_outer" {
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
+        bindsym Ctrl+[ mode "default"
+        bindsym Ctrl+c mode "default"
 }
