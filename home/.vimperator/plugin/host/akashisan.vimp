@@ -4,3 +4,4 @@ hi CompResult         font-family: ricty;
 hi CompDesc           font-size: 20pt;
 hi CompItem           font-size: 20pt;
 hi CompTitle          font-size: 20pt;
+" vim: ft=vim:

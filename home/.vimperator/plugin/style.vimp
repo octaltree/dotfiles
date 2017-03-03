@@ -424,3 +424,4 @@ font-size: 20px;
 }
 EOF
 " }}}
+" vim: ft=css:
