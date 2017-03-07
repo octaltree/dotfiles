@@ -4,4 +4,6 @@ hi CompResult         font-family: ricty;
 hi CompDesc           font-size: 20pt;
 hi CompItem           font-size: 20pt;
 hi CompTitle          font-size: 20pt;
+autocmd DOMLoad hitomi.la zoom 100
+autocmd DOMLoad hitomi.la js content.document.head.innerHTML += '<style>body { transform-origin: 50% 0; transform: scale(2.0); }</style>'
 " vim: ft=vim:
