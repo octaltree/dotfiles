@@ -4,3 +4,9 @@ repo = 'Shougo/denite.nvim'
 repo = 'altercation/vim-colors-solarized'
 [[plugins]]
 repo = 'tpope/vim-surround'
+hook_add='''
+  colorscheme solarized
+  let g:solarized_termtrans=1
+  let g:solarized_visibility="low"
+  let g:solarized_termcolors=256
+'''

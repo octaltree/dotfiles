@@ -23,3 +23,4 @@ if filereadable(s:dein_repo_dir . "/bin/installer.sh")
     call dein#install()
   endif
 endif
+filetype plugin indent on
