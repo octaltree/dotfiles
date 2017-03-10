@@ -1,14 +1,12 @@
-#[[plugins]]
-#repo = 'Shougo/dein.vim'
-#[[plugins]]
-#repo = 'Shougo/vimproc.vim'
-#build = 'make'
 [[plugins]]
 repo = 'Shougo/denite.nvim'
-#depends = 'Shougo/vimproc.vim'
-[[plugins]]
-repo = 'Shougo/neomru.vim'
 [[plugins]]
 repo = 'altercation/vim-colors-solarized'
 [[plugins]]
 repo = 'tpope/vim-surround'
+hook_add='''
+  colorscheme solarized
+  let g:solarized_termtrans=1
+  let g:solarized_visibility="low"
+  let g:solarized_termcolors=256
+'''
