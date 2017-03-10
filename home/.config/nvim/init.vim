@@ -4,8 +4,6 @@ set showmatch
 set ambiwidth=double
 set autoread
 set history=50
-set foldmethod=marker
-set foldcolumn=0
 set colorcolumn=80
 set wildmode=longest:full,full
 set wildmenu
