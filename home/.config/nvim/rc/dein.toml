@@ -1,13 +1,5 @@
-#[[plugins]]
-#repo = 'Shougo/dein.vim'
-#[[plugins]]
-#repo = 'Shougo/vimproc.vim'
-#build = 'make'
 [[plugins]]
 repo = 'Shougo/denite.nvim'
-#depends = 'Shougo/vimproc.vim'
-[[plugins]]
-repo = 'Shougo/neomru.vim'
 [[plugins]]
 repo = 'altercation/vim-colors-solarized'
 [[plugins]]
