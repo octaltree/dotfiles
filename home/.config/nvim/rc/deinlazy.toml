@@ -14,3 +14,11 @@ hook_add = '''
 [[plugins]] # codic
 repo = 'koron/codic-vim'
 on_cmd = 'Codic'
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+on_i = 1
+on_event = 'InsertCharPre'
+hook_source='''
+  let g:deoplete#enable_at_startup = 1
+  let g:deoplete#max_list = 10000
+'''
