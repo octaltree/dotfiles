@@ -1,5 +1,24 @@
 [[plugins]]
 repo = 'Shougo/denite.nvim'
+hook_add='''
+  nnoremap [Denite] <Nop>
+  nmap <silent><space> [Denite]
+  nnoremap [Denite]f :<c-u> Denite -auto-preview file_rec<CR>
+  nnoremap [Denite]m :<c-u> Denite -auto-preview file_mru<CR>
+  call denite#custom#map('insert', '<c-n>', '<denite:move_to_next_line>', 'noremap')
+  call denite#custom#map('insert', '<c-p>', '<denite:move_to_previous_line>', 'noremap')
+  call denite#custom#map('insert', '<esc>', '<denite:enter_mode:normal>', 'noremap')
+  call denite#custom#map('normal', 'dd', '<denite:delete_entire_text>', 'noremap')
+  call denite#custom#map('normal', 'h', '<denite:move_caret_to_left>', 'noremap')
+  call denite#custom#map('normal', 'l', '<denite:move_caret_to_right>', 'noremap')
+  call denite#custom#map('normal', 'b', '<denite:move_caret_to_one_word_left>', 'noremap')
+  call denite#custom#map('normal', 'w', '<denite:move_caret_to_one_word_right>', 'noremap')
+  call denite#custom#map('normal', 'x', '<denite:delete_char_before_caret>', 'noremap')
+  call denite#custom#map('normal', '0', '<denite:move_caret_to_head>', 'noremap')
+  call denite#custom#map('normal', '$', '<denite:move_caret_to_tail>', 'noremap')
+'''
+[[plugins]]
+repo = 'Shougo/neomru.vim'
 [[plugins]]
 repo = 'altercation/vim-colors-solarized'
 [[plugins]]
