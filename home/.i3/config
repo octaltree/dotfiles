@@ -27,7 +27,7 @@ font xft:Noto Sans 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminal -e sh -c 'tmux attach || tmux'
+bindsym $mod+Return exec terminal -e tmux attach || tmux
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -389,6 +389,6 @@ mode "$mode_gaps_outer" {
 }
 
 workspace_layout tabbed
-exec --no-startup-id terminal -e sh -c 'tmux attach || tmux'
+exec --no-startup-id terminal -e tmux attach || tmux
 no_focus [title="Firefox"]
 exec --no-startup-id firefox
