@@ -1,12 +1,8 @@
 if [ -z "$TMUX" ]; then
-  bs='prime'
-  tmux has-session -t $bs || tmux new-session -d -s $bs
-  cnt=$(tmux list-clients | wc -l)
-  if [ $client_cnt -ge 1 ]; then
-    name=$bs"-"$cnt
-    tmux new-session -d -t $bs -s $name
-    tmux -2 attach-session -t $name \; set-option destroy-unattached
+  if [ `tmux list-sessions| sed '/attached/d'| wc -l` -ne 0 ]; then
+    target=`tmux list-sessions| sed '/attached/d'| awk -F: '{print $1}'| head -n 1`
+    tmux -2 attach-session -t $target
   else
-    tmux -2 attach-session -t $bs
+    tmux -2
   fi
 fi
