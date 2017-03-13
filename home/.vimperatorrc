@@ -35,6 +35,7 @@ set editor=gvim
 command! -nargs=0 -description="slide-show at hitomi.la" slideHitomi js (function(){ var carryon = true; var d = content.document; d.addEventListener('keydown', function(){ carryon=false; }); (function f(){ d.getElementById('nextPanel').click(); if( carryon ) setTimeout(f, 5000); })(); })();
 command! -nargs=0 -description="tabopen all link at google" openGoogle js Array.prototype.concat.apply([], Array.prototype.map.call(content.document.getElementsByTagName('h3'), function(h){ return Array.prototype.map.call(h.getElementsByTagName('a'), function(a){ return a.getAttribute('href'); }); })).map(function(url){ window.openNewTabWith(url); });
 command! -nargs=0 -description="auto scroll" autoScroll js (function(){ var w = content.window; (function f(){ w.scrollTo(w.pageXOffset, w.pageYOffset+1); setTimeout(f, 10); }()); }());
+command! -nargs=0 -description="restore tabs" restoreSession js content.window.restoreSession();
 
 " ## キーバインド
 nnoremap ; :
