@@ -3,7 +3,6 @@
 
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
-exec --no-startup-id terminal
 
 # set default desktop layout (default is tiling)
 # workspace_layout tabbed <stacking|tabbed>
@@ -388,3 +387,8 @@ mode "$mode_gaps_outer" {
         bindsym Ctrl+[ mode "default"
         bindsym Ctrl+c mode "default"
 }
+
+workspace_layout tabbed
+exec --no-startup-id terminal
+no_focus [title="Firefox"]
+exec --no-startup-id firefox
