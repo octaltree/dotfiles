@@ -6,4 +6,14 @@ hi CompTitle          font-size: 20pt;
 autocmd DOMLoad .* zoom 200
 autocmd DOMLoad ://hitomi.la zoom 100
 autocmd DOMLoad ://hitomi.la js content.document.head.innerHTML += '<style>body { transform-origin: 50% 0; transform: scale(2.0); }</style>'
+nnoremap s1 :<c-u>scale 110<CR>
+nnoremap s2 :<c-u>scale 120<CR>
+nnoremap s3 :<c-u>scale 130<CR>
+nnoremap s4 :<c-u>scale 140<CR>
+nnoremap s5 :<c-u>scale 150<CR>
+nnoremap s6 :<c-u>scale 160<CR>
+nnoremap s7 :<c-u>scale 170<CR>
+nnoremap s8 :<c-u>scale 180<CR>
+nnoremap s9 :<c-u>scale 190<CR>
+nnoremap s0 :<c-u>scale 100<CR>
 " vim: ft=vim:
