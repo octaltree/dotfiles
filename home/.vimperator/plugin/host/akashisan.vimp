@@ -3,6 +3,6 @@ hi CompResult         font-family: ricty;
 hi CompDesc           font-size: 20pt;
 hi CompItem           font-size: 20pt;
 hi CompTitle          font-size: 20pt;
-autocmd DOMLoad .* zoom! 200
+autocmd DOMLoad .* zoom! 190
 nnoremap z0 zoom! 200
 " vim: ft=vim:
