@@ -12,7 +12,8 @@ function haveCmd(){
   return $?
 }
 proxy="proxy.uec.ac.jp:8080"
-if [ "\"UECWireless\"" = `iwconfig 2>/dev/null| sed '/ESSID/!d'| awk -F: '{print $2}'` ]; then
+if [ "\"UECWireless\"" = `iwconfig 2>/dev/null| sed '/ESSID/!d'| awk -F: '{print $2}'` ] ||\
+  [ "\"106F3F356510\"" = `iwconfig 2>/dev/null| sed '/ESSID/!d'| awk -F: '{print $2}'` ]; then
   export http_proxy="$proxy"
   export https_proxy="$proxy"
   export HTTP_PROXY="$proxy"
