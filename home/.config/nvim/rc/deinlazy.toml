@@ -14,3 +14,16 @@ hook_add = '''
 [[plugins]] # codic
 repo = 'koron/codic-vim'
 on_cmd = 'Codic'
+[[plugins]]
+repo = 'mattn/emmet-vim'
+on_ft = ['html', 'css', 'php']
+hook_add = '''
+  let g:user_emmet_install_global = 0
+  autocmd FileType html,css,php EmmetInstall
+  let g:user_emmet_mode='niv'
+  let g:user_emmet_expandabbr_key = '<c-e>'
+  let g:user_emmet_settings =
+        \{ 'variables': { 'lang': 'ja'}
+        \, 'indentaion': '  '
+        \}
+'''
