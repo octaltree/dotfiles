@@ -51,8 +51,8 @@ function bakForDeploy(){ # {{{
     echo "$BAKDIR exists. try again." >&2
     exit 1
   fi
-  mkdir -p $BAKDIR
-  mv $1 $BAKDIR
+  mkdir -p $BAKDIR/`dirname $1`
+  mv $1 $BAKDIR/`dirname $1`
 } # }}}
 function newDir(){ # {{{
   if [ -e $1 ] && ! [ -d $1 ]; then
