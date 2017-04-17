@@ -51,8 +51,20 @@ function bakForDeploy(){ # {{{
     echo "$BAKDIR exists. try again." >&2
     exit 1
   fi
-  mkdir -p $BAKDIR
-  mv $1 $BAKDIR
+  mkdir -p $BAKDIR/`dirname $1`
+  mv $1 $BAKDIR/`dirname $1`
+} # }}}
+function restoreRec(){ # {{{
+  local originfiles=($(ls -ap $1| sed '/\//d'))
+  local origindirs=($(ls -ap $1| sed '/\//!d'| awk -F/ '{print $1}'| sed '/^\.$/d' | sed '/^\.\.$/d'))
+  local i=0
+  for i in ${originfiles[@]}; do
+    _failsafe _ cp $1/$i $2
+  done
+  for i in ${origindirs[@]}; do
+    _failsafe _ mkdir -p $2/$i
+    restoreRec $1/$i $2/$i
+  done
 } # }}}
 function newDir(){ # {{{
   if [ -e $1 ] && ! [ -d $1 ]; then
@@ -68,9 +80,8 @@ function newSym(){ # {{{
     if ! [ -h $to ] || [ `readlink $to` != $from ]; then
       bakForDeploy $to
     fi
-  else
-    ln -s $from $to
   fi
+  ln -s $from $to
 } # }}}
 
 function main(){
