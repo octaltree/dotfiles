@@ -54,6 +54,18 @@ function bakForDeploy(){ # {{{
   mkdir -p $BAKDIR/`dirname $1`
   mv $1 $BAKDIR/`dirname $1`
 } # }}}
+function restoreRec(){ # {{{
+  local originfiles=($(ls -ap $1| sed '/\//d'))
+  local origindirs=($(ls -ap $1| sed '/\//!d'| awk -F/ '{print $1}'| sed '/^\.$/d' | sed '/^\.\.$/d'))
+  local i=0
+  for i in ${originfiles[@]}; do
+    _failsafe _ mv $1/$i $2
+  done
+  for i in ${origindirs[@]}; do
+    _failsafe _ mkdir -p $2/$i
+    restoreRec $1/$i $2/$i
+  done
+} # }}}
 function newDir(){ # {{{
   if [ -e $1 ] && ! [ -d $1 ]; then
     bakForDeploy $1

@@ -30,10 +30,7 @@ function main(){
   if [ "$bak" = "" ]; then
     bak="$HOME/`ls -av $HOME| grep ${BAKPREF}| head -n 1`"
   fi
-  local i=0
-  for i in `ls -A $bak`; do
-    _failsafe _ cp -r $bak/$i $HOME
-  done
+  restoreRec $bak ""
 }
 
 main $@
