@@ -4,6 +4,7 @@
 # mod1: alt, mod4: super
 set $mod Mod4
 workspace_layout tabbed # <tiling|stacking|tabbed>
+focus_follows_mouse no
 
 # Border style <normal|1pixel|pixel xx|none|pixel>
 new_window pixel 1
@@ -34,26 +35,24 @@ bindsym $mod+q kill
 bindsym $mod+d exec --no-startup-id dmenu_recency
 bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
 bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+bindsym Print exec --no-startup-id i3-scrot
+bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 # あまり使わない
 bindsym $mod+z exec --no-startup-id morc_menu # categorized menu
 bindsym $mod+F3 exec pcmanfm
 bindsym $mod+Shift+F3 exec gksu pcmanfm
+#bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 # 使わない
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 bindsym $mod+F2 exec palemoon
 # bindsym $mod+F3 exec ranger
-
 bindsym $mod+F5 exec terminal -e 'mocp'
+bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
+bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
+# Restart
 bindsym $mod+t exec --no-startup-id pkill compton
 bindsym $mod+Ctrl+t exec --no-startup-id compton -b
-bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
-bindsym Print exec --no-startup-id i3-scrot
-bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
-bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
-#bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
-bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
-
-# focus_follows_mouse no
+bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'" # TODO what is dunst
 
 # change focus
 bindsym $mod+h focus left
