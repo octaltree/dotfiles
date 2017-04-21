@@ -236,7 +236,7 @@ bar {
 	bindsym button4 nop
 	bindsym button5 nop
 	# Font for bar
-	font xft:Noto Sans 10.5
+	font xft:Noto Sans 20
 	strip_workspace_numbers yes
 
 	colors {
