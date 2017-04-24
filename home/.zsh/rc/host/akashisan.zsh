@@ -25,6 +25,8 @@ if [ "\"UECWireless\"" = `iwconfig 2>/dev/null| sed '/ESSID/!d'| awk -F: '{print
   echo "Host *" >> ~/.ssh/config
   echo "  ProxyCommand nc -X connect -x $proxy %h %p" >> ~/.ssh/config
   echo "proxy=$proxy" >> ~/.curlrc
+  # /systemd/system/multi-user.target.wants/docker.service
+  # Environment="HTTP_PROXY=http://proxy.uec.ac.jp:8080/,HTTPS_PROXY=http://proxy.uec.ac.jp:8080/"
 else
   export http_proxy=""
   export https_proxy=""
