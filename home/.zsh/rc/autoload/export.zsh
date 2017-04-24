@@ -2,6 +2,7 @@
 if [[ -z "$PATH" || "$PATH" == "/bin:/usr/bin" ]]; then
   export "/usr/local/bin:/usr/bin:/bin:"
 fi
+export PATH="$PATH:$HOME/.local/bin"
 
 function recExport(){
   # シンボリックリンクであればリンク先も再帰的に
