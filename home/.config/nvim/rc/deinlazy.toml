@@ -27,3 +27,8 @@ hook_add = '''
         \, 'indentaion': '  '
         \}
 '''
+[[plugins]] # codic
+repo = 'eagletmt/ghcmod-vim'
+on_ft = 'haskell'
+hook_add = '''
+'''
