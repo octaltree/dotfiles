@@ -18,7 +18,7 @@ readonly SUBCMDDIR="$DOTFILESROOT/subcmd"
 readonly SUBCMDS=`ls $SUBCMDDIR| awk -F. '{print $1}'`
 readonly BAKPREF="dotfilesbak"
 readonly BAKDIR=`date +"${HOME}/${BAKPREF}%Y%m%d%H%M%S"`
-readonly TRUE="hoge"
+readonly TRUE="notBlankString"
 readonly FALSE=""
 DRYRUN=${FALSE}
 function _(){ # {{{
