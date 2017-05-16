@@ -5,4 +5,6 @@ hi CompItem           font-size: 20pt;
 hi CompTitle          font-size: 20pt;
 autocmd DOMLoad .* zoom! 195
 nnoremap z0 :<c-u>zoom! 195<CR>
+nnoremap zp1 :<c-u>set! network.proxy.type=1<CR>
+nnoremap zp0 :<c-u>set! network.proxy.type=4<CR>
 " vim: ft=vim:
