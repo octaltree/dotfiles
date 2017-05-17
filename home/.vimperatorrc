@@ -16,8 +16,9 @@ let g:smoozie_scroll_interval="5"
 " Tree Style Tab
 nnoremap <silent> e :<c-u>javascript TreeStyleTabBrowserAutoHide.toggleMode()<CR>
 " octaltree/aboutbmarks.js
-autocmd LocationChange ://example.com/ aboutbmarks
+autocmd DOMLoad http://example.com/ aboutbmarks
 nnoremap <silent> b :<c-u>tabopen http://example.com/<cr>
+
 
 " ## カラー
 colorscheme abyss
