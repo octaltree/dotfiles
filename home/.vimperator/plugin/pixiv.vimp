@@ -39,8 +39,8 @@ pixiv.overrideView = function(){
   const d = content.document;
   const w = content.window;
   const identifier = `override-pixivmanga`;
-  const thumbs = p.list(p.select('li.thumbnail-item img')).map(img => img.src);
-  const larges = p.list(p.select('img.image')).map(img => img.dataset.src);
+  const thumbs = p.select('li.thumbnail-item img').map(img => img.src);
+  const larges = p.select('img.image').map(img => img.dataset.src);
   const breadcrumbs = p.first('ul.breadcrumbs');
   d.body.innerHTML = `
 <nav>${breadcrumbs.outerHTML}</nav>
@@ -73,7 +73,7 @@ ${larges.map((url, idx) => `
 pixiv.openLinks = function(){
   const p = pixiv;
   const last = xs => xs.slice(-1)[0];
-  p.list(p.select('li.image-item'))
+  p.select('li.image-item')
     .map(li => {
       const url = last(p.list(li.querySelectorAll('a')).toArray()).href;
       return li.querySelector('a.multiple')?
