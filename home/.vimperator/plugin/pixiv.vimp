@@ -9,7 +9,7 @@ pixiv.list = iter => {
 };
 pixiv.first = q => content.document.querySelector(q);
 pixiv.select = q => content.document.querySelectorAll(q);
-pixiv.echo = obj => content.window.console.log(obj);
+pixiv.debug = obj => content.window.console.log(obj);
 pixiv.overrideView = function(){
   const p = this;
   const d = content.document;
@@ -24,19 +24,17 @@ pixiv.overrideView = function(){
   const breadcrumbs = p.first('ul.breadcrumbs');
   // show
   d.body.innerHTML = `
-<section class="thumbnail-container">
-  <nav>${breadcrumbs.outerHTML}</nav>
-  <ul class="thumbnail-items">
-    ${thumbs.map((url, idx) => `<li class="thumbnail-item"><a href="#large${idx}"><img src="${url}" /></a></li>`).join('')}
-  </ul>
-</section>
+<nav>${breadcrumbs.outerHTML}</nav>
+<ul class="thumbnail-items">
+  ${thumbs.map((url, idx) => `<li class="thumbnail-item"><a href="#large${idx}"><img src="${url}" /></a></li>`).join('')}
+</ul>
 ${larges.map((url, idx) => `
-  <div class="large-container" id="large${idx}">
-    <a href="#large${idx+1}">
-      <img src="${url}" />
-    </a>
-  </div>
-  `).join('\n')}
+<div class="large-container" id="large${idx}">
+  <a href="#large${idx+1}">
+    <img src="${url}" />
+  </a>
+</div>
+`).join('\n')}
 <div class="${identifier}" />
 <style>
 .large-container {
@@ -51,7 +49,7 @@ ${larges.map((url, idx) => `
   max-height: 95%;
 }
 </style>
-`;
+    `;
 };
 EOF
 command! -nargs=0 -description="作品から複数ページへ" mangaPixiv js (function(){ var w = content.window; var d = content.document; var tmp = d.querySelector('.works_display .multiple'); if( tmp ) w.location.href = w.location.href.replace(/medium/g, 'manga'); }());
@@ -68,5 +66,5 @@ autocmd DOMLoad www.pixiv.net -js (function(){ var d = content.document; const a
 autocmd DOMLoad https://www.pixiv.net/member_illust.php mangaPixiv
 "autocmd LocationChange www.pixiv.net preloadPixiv
 "autocmd DOMLoad www.pixiv.net preloadPixiv
-autocmd DOMLoad www.pixiv.net js pixiv.overrideView()
-autocmd LocationChange www.pixiv.net js pixiv.overrideView()
+autocmd DOMLoad www.pixiv.net js pixiv.overrideView();
+autocmd LocationChange www.pixiv.net js pixiv.overrideView();
