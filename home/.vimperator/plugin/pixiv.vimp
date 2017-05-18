@@ -9,7 +9,6 @@ pixiv.list = iter => {
 };
 pixiv.first = q => content.document.querySelector(q);
 pixiv.select = q => content.document.querySelectorAll(q);
-pixiv.debug = obj => content.window.console.log(obj);
 pixiv.wait = function(f, callback){
   const rec = () => {
     const satisfied = f();
@@ -23,6 +22,7 @@ pixiv.waitOverrideView = function(){
   const d = content.document;
   const w = content.window;
   const identifier = `override-pixivmanga`;
+  if( ! /mode=manga/.test(w.location.href) ) return;
   if( ! d || ! d.body ) return;
   if( p.first(`div.${identifier}`) ) return;
   p.wait(function(){
@@ -35,15 +35,12 @@ pixiv.waitOverrideView = function(){
 };
 pixiv.overrideView = function(){
   const p = pixiv;
-  p.debug('overrideView');
   const d = content.document;
   const w = content.window;
   const identifier = `override-pixivmanga`;
-  // collect info
   const thumbs = p.list(p.select('li.thumbnail-item img')).map(img => img.src);
   const larges = p.list(p.select('img.image')).map(img => img.dataset.src);
   const breadcrumbs = p.first('ul.breadcrumbs');
-  // show
   d.body.innerHTML = `
 <nav>${breadcrumbs.outerHTML}</nav>
 <ul class="thumbnail-items">
@@ -75,17 +72,10 @@ ${larges.map((url, idx) => `
 EOF
 command! -nargs=0 -description="作品から複数ページへ" mangaPixiv js (function(){ var w = content.window; var d = content.document; var tmp = d.querySelector('.works_display .multiple'); if( tmp ) w.location.href = w.location.href.replace(/medium/g, 'manga'); }());
 command! -nargs=0 -description="tabopen all images at pixiv" openPixiv js Array.prototype.map.call(content.document.querySelectorAll('li.image-item'), li => { var as = li.querySelectorAll('a'); return as[as.length-1].href; }).forEach(url => window.openNewTabWith(url));
-"command! -nargs=0 -description='click .toggle-thumbnail' togglePixiv js content.document.querySelector('.toggle-thumbnail').click();
-"command! -nargs=0 -description='preload manga' preloadPixiv js (function(){ var d = content.document; var w = content.window; if( ! d || ! d.body ) return; if( d.querySelector('div.preloadpixivrun') ) return; d.body.innerHTML += '<div class="preloadpixivrun"></div>'; const urls = Array.prototype.map.call(d.querySelectorAll('img.image'), img => img.dataset.src); var idx = 0; const rec = () => { if( idx > urls.length-1 ) return; var img = d.createElement('img'); img.src = urls[idx++]; d.body.appendChild(img); w.setTimeout(rec, 500); }; rec(); }());
-"command! -nargs=0 -description='override manga view' overridePixiv js (function(){ var d = content.document; var w = content.window; if( ! d || ! d.body ) return; if( d.querySelector('div.preloadpixivrun') ) return; d.body.innerHTML += '<div class="preloadpixivrun"></div>'; const urls = Array.prototype.map.call(d.querySelectorAll('img.image'), img => img.dataset.src); var idx = 0; const rec = () => { if( idx > urls.length-1 ) return; var img = d.createElement('img'); img.src = urls[idx++]; d.body.appendChild(img); w.setTimeout(rec, 500); }; rec(); }());
 
 nnoremap zpm :<c-u>mangaPixiv<CR>
-"nnoremap zpt :<c-u>togglePixiv<CR>
-"nnoremap zpl :<c-u>preloadPixiv<CR>
 autocmd LocationChange www.pixiv.net -js (function(){ var w = content.window; var l = w.location.href; if( /^https:\/\/www.pixiv.net\/member.php/.test(l) ) w.location.href = l.replace(/member/g, 'member_illust'); }());
 autocmd DOMLoad www.pixiv.net -js (function(){ var d = content.document; const andthen = (xs, f) => xs.length < 1? xs: f(xs[0]); andthen(andthen(d.getElementsByClassName('stacc'), li => li.getElementsByTagName('a')), a => { a.innerHTML = "hidden"; a.href = "https://www.pixiv.net/bookmark.php?type=user&rest=hide";  }); }());
 autocmd DOMLoad https://www.pixiv.net/member_illust.php mangaPixiv
-"autocmd LocationChange www.pixiv.net preloadPixiv
-"autocmd DOMLoad www.pixiv.net preloadPixiv
 autocmd DOMLoad www.pixiv.net js pixiv.waitOverrideView();
 autocmd LocationChange www.pixiv.net js pixiv.waitOverrideView();
