@@ -8,12 +8,16 @@ pixiv.list = iter => {
   iter.toArray = () => iter.map(x => x);
   return iter;
 };
-pixiv.first = q => content.document.querySelector(q);
-pixiv.select = q => pixiv.list(content.document.querySelectorAll(q));
+pixiv.selector = elm => {
+  elm.first = q => elm.querySelector(q);
+  elm.select = q => pixiv.list(elm.querySelectorAll(q));
+  return elm;
+};
+pixiv.first = q => pixiv.selector(content.document).first(q);
+pixiv.select = q => pixiv.selector(content.document).select(q);
 pixiv.wait = function(f, callback){
   const rec = () => {
-    const satisfied = f();
-    if( ! satisfied ) setTimeout(rec, 100);
+    if( ! f() ) setTimeout(rec, 100);
     else callback();
   };
   rec();
@@ -30,8 +34,7 @@ pixiv.waitOverrideView = function(){
     const btn = p.first('.toggle-thumbnail');
     if( ! btn ) return false;
     btn.click();
-    content.window.console.log(content.document.querySelector('li.thumbnail-item img'));
-    return content.document.querySelector('li.thumbnail-item img');
+    return p.first('li.thumbnail-item img');
   }, p.overrideView);
 };
 pixiv.overrideView = function(){
@@ -75,8 +78,8 @@ pixiv.openLinks = function(){
   const last = xs => xs.slice(-1)[0];
   p.select('li.image-item')
     .map(li => {
-      const url = last(p.list(li.querySelectorAll('a')).toArray()).href;
-      return li.querySelector('a.multiple')?
+      const url = last(p.selector(li).select('a').toArray()).href;
+      return p.selector(li).first('a.multiple')?
         url.replace(/mode=medium/, 'mode=manga'):
         url;
     })
