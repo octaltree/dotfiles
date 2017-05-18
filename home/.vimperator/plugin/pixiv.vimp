@@ -10,15 +10,36 @@ pixiv.list = iter => {
 pixiv.first = q => content.document.querySelector(q);
 pixiv.select = q => content.document.querySelectorAll(q);
 pixiv.debug = obj => content.window.console.log(obj);
-pixiv.overrideView = function(){
-  const p = this;
+pixiv.wait = function(f, callback){
+  const rec = () => {
+    const satisfied = f();
+    if( ! satisfied ) setTimeout(rec, 100);
+    else callback();
+  };
+  rec();
+};
+pixiv.waitOverrideView = function(){
+  const p = pixiv;
   const d = content.document;
   const w = content.window;
   const identifier = `override-pixivmanga`;
   if( ! d || ! d.body ) return;
   if( p.first(`div.${identifier}`) ) return;
+  p.wait(function(){
+    const btn = p.first('.toggle-thumbnail');
+    if( ! btn ) return false;
+    btn.click();
+    content.window.console.log(content.document.querySelector('li.thumbnail-item img'));
+    return content.document.querySelector('li.thumbnail-item img');
+  }, p.overrideView);
+};
+pixiv.overrideView = function(){
+  const p = pixiv;
+  p.debug('overrideView');
+  const d = content.document;
+  const w = content.window;
+  const identifier = `override-pixivmanga`;
   // collect info
-  var tmp = p.first('.toggle-thumbnail'); if( ! tmp ) return; tmp.click();
   const thumbs = p.list(p.select('li.thumbnail-item img')).map(img => img.src);
   const larges = p.list(p.select('img.image')).map(img => img.dataset.src);
   const breadcrumbs = p.first('ul.breadcrumbs');
@@ -66,5 +87,5 @@ autocmd DOMLoad www.pixiv.net -js (function(){ var d = content.document; const a
 autocmd DOMLoad https://www.pixiv.net/member_illust.php mangaPixiv
 "autocmd LocationChange www.pixiv.net preloadPixiv
 "autocmd DOMLoad www.pixiv.net preloadPixiv
-autocmd DOMLoad www.pixiv.net js pixiv.overrideView();
-autocmd LocationChange www.pixiv.net js pixiv.overrideView();
+autocmd DOMLoad www.pixiv.net js pixiv.waitOverrideView();
+autocmd LocationChange www.pixiv.net js pixiv.waitOverrideView();
