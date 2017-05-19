@@ -52,7 +52,7 @@ pixiv.overrideView = function(){
 </ul>
 ${larges.map((url, idx) => `
 <div class="large-container" id="large${idx}">
-  <a href="#large${idx+1}">
+  <a href="${idx == larges.length - 1? '#': `#large${idx+1}`}">
     <img src="${url}" />
   </a>
 </div>
