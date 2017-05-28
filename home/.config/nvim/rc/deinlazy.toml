@@ -35,9 +35,9 @@ hook_add = '''
 repo = 'eagletmt/ghcmod-vim'
 on_ft = 'haskell'
 hook_add = '''
-nnoremap ght :<c-u>GhcModType<CR>
+nnoremap ght :<c-u>w<CR>:<c-u>GhcModType<CR>
 nnoremap gh[ :<c-u>GhcModTypeClear<CR>
-nnoremap ghc :<c-u>GhcModCheckAndLintAsync<CR>
+nnoremap ghc :<c-u>w<CR>:<c-u>GhcModCheckAndLintAsync<CR>
 '''
 [[plugins]]
 repo = 'eagletmt/neco-ghc'
