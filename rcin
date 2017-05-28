@@ -77,8 +77,10 @@ function newSym(){ # {{{
   from=$(fullpath $1)
   to=$2
   if [ -e $to ]; then
-    if ! [ -h $to ] || [ `readlink $to` != $from ]; then
+    if [ -h $to ] && [ `readlink $to` = $from ]; then
       bakForDeploy $to
+    else
+      return 0
     fi
   fi
   ln -s $from $to
