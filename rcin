@@ -78,9 +78,9 @@ function newSym(){ # {{{
   to=$2
   if [ -e $to ]; then
     if [ -h $to ] && [ `readlink $to` = $from ]; then
-      bakForDeploy $to
-    else
       return 0
+    else
+      bakForDeploy $to
     fi
   fi
   ln -s $from $to
