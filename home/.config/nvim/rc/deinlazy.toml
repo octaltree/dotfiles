@@ -1,19 +1,10 @@
-[[plugins]] # html5
-repo  = 'othree/html5.vim'
-on_ft = 'html'
-[[plugins]] # toml
-repo  = 'cespare/vim-toml'
-on_ft = 'toml'
-[[plugins]] # markdown
-repo = 'rcmdnk/vim-markdown'
-on_ft = ['markdown','mkd']
-hook_add = '''
-  let g:vim_markdown_frontmatter = 1
-  let g:vim_markdown_math = 1
-'''
-[[plugins]] # codic
+[[plugins]]
 repo = 'koron/codic-vim'
 on_cmd = 'Codic'
+# web
+[[plugins]]
+repo  = 'othree/html5.vim'
+on_ft = 'html'
 [[plugins]]
 repo = 'mattn/emmet-vim'
 on_ft = ['html', 'css', 'php', 'smarty']
@@ -27,6 +18,19 @@ hook_add = '''
         \, 'indentaion': '  '
         \}
 '''
+# toml
+[[plugins]]
+repo  = 'cespare/vim-toml'
+on_ft = 'toml'
+# markdown
+[[plugins]]
+repo = 'rcmdnk/vim-markdown'
+on_ft = ['markdown','mkd']
+hook_add = '''
+  let g:vim_markdown_frontmatter = 1
+  let g:vim_markdown_math = 1
+'''
+# Haskell
 [[plugins]]
 repo = 'eagletmt/ghcmod-vim'
 on_ft = 'haskell'
@@ -48,3 +52,4 @@ repo = 'nbouscal/vim-stylish-haskell'
 on_ft = 'haskell'
 hook_add = '''
 '''
+# Python
