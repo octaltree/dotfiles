@@ -50,6 +50,7 @@ autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 [[plugins]]
 repo = 'nbouscal/vim-stylish-haskell'
 on_ft = 'haskell'
-hook_add = '''
-'''
-# Python
+# Tex
+[[plugins]]
+repo = 'poppyschmo/deoplete-latex'
+on_ft = ['tex', 'latex']
