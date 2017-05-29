@@ -4,6 +4,7 @@ if [[ -z "$PATH" || "$PATH" == "/bin:/usr/bin" ]]; then
 fi
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$PATH:$HOME/.gem/ruby/`ls $HOME/.gem/ruby| head -n 1`/bin"
 export RUST_SRC_PATH=`echo $HOME/.rustup/toolchains/*/lib/rustlib/src/rust/src`
 
 function recExport(){
