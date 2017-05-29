@@ -24,6 +24,10 @@ hook_add = '''
         \, 'indentaion': '  '
         \}
 '''
+# vim
+[[plugins]]
+repo = 'Shougo/neco-vim'
+on_ft = 'vim'
 # toml
 [[plugins]]
 repo  = 'cespare/vim-toml'
@@ -86,3 +90,7 @@ hook_add='''
 let g:rust_doc#downloaded_rust_doc_dir = '$HOME/.rustup/toolchains/*-*'
 nnoremap <silent><space>s :<c-u>Unite rust/doc<CR>
 '''
+# Python
+#[[plugins]]
+#repo = 'zchee/deoplete-jedi'
+#on_ft = 'python'

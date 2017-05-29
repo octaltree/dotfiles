@@ -52,3 +52,5 @@ function! s:my_cr_function() abort
   return deoplete#close_popup() . "\<CR>"
 endfunction
 '''
+[[plugins]] # deoplete source from syntax highlight
+repo = 'Shougo/neco-syntax'
