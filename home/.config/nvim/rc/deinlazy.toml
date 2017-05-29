@@ -1,4 +1,10 @@
 [[plugins]]
+repo = 'Shougo/Unite.vim'
+on_cmd = 'Unite'
+hook_add='''
+let g:unite_enable_start_insert = 1
+'''
+[[plugins]]
 repo = 'koron/codic-vim'
 on_cmd = 'Codic'
 # web
@@ -72,4 +78,11 @@ on_ft = 'rust'
 hook_add='''
 let g:racer_experimental_completer = 1
 nmap gd <Plug>(rust-def)
+'''
+[[plugins]]
+repo = 'rhysd/rust-doc.vim'
+on_ft = 'rust'
+hook_add='''
+let g:rust_doc#downloaded_rust_doc_dir = '$HOME/.rustup/toolchains/*-*'
+nnoremap <silent><space>s :<c-u>Unite rust/doc<CR>
 '''
