@@ -20,6 +20,12 @@ function proxyFirefox(){
   local q=`[ "$1" = "on" ] && echo "s/$off/$on/" || echo "s/$on/$off/"`
   echo "$prefs"| xargs -L1 sed $q -i
 }
+function proxyCargo(){
+  local on="proxy = \"$proxy\""
+  local off="proxy = \"\""
+  local q=`[ "$1" = "on" ] && echo "s/$off/$on/g" || echo "s/$on/$off/"`
+  sed $q -i ~/.cargo/config
+}
 if [ "\"UECWireless\"" = `iwconfig 2>/dev/null| sed '/ESSID/!d'| awk -F: '{print $2}'` ] ||\
   [ "\"106F3F356510\"" = `iwconfig 2>/dev/null| sed '/ESSID/!d'| awk -F: '{print $2}'` ]; then
   export http_proxy="$proxy"
@@ -36,6 +42,7 @@ if [ "\"UECWireless\"" = `iwconfig 2>/dev/null| sed '/ESSID/!d'| awk -F: '{print
   # /systemd/system/multi-user.target.wants/docker.service
   # Environment="HTTP_PROXY=http://proxy.uec.ac.jp:8080/,HTTPS_PROXY=http://proxy.uec.ac.jp:8080/"
   proxyFirefox on
+  proxyCargo on
 else
   export http_proxy=""
   export https_proxy=""
@@ -50,4 +57,5 @@ else
     python3 -c "fr = open('$HOME/.curlrc', 'r'); str=fr.read().replace('proxy=$proxy\n', ''); fw = open('$HOME/.curlrc', 'w'); fw.write(str)"
   fi
   proxyFirefox off
+  proxyCargo off
 fi
