@@ -7,4 +7,5 @@ autocmd DOMLoad .* zoom! 195
 nnoremap z0 :<c-u>zoom! 195<CR>
 nnoremap zp1 :<c-u>set! network.proxy.type=1<CR>
 nnoremap zp0 :<c-u>set! network.proxy.type=4<CR>
+set editor='terminal -e nvim'
 " vim: ft=vim:
