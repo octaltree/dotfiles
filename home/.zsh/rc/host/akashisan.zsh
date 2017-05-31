@@ -23,8 +23,8 @@ function proxyFirefox(){
 function proxyCargo(){
   local on="proxy = \"$proxy\""
   local off="proxy = \"\""
-  local q=`[ "$1" = "on" ] && echo "s/$off/$on/g" || echo "s/$on/$off/"`
-  sed $q -i ~/.cargo/config
+  local q=`[ "$1" = "on" ] && echo "s/$off/$on/g" || echo "s/$on/$off/g"`
+  sed $q -i ~/.cargo/config --follow-symlinks
 }
 if [ "\"UECWireless\"" = `iwconfig 2>/dev/null| sed '/ESSID/!d'| awk -F: '{print $2}'` ] ||\
   [ "\"106F3F356510\"" = `iwconfig 2>/dev/null| sed '/ESSID/!d'| awk -F: '{print $2}'` ]; then
