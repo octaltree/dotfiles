@@ -1,0 +1,1 @@
+ignorekeys add -except=<C-n>,<C-p>,<C-h>,<C-l>,d,v,\;,:,b,<esc>,f tweetdeck.twitter.com
