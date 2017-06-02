@@ -93,4 +93,8 @@ nnoremap <silent><space>s :<c-u>Unite rust/doc<CR>
 # C/ C++
 [[plugins]]
 repo = 'https://github.com/zchee/deoplete-clang'
-on_ft = ['c', 'cpp']
+on_ft = ['c', 'cpp', 'cmake']
+hook_source = '''
+let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
+let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
+'''
