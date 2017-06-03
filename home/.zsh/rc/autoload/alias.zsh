@@ -10,7 +10,7 @@ alias mv='mv -i'
 alias d='docker'
 alias gn='geeknote'
 alias nv='nvim'
-alias cag='cargo'
+alias ca='cargo'
 
 alias ad='git add'
 alias br='git branch'
