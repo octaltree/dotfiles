@@ -11,6 +11,7 @@ alias d='docker'
 alias gn='geeknote'
 alias nv='nvim'
 alias ca='cargo'
+alias xgne='xclip -o| xargs git clone'
 
 alias ad='git add'
 alias br='git branch'
