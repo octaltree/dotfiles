@@ -42,6 +42,7 @@ build = 'make'
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
 hook_add='''
+set completeopt+=noselect
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_complete_delay = 0
 let g:deoplete#auto_complete_start_length = 1
