@@ -12,12 +12,12 @@ function proxyCargo(){
 function proxySsh(){
   local proxy="$2"
   local file="$HOME/.ssh/config"
+  local str="Host *.*\n  ProxyCommand nc -X connect -x $proxy %h %p\n"
   [ "$1" = "on" ] &&\
-    echo "Host *.*\n  ProxyCommand nc -X connect -x $proxy %h %p" >> $file &&\
+    echo -n "$str" >> $file &&\
     return;
-  cat $file|\
-    awk 'BEGIN{RS = "[^ ]Host"} $1 != "*.*"{print "Host"$0}'|\
-    tee $file >/dev/null
+  python3 -c "s=open('$file', 'r').read();\
+    open('$file', 'w').write(s.replace('$str', ''))"
 }
 function proxyOn(){
   local proxy="$1"
