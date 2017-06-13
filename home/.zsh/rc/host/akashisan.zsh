@@ -11,10 +11,13 @@ function proxyCargo(){
 }
 function proxySsh(){
   local proxy="$2"
+  local file="$HOME/.ssh/config"
   [ "$1" = "on" ] &&\
-    echo "Host *.*\n  ProxyCommand nc -X connect -x $proxy %h %p" >> ~/.ssh/config &&\
+    echo "Host *.*\n  ProxyCommand nc -X connect -x $proxy %h %p" >> $file &&\
     return;
-  # TODO off
+  cat $file|\
+    awk 'BEGIN{RS = "[^ ]Host"} $1 != "*.*"{print "Host"$0}'|\
+    tee $file >/dev/null
 }
 function proxyOn(){
   local proxy="$1"
