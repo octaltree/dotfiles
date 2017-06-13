@@ -2,20 +2,19 @@ function haveCmd(){
   type $1 > /dev/null 2>&1
   return $?
 }
-function proxyFirefox(){
-  local proxy="$2"
-  local prefs=`find ~/.mozilla/firefox -maxdepth 2 -name "prefs.js"`
-  local on='"network.proxy.type", 1'
-  local off='"network.proxy.type", 4'
-  local q=`[ "$1" = "on" ] && echo "s/$off/$on/" || echo "s/$on/$off/"`
-  echo "$prefs"| xargs -L1 sed $q -i
-}
 function proxyCargo(){
   local proxy="$2"
   local on="proxy = \"$proxy\""
   local off="proxy = \"\""
   local q=`[ "$1" = "on" ] && echo "s/$off/$on/g" || echo "s/$on/$off/g"`
   sed $q -i ~/.cargo/config --follow-symlinks
+}
+function proxySsh(){
+  local proxy="$2"
+  [ "$1" = "on" ] &&\
+    echo "Host *.*\n  ProxyCommand nc -X connect -x $proxy %h %p" >> ~/.ssh/config &&\
+    return;
+  # TODO off
 }
 function proxyOn(){
   local proxy="$1"
@@ -27,12 +26,11 @@ function proxyOn(){
     git config --global http.proxy $proxy
     git config --global https.proxy $proxy
   fi
-  echo "Host *.*\n  ProxyCommand nc -X connect -x $proxy %h %p" >> ~/.ssh/config
+  proxySsh on "$proxy"
   echo "proxy=$proxy" >> ~/.curlrc
   # /systemd/system/multi-user.target.wants/docker.service
   # Environment="HTTP_PROXY=http://proxy.uec.ac.jp:8080/,HTTPS_PROXY=http://proxy.uec.ac.jp:8080/"
-  proxyFirefox on $proxy
-  proxyCargo on $proxy
+  proxyCargo on "$proxy"
 }
 function proxyOff(){
   local proxy="$1"
@@ -44,13 +42,9 @@ function proxyOff(){
     git config --global http.proxy ''
     git config --global https.proxy ''
   fi
-  # TODO
-  #if haveCmd "python3"; then
-  #  python3 -c "fr = open('$HOME/.ssh/config', 'r'); print(fr.read()); str=fr.read().replace('Host *.*\n  ProxyCommand nc -X connect -x $proxy %h %p\n', ''); print(str); fw = open('$HOME/.ssh/config', 'w'); fw.write(str)"
-  #fi
+  proxySsh off "$proxy"
   sed '/^proxy=.*$/d' -i ~/.curlrc
-  proxyFirefox off $proxy
-  proxyCargo off $proxy
+  proxyCargo off "$proxy"
 }
 
 (){
