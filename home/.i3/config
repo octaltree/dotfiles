@@ -14,7 +14,7 @@ new_float normal
 hide_edge_borders none
 
 # Font for window titles
-font xft:Noto Sans 10
+font xft:Noto Sans 1
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -75,15 +75,11 @@ bindsym $mod+Ctrl+t exec --no-startup-id compton -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 
 # change focus
+bindsym Mod1+Tab focus right
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
-bindsym $mod+Tab focus right
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
 
 # move focused window
 bindsym $mod+Shift+h move left
