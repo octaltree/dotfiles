@@ -13,6 +13,8 @@ set listchars=eol:'
 set background=dark
 set clipboard=unnamed,unnamedplus
 
+au QuickfixCmdPost make,grep,grepadd,vimgrep cwindow
+
 " ## file ##########
 set fileformat=unix
 set fileformats=unix,dos,mac
