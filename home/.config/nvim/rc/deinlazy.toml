@@ -64,9 +64,9 @@ on_ft = 'haskell'
 repo = 'Twinside/vim-hoogle'
 on_ft = 'haskell'
 # Tex
-[[plugins]]
-repo = 'poppyschmo/deoplete-latex'
-on_ft = ['tex', 'latex']
+#[[plugins]]
+#repo = 'poppyschmo/deoplete-latex'
+#on_ft = ['tex', 'latex']
 # Rust
 [[plugins]]
 repo = 'rust-lang/rust.vim'
