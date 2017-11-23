@@ -12,6 +12,8 @@ alias gn='geeknote'
 alias nv='nvim'
 alias ca='cargo'
 alias xgne='xclip -o| xargs git clone'
+alias enja='trans en:ja'
+alias jaen='trans ja:en'
 
 alias ad='git add'
 alias br='git branch'
