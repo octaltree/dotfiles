@@ -46,7 +46,7 @@ bindsym $mod+F3 exec pcmanfm
 bindsym $mod+Shift+F3 exec gksu pcmanfm
 bindsym $mod+f fullscreen toggle
 #bindsym $mod+q split toggle
-bindsym $mod+s layout stacking
+bindsym $mod+s layout splith
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
@@ -320,5 +320,5 @@ mode "$mode_gaps_outer" {
 
 workspace_layout tabbed
 exec --no-startup-id terminal
-no_focus [title="Firefox"]
-exec --no-startup-id firefox
+no_focus [title="Waterfox"]
+exec --no-startup-id waterfox
