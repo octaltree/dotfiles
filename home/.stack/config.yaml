@@ -13,3 +13,4 @@ templates:
     author-email: octaltree@gmail.com
     github-username: octaltree
     #copyright:
+ghc-build: tinfo6
