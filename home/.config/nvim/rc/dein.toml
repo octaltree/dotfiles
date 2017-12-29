@@ -58,3 +58,12 @@ repo = 'Shougo/neco-syntax'
 
 [[plugins]]
 repo = 'bronson/vim-trailing-whitespace'
+
+[[plugins]]
+repo = 'autozimu/LanguageClient-neovim'
+build = './install.sh'
+hook_add = '''
+set hidden
+let g:LanguageClient_serverCommands = {
+  \ 'haskell': ['stack', 'exec', 'hie', '--', '--lsp']}
+'''
