@@ -55,3 +55,6 @@ endfunction
 '''
 [[plugins]] # deoplete source from syntax highlight
 repo = 'Shougo/neco-syntax'
+
+[[plugins]]
+repo = 'bronson/vim-trailing-whitespace'
