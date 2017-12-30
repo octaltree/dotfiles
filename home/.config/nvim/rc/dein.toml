@@ -69,6 +69,13 @@ endfunction
 repo = 'Shougo/neco-syntax'
 
 [[plugins]]
+repo = 'Shougo/echodoc.vim'
+hook_add = '''
+  set noshowmode
+  let g:echodoc#enable_at_startup = 1
+'''
+
+[[plugins]]
 repo = 'bronson/vim-trailing-whitespace'
 
 [[plugins]]
