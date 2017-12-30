@@ -18,7 +18,7 @@ jquery-*.js
 *.old
 *.log
 .stack-work
-venv
+ve
 __pycache__
 .fuse*
 .nfs*
