@@ -86,5 +86,6 @@ set hidden
 let g:LanguageClient_serverCommands = {
   \ 'haskell': ['stack', 'exec', 'hie', '--', '--lsp'],
   \ 'python': ['pyls'],
+  \ 'rust': ['rls'],
   \ }
 '''
