@@ -10,7 +10,6 @@ libs
 jquery-*.js
 *.swp
 *.swo
-*.sql
 *.tags*
 *.gemtags*
 *.tsv
