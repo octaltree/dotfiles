@@ -40,6 +40,12 @@ hook_add = '''
   let g:vim_markdown_frontmatter = 1
   let g:vim_markdown_math = 1
 '''
+[[plugins]]
+repo = 'kannokanno/previm'
+on_cmd = 'PrevimOpen'
+hook_add = '''
+  let g:previm_open_cmd = 'waterfox'
+'''
 # Tex
 [[plugins]]
 repo = 'poppyschmo/deoplete-latex'
