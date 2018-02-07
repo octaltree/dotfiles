@@ -46,12 +46,10 @@ bindsym $mod+F3 exec pcmanfm
 bindsym $mod+Shift+F3 exec gksu pcmanfm
 bindsym $mod+f fullscreen toggle
 #bindsym $mod+q split toggle
-bindsym $mod+s layout splith
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+Shift+s sticky toggle
 bindsym $mod+a focus parent
+bindsym $mod+c focus child
 # 使わない
 #bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 #bindsym $mod+F2 exec palemoon
@@ -113,8 +111,11 @@ mode "$mode_switch_workspace" {
   bindsym d workspace $ws6; mode "default"
   bindsym s workspace $ws7; mode "default"
   bindsym a workspace $ws8; mode "default"
+
   bindsym Return mode "default"
   bindsym Escape mode "default"
+  bindsym Ctrl+[ mode "default"
+  bindsym Ctrl+c mode "default"
 }
 bindsym $mod+Shift+semicolon mode "$mode_move_switch_workspace"
 set $mode_move_switch_workspace move and switch workspace to asdfjkl;
@@ -127,8 +128,11 @@ mode "$mode_move_switch_workspace" {
   bindsym d move container to workspace $ws6; workspace $ws6; mode "default"
   bindsym s move container to workspace $ws7; workspace $ws7; mode "default"
   bindsym a move container to workspace $ws8; workspace $ws8; mode "default"
+
   bindsym Return mode "default"
   bindsym Escape mode "default"
+  bindsym Ctrl+[ mode "default"
+  bindsym Ctrl+c mode "default"
 }
 
 # Open specific applications in floating mode
@@ -174,6 +178,8 @@ mode "$mode_system" {
 
   bindsym Return mode "default"
   bindsym Escape mode "default"
+  bindsym Ctrl+[ mode "default"
+  bindsym Ctrl+c mode "default"
 }
 
 bindsym $mod+9 mode "$mode_i3"
@@ -182,8 +188,11 @@ mode "$mode_i3" {
   bindsym l reload; mode "default"
   bindsym s restart; mode "default"
   bindsym x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"; mode "default"
+
   bindsym Return mode "default"
   bindsym Escape mode "default"
+  bindsym Ctrl+[ mode "default"
+  bindsym Ctrl+c mode "default"
 }
 
 bindsym $mod+r mode "resize"
@@ -199,6 +208,22 @@ mode "resize" {
 
   bindsym Return mode "default"
   bindsym Escape mode "default"
+  bindsym Ctrl+[ mode "default"
+  bindsym Ctrl+c mode "default"
+}
+
+bindsym $mod+n mode "$mode_layout"
+set $mode_layout (t)abbed (s)tacking split(v) split(h)
+mode "$mode_layout" {
+  bindsym t layout tabbed; mode "default"
+  bindsym s layout stacking; mode "default"
+  bindsym v layout splitv; mode "default"
+  bindsym h layout splith; mode "default"
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym Ctrl+[ mode "default"
+  bindsym Ctrl+c mode "default"
 }
 
 # Autostart applications
@@ -284,6 +309,7 @@ bindsym $mod+Shift+g mode "$mode_gaps"
 mode "$mode_gaps" {
         bindsym o      mode "$mode_gaps_outer"
         bindsym i      mode "$mode_gaps_inner"
+
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym Ctrl+[ mode "default"
