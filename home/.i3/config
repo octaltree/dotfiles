@@ -321,4 +321,4 @@ mode "$mode_gaps_outer" {
 workspace_layout tabbed
 exec --no-startup-id terminal
 no_focus [title="Waterfox"]
-exec --no-startup-id waterfox
+exec --no-startup-id MOZ_DISABLE_GMP_SANDBOX=1 waterfox
