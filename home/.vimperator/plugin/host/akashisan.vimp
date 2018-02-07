@@ -8,6 +8,5 @@ nnoremap z0 :<c-u>zoom! 195<CR>
 nnoremap zp1 :<c-u>set! network.proxy.type=1<CR>
 nnoremap zp0 :<c-u>set! network.proxy.type=4<CR>
 set editor='terminal -e nvim'
-set! browser.tabs.showAudioPlayingIcon=false
 set! browser.sessionstore.max_resumed_crashes=-1
 " vim: ft=vim:
