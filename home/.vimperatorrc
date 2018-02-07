@@ -27,7 +27,6 @@ hi HintElem z-index:0; background-color: DarkSlateGray; color: Black;"Khaki; col
 hi HintActive z-index:0; background-color: DarkGreen; color: White;"Orange; color: White;
 
 " ## 設定
-" about:config browser.sessionstore.max_resumed_crashes -1
 set statuslinevisibility=visible
 set defsearch=google
 set hintchars=asdfwev
