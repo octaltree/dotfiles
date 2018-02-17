@@ -348,3 +348,5 @@ workspace_layout tabbed
 exec --no-startup-id terminal
 no_focus [title="Waterfox"]
 exec --no-startup-id MOZ_DISABLE_GMP_SANDBOX=1 waterfox
+assign [class="Slack"] 2
+exec --no-startup-id slack
