@@ -9,6 +9,7 @@ nnoremap zp1 :<c-u>set! network.proxy.type=1<CR>
 nnoremap zp0 :<c-u>set! network.proxy.type=4<CR>
 nnoremap zg1 :<c-u>set gui=addons,menu,bookmarks,navigation,tabs<CR>
 nnoremap zg0 :<c-u>set gui=noaddons,nomenu,nobookmarks,nonavigation,tabs<CR>
+set gui=noaddons,nomenu,nobookmarks,nonavigation,tabs
 set editor='terminal -e nvim'
 set! browser.sessionstore.max_resumed_crashes=-1
 " vim: ft=vim:
