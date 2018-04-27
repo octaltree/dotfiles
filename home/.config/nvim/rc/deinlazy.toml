@@ -13,7 +13,7 @@ repo  = 'othree/yajs.vim'
 on_ft = 'javascript'
 [[plugins]]
 repo = 'mattn/emmet-vim'
-on_ft = ['html', 'css', 'php', 'smarty']
+on_ft = ['html', 'css', 'php', 'smarty', 'javascript']
 hook_add = '''
   let g:user_emmet_install_global = 0
   autocmd FileType html,css,php,smarty EmmetInstall
