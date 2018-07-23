@@ -89,3 +89,6 @@ let g:LanguageClient_serverCommands = {
   \ 'rust': ['rls'],
   \ }
 '''
+
+[[plugins]]
+repo = 'https://github.com/purescript-contrib/purescript-vim'
