@@ -2,8 +2,8 @@
 #history###############################################
 #漢のzshより
 HISTFILE=~/.zsh_history
-HISTSIZE=50000
-SAVEHIST=50000
+HISTSIZE=99999999999999999
+SAVEHIST=99999999999999999
 setopt hist_ignore_dups     # ignore duplication command history list
 setopt share_history        # share command history data
 
