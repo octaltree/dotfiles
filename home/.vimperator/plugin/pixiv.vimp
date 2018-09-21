@@ -95,7 +95,7 @@ pixiv.replaceManga = function(){
 };
 EOF
 command! -nargs=0 -description="作品から複数ページへ" mangaPixiv js pixiv.replaceManga();
-"command! -nargs=0 -description="tabopen all images at pixiv" openPixiv js pixiv.openLinks();
+command! -nargs=0 -description="tabopen all images at pixiv" openPixiv js pixiv.openLinks();
 
 nnoremap zpm :<c-u>mangaPixiv<CR>
 autocmd LocationChange www.pixiv.net -js (function(){ var w = content.window; var l = w.location.href; if( /^https:\/\/www.pixiv.net\/member.php/.test(l) ) w.location.href = l.replace(/member.php/, 'member_illust.php'); }());
