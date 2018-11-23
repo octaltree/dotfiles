@@ -4,6 +4,7 @@ if [[ -z "$PATH" || "$PATH" == "/bin:/usr/bin" ]]; then
 fi
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$PATH:$HOME/.android/sdk/platform-tools"
 for v in `ls $HOME/.gem/ruby`; do
   export PATH="$PATH:$HOME/.gem/ruby/$v/bin"
 done
