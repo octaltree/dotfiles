@@ -1,0 +1,23 @@
+set csp clobber
+fixamo_quiet
+
+"set theme dark
+set theme shydactyl
+
+set hintuppercase false
+set yankto both
+
+reset all
+
+bind j scrollline 1
+bind k scrollline -1
+bind J tabnext_gt
+bind K tabprev
+bind <c-k> tabmove +1
+bind <c-j> tabmove -1
+bind H back
+bind L forward
+keymap ; :
+keymap : ;
+
+" vim: set ft=vim:
