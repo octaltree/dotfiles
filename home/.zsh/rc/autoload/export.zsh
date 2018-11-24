@@ -9,6 +9,9 @@ for v in `ls $HOME/.gem/ruby`; do
   export PATH="$PATH:$HOME/.gem/ruby/$v/bin"
 done
 export RUST_SRC_PATH=`echo $HOME/.rustup/toolchains/*/lib/rustlib/src/rust/src`
+export GOPATH="$HOME/.go"
+which nvim > /dev/null 2>&1 &&\
+  export EDITOR=nvim
 
 function recExport(){
   # シンボリックリンクであればリンク先も再帰的に
