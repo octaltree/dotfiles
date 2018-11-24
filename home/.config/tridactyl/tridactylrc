@@ -22,5 +22,6 @@ bind L forward
 
 autocmd DocStart * zoom 195
 autocmd TabEnter * zoom 195
+bind z0 zoom 195
 
 " vim: set ft=vim:
