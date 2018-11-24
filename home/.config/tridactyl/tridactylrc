@@ -20,7 +20,7 @@ bind <c-j> tabmove -1
 bind H back
 bind L forward
 
-autocmd DocStart * zoom 195
+autocmd DocLoad * zoom 195
 autocmd TabEnter * zoom 195
 bind z0 zoom 195
 
