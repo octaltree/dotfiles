@@ -20,4 +20,6 @@ bind <c-j> tabmove -1
 bind H back
 bind L forward
 
+autocmd DocStart * zoom 195
+
 " vim: set ft=vim:
