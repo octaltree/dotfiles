@@ -9,6 +9,8 @@ set yankto both
 
 reset all
 
+keymap ; :
+keymap : ;
 bind j scrollline 1
 bind k scrollline -1
 bind J tabnext_gt
@@ -17,7 +19,5 @@ bind <c-k> tabmove +1
 bind <c-j> tabmove -1
 bind H back
 bind L forward
-keymap ; :
-keymap : ;
 
 " vim: set ft=vim:
