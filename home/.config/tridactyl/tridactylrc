@@ -27,5 +27,6 @@ bind z0 zoom 195
 autocmd DocStart .* zoom 195
 autocmd DocLoad .* zoom 195
 autocmd TabEnter .* zoom 195
+autocmd DocLoad moneyforward.com/users/two_step_verifications/new js document.getElementsByClassName('not-now')[0].click()
 
 " vim: set ft=vim:
