@@ -1,3 +1,6 @@
+sanitize tridactyllocal tridactylsync
+reset all
+
 set csp clobber
 fixamo_quiet
 
@@ -6,8 +9,6 @@ set theme shydactyl
 
 set hintuppercase false
 set yankto both
-
-reset all
 
 keymap ; :
 keymap : ;
@@ -22,5 +23,9 @@ bind L forward
 bind --mode=insert <c-h> im_delete_backward_char
 bind --mode=input <c-h> im_delete_backward_char
 bind z0 zoom 195
+
+autocmd DocStart .* zoom 195
+autocmd DocLoad .* zoom 195
+autocmd TabEnter .* zoom 195
 
 " vim: set ft=vim:
