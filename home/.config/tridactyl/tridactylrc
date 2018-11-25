@@ -19,9 +19,8 @@ bind <c-j> tabmove +1
 bind <c-k> tabmove -1
 bind H back
 bind L forward
-
-autocmd DocLoad * zoom 195
-autocmd TabEnter * zoom 195
+bind --mode=insert <c-h> im_delete_backward_char
+bind --mode=input <c-h> im_delete_backward_char
 bind z0 zoom 195
 
 " vim: set ft=vim:
