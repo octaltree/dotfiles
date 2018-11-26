@@ -14,12 +14,12 @@ keymap ; :
 keymap : ;
 bind j scrollline 1
 bind k scrollline -1
-bind J tabnext_gt
-bind K tabprev
-bind <c-j> tabmove +1
-bind <c-k> tabmove -1
-bind H back
-bind L forward
+bind n tabnext_gt
+bind p tabprev
+bind <c-n> tabmove +1
+bind <c-p> tabmove -1
+bind <c-o> back
+bind <c-i> forward
 bind --mode=insert <c-h> im_delete_backward_char
 bind --mode=input <c-h> im_delete_backward_char
 bind z0 zoom 195
