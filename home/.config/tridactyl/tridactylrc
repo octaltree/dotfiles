@@ -8,6 +8,7 @@ fixamo_quiet
 set theme shydactyl
 
 set hintuppercase false
+set hintchars jfkdls;a
 set yankto both
 
 keymap ; :
