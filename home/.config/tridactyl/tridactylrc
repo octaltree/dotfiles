@@ -27,6 +27,7 @@ bind --mode=insert <c-h> im_delete_backward_char
 bind --mode=input <c-h> im_delete_backward_char
 bind z0 zoom 195
 
+bindurl todoist.com f hint -c a,input,div.ist_checkbox,#gear_holder,.menu_item>td,li.filter,.clickable
 autocmd DocStart .* zoom 195
 autocmd DocLoad .* zoom 195
 autocmd TabEnter .* zoom 195
