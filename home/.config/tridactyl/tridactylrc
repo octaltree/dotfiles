@@ -26,6 +26,9 @@ bind <c-i> forward
 bind --mode=insert <c-h> im_delete_backward_char
 bind --mode=input <c-h> im_delete_backward_char
 bind z0 zoom 195
+bind co composite get_current_url| tabopen -c oct
+bind cs composite get_current_url| tabopen -c sol
+bind cn composite get_current_url| tabopen -c nic
 unbind p
 unbind P
 
