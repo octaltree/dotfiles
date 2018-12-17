@@ -11,6 +11,9 @@ set hintuppercase false
 set hintchars jfkdls;a
 set yankto both
 
+unbind p
+unbind P
+unbind O
 keymap ; :
 keymap : ;
 bind j scrollline 1
@@ -29,8 +32,6 @@ bind z0 zoom 195
 bind co composite get_current_url| tabopen -c oct
 bind cs composite get_current_url| tabopen -c sol
 bind cn composite get_current_url| tabopen -c nic
-unbind p
-unbind P
 
 bindurl todoist.com f hint -c a,input,button,textarea,select,div.ist_checkbox,#gear_holder,.menu_item>td,li.filter,.clickable,.richtext_editor
 autocmd DocStart .* zoom 195
