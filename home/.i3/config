@@ -104,7 +104,7 @@ set $ws7 7
 set $ws8 8
 
 bindsym $mod+semicolon mode "$mode_switch_workspace"
-set $mode_switch_workspace switch workspace to asdfjkl;
+set $mode_switch_workspace switch workspace to jkl;fdsa
 mode "$mode_switch_workspace" {
   bindsym j workspace $ws1; mode "default"
   bindsym k workspace $ws2; mode "default"
@@ -121,7 +121,7 @@ mode "$mode_switch_workspace" {
   bindsym Ctrl+c mode "default"
 }
 bindsym $mod+Shift+semicolon mode "$mode_move_switch_workspace"
-set $mode_move_switch_workspace move and switch workspace to asdfjkl;
+set $mode_move_switch_workspace move and switch workspace to jkl;fdsa
 mode "$mode_move_switch_workspace" {
   bindsym j move container to workspace $ws1; workspace $ws1; mode "default"
   bindsym k move container to workspace $ws2; workspace $ws2; mode "default"
@@ -349,8 +349,7 @@ mode "$mode_gaps_outer" {
 
 workspace_layout tabbed
 exec --no-startup-id terminal
-no_focus [class="Firefox"]
 exec --no-startup-id firefox
 no_focus [class="Slack"]
-assign [class="Slack"] 2
+assign [class="Slack"] 4
 exec --no-startup-id slack
