@@ -1,0 +1,9 @@
+#command-line-holder, #tridactyl-colon, #tridactyl-input {
+  background-color: #212121 !important;
+  color: #ccc !important;
+}
+
+#completions > *, #completions .sectionHeader, #completions .optionContainer {
+  background-color: #222222 !important;
+  color: #ccc !important;
+}
