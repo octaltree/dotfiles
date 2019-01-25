@@ -105,6 +105,10 @@ statuspanel[type="overLink"],
     display: none !important;
 }
 
+:root:not([customizing]) #content-deck {
+    padding-top: 0px !important;
+}
+
 /* Reduce the "white flash" in new tabs */
 browser[type="content-primary"], browser[type="content"] {
   background: #555 !important;
