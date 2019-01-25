@@ -113,3 +113,7 @@ statuspanel[type="overLink"],
 browser[type="content-primary"], browser[type="content"] {
   background: #555 !important;
 }
+
+#sidebar-splitter, #sidebar-header {
+  background-color: #555 !important;
+}
