@@ -38,5 +38,6 @@ autocmd DocStart .* zoom 195
 autocmd DocLoad .* zoom 195
 autocmd TabEnter .* zoom 195
 autocmd DocLoad moneyforward.com/users/two_step_verifications/new js document.getElementsByClassName('not-now')[0].click()
+autocmd DocLoad inoreader.com js document.body.innerHTML += '<style>.inno_dialog:first-child, .inno_dialog_modal_overlay:first-child { display: none; }</style>';
 
 " vim: set ft=vim:
