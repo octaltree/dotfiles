@@ -22,8 +22,8 @@ bind H scrollpx -1
 bind L scrollpx 1
 bind h tabprev
 bind l tabnext_gt
-bind <c-h> tabmove -1
-bind <c-l> tabmove +1
+bind <c-h> tabmove -10
+bind <c-l> tabmove +10
 bind <c-o> back
 bind <c-i> forward
 bind --mode=insert <c-h> im_delete_backward_char
