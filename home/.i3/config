@@ -222,6 +222,8 @@ mode "$mode_layout" {
   bindsym s layout stacking; mode "default"
   bindsym v layout splitv; mode "default"
   bindsym h layout splith; mode "default"
+  bindsym b split v; mode "default"
+  bindsym r split h; mode "default"
 
   bindsym Return mode "default"
   bindsym Escape mode "default"
