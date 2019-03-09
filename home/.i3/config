@@ -51,8 +51,6 @@ bindsym $mod+f fullscreen toggle
 #bindsym $mod+q split toggle
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+Shift+s sticky toggle
-bindsym $mod+a focus parent
-bindsym $mod+c focus child
 # 使わない
 #bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 #bindsym $mod+F2 exec palemoon
@@ -81,6 +79,8 @@ bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
+bindsym $mod+p focus parent
+bindsym $mod+c focus child
 
 # move focused window
 bindsym $mod+Shift+h move left
