@@ -80,34 +80,29 @@
     padding-top: 8px;
 }
 
-/* Hide URL notifications that aren't particularly useful and cover up the command line
- * TODO: move it above the command line / bring functionality into status line like Vimperator */
-statuspanel[type="overLink"],
-#statuspanel[type="overLink"] {
-    display: none !important;
-}
-
-/* Partial removal of black bottom 1px line shown in fullscreen mode */
-#navigator-toolbox::after {
-    display: none !important;
-}
-
-/* Kill tab bar */
-#TabsToolbar {
-    visibility: collapse;
-}
-
-/* Remove window decorations (Close, Minimize, Fullscreen) */
-#titlebar {
-    display: none !important;
-}
-#TabsToolbar .titlebar-placeholder {
-    display: none !important;
-}
-
-:root:not([customizing]) #content-deck {
-    padding-top: 0px !important;
-}
+///* Hide URL notifications that aren't particularly useful and cover up the command line
+// * TODO: move it above the command line / bring functionality into status line like Vimperator */
+//statuspanel[type="overLink"],
+//#statuspanel[type="overLink"] {
+//    display: none !important;
+//}
+//
+///* Partial removal of black bottom 1px line shown in fullscreen mode */
+//#navigator-toolbox::after {
+//    display: none !important;
+//}
+//
+///* Remove window decorations (Close, Minimize, Fullscreen) */
+//#titlebar {
+//    display: none !important;
+//}
+//#TabsToolbar .titlebar-placeholder {
+//    display: none !important;
+//}
+//
+//:root:not([customizing]) #content-deck {
+//    padding-top: 0px !important;
+//}
 
 /* Reduce the "white flash" in new tabs */
 browser[type="content-primary"], browser[type="content"] {
