@@ -1,7 +1,7 @@
 let  s:dein_repo_dir = g:dein_dir . "/repos/github.com/Shougo/dein.vim"
 if filereadable(s:dein_repo_dir . "/bin/installer.sh")
   execute 'set runtimepath^=' . s:dein_repo_dir
-  call dein#begin(g:dein_dir)
+  "call dein#begin(g:dein_dir)
 
   if dein#load_state(g:dein_dir)
     call dein#begin(g:dein_dir)
