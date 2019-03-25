@@ -10,6 +10,7 @@ set theme shydactyl
 set hintuppercase false
 set hintchars jfkdls;a
 set yankto both
+set editorcmd urxvt -e nvim
 
 unbind p
 unbind P
