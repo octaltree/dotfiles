@@ -44,7 +44,7 @@ hook_add = '''
 repo = 'kannokanno/previm'
 on_cmd = 'PrevimOpen'
 hook_add = '''
-  let g:previm_open_cmd = 'waterfox'
+  let g:previm_open_cmd = 'firefox'
 '''
 # Tex
 [[plugins]]
