@@ -46,10 +46,15 @@ function currentEnv(){
     export PATH="$p:$PATH"
     export CURRENT_ADDED_PATH="$p:$CURRENT_ADDED_PATH"
   fi
+  if [[ -n $VIRTUAL_ENV ]]; then # venv内
+    # current pathがvenv外ならdeactivate
+    local root=`dirname $VIRTUAL_ENV`
+    if ! [[ `pwd` =~ "^$root" ]]; then
+      deactivate
+    fi
+  fi
   if ls | sed '/^ve$/!d' | grep ve >/dev/null; then
-    local p="`pwd`/ve/bin"
-    export PATH="$p:$PATH"
-    export CURRENT_ADDED_PATH="$p:$CURRENT_ADDED_PATH"
+    source "`pwd`/ve/bin/activate"
   fi
 }
 
