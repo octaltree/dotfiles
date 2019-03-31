@@ -60,11 +60,11 @@ function proxyOff(){
     fi
   fi
 
-  local proxy="proxy.uec.ac.jp:8080"
-  if [ "\"UECWireless\"" = `iwconfig 2>/dev/null| sed '/ESSID/!d'| awk -F: '{print $2}'` ] ||\
-    [ "\"106F3F356510\"" = `iwconfig 2>/dev/null| sed '/ESSID/!d'| awk -F: '{print $2}'` ]; then
-    proxyOn $proxy
-  else
-    proxyOff $proxy
-  fi
+  #local proxy="proxy.uec.ac.jp:8080"
+  #if [ "\"UECWireless\"" = `iwconfig 2>/dev/null| sed '/ESSID/!d'| awk -F: '{print $2}'` ] ||\
+  #  [ "\"106F3F356510\"" = `iwconfig 2>/dev/null| sed '/ESSID/!d'| awk -F: '{print $2}'` ]; then
+  #  proxyOn $proxy
+  #else
+  #  proxyOff $proxy
+  #fi
 }
