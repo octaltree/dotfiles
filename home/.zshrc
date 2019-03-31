@@ -11,3 +11,7 @@ if [ -d ~/.zsh/rc/autoload ] && [ -r ~/.zsh/rc/autoload ]; then
 fi
 
 sourceIfReadable ~/.zsh/rc/`hostname -s`.zsh
+
+if which zprof > /dev/null 2>&1; then
+  zprof
+fi
