@@ -354,4 +354,4 @@ exec --no-startup-id terminal
 exec --no-startup-id firefox
 no_focus [class="Slack"]
 assign [class="Slack"] 4
-exec --no-startup-id sleep 180 && slack
+exec --no-startup-id sleep 120 && slack
