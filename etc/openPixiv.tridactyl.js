@@ -23,10 +23,7 @@ pixiv.openLinks = function(){
     const url = a.href;
     if( ! url.match(/member_illust.*illust_id/) ) return;
     if( ! a.querySelector('div') ) return;
-    const target = a.querySelector('path')?
-      url.replace(/mode=medium/, 'mode=manga'):
-      url;
-    return target;
+    return url;
   })).forEach(url => window.open(url, '_blank'));
 };
 pixiv.openLinks();
