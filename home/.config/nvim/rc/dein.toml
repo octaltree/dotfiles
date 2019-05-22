@@ -85,6 +85,7 @@ repo = 'autozimu/LanguageClient-neovim'
 build = './install.sh'
 hook_add = '''
 set hidden
+let g:LanguageClient_loggingFile = '/tmp/languageclient.log'
 let g:LanguageClient_serverCommands = {
   \ 'haskell': ['stack', 'exec', 'hie', '--', '--lsp'],
   \ 'python': ['pyls'],
