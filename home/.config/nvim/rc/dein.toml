@@ -92,16 +92,7 @@ let g:LanguageClient_serverCommands = {
   \ 'rust': ['rls'],
   \ 'purescript': ['purescript-language-server', '--stdio'],
   \ }
-nnoremap [Denite]ld :call LanguageClient#textDocument_definition()<CR>
-nnoremap [Denite]lr :call LanguageClient#textDocument_rename()<CR>
-nnoremap [Denite]lf :call LanguageClient#textDocument_formatting()<CR>
-nnoremap [Denite]lt :call LanguageClient#textDocument_typeDefinition()<CR>
-nnoremap [Denite]lx :call LanguageClient#textDocument_references()<CR>
-nnoremap [Denite]la :call LanguageClient_workspace_applyEdit()<CR>
-nnoremap [Denite]lc :call LanguageClient#textDocument_completion()<CR>
-nnoremap [Denite]lh :call LanguageClient#textDocument_hover()<CR>
-nnoremap [Denite]ls :call LanguageClient_textDocument_documentSymbol()<CR>
-nnoremap [Denite]lm :call LanguageClient_contextMenu()<CR>
+nnoremap [Denite]h :call LanguageClient#textDocument_hover()<CR>
 '''
 
 [[plugins]]
