@@ -4,10 +4,13 @@ hook_add='''
   nnoremap [Denite] <Nop>
   nmap <silent><space> [Denite]
   nnoremap [Denite]f :<c-u>Denite file/rec<CR>
+  nnoremap [Denite]f :<c-u>Denite file/rec<CR>
   nnoremap [Denite]m :<c-u>Denite file_mru<CR>
   nnoremap [Denite]/ :<c-u>Denite line<CR>
   nnoremap [Denite]g :<c-u>Denite grep<CR>
   nnoremap [Denite]r :<c-u>Denite -resume<CR>
+  nnoremap [Denite]<space> :Denite source<CR>
+  nnoremap [Denite]i :Denite contextMenu<CR>
   call denite#custom#map('insert', '<c-n>', '<denite:move_to_next_line>', 'noremap')
   call denite#custom#map('insert', '<c-p>', '<denite:move_to_previous_line>', 'noremap')
   call denite#custom#map('insert', '<esc>', '<denite:enter_mode:normal>', 'noremap')
