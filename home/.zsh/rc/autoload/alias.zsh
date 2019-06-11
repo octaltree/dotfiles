@@ -1,4 +1,5 @@
 
+alias ta='todoist add'
 alias relog='exec $SHELL -l'
 alias ls='ls --color=auto'
 alias ll='ls -al --color | less -R'
