@@ -51,6 +51,7 @@ function proxyOff(){
 }
 
 (){
+  export LPASS_AGENT_TIMEOUT=0
   if [ -z "$TMUX" ]; then
     if [ `tmux list-sessions| sed '/attached/d'| wc -l` -ne 0 ]; then
       target=`tmux list-sessions| sed '/attached/d'| awk -F: '{print $1}'| head -n 1`
