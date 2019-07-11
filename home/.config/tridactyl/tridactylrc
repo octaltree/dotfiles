@@ -45,5 +45,6 @@ autocmd DocLoad inoreader.com js document.body.innerHTML += '<style>.inno_dialog
 command openInoreader js Array.from(document.querySelectorAll('.article_magazine_title a')).map(a => a.href).forEach(u => window.open(u, '_blank'));
 autocmd DocLoad sp.nicovideo.jp js document.location.href = document.location.href.replace('sp.nicovideo.jp', 'www.nicovideo.jp');
 source ~/.config/tridactyl/pixiv.tridactyl
+command listErrorDropbox js alert(Array.from(document.querySelectorAll('.upload-file.error .filename')).map(x => x.innerText).join('\n'));
 
 " vim: set ft=vim:
