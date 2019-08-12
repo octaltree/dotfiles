@@ -46,5 +46,6 @@ command openInoreader js Array.from(document.querySelectorAll('.article_magazine
 autocmd DocLoad sp.nicovideo.jp js document.location.href = document.location.href.replace('sp.nicovideo.jp', 'www.nicovideo.jp');
 source ~/.config/tridactyl/pixiv.tridactyl
 command listErrorDropbox js alert(Array.from(document.querySelectorAll('.upload-file.error .filename')).map(x => x.innerText).join('\n'));
+command openCw js (async function(){ const c = e => e && e.click(); const wait = ms => new Promise(resolve => setTimeout(resolve, ms)); let fold = null; while( true ){ fold = document.querySelector('.cw-message-folding'); if( fold ) break; await wait(100); } c(fold); let ms = []; while( true ){ ms = Array.from(document.querySelectorAll('.openable')); fold = document.querySelector('.cw-message-folding'); if( ! fold && ms.length > 0 ) break; await wait(100); } ms.forEach(e => c(e)); })();
 
 " vim: set ft=vim:
