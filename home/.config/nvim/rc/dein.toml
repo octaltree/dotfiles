@@ -94,6 +94,7 @@ repo = 'Shougo/neosnippet-snippets'
 repo = 'bronson/vim-trailing-whitespace'
 hook_add='''
 let g:extra_whitespace_ignored_filetypes=['denite']
+autocmd BufWinEnter * if ShouldMatchWhitespace() | match ExtraWhitespace /\\\@<![\u3000[:space:]]\+$/ | else | match ExtraWhitespace /^^/ | endif
 '''
 
 [[plugins]]
