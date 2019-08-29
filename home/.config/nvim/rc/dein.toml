@@ -1,6 +1,27 @@
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 hook_add='''
+  autocmd FileType denite call s:denite_my_settings()
+  function! s:denite_my_settings() abort
+    nnoremap <silent><buffer><expr> <cr>
+    \ denite#do_map('do_action')
+    nnoremap <silent><buffer><expr> <c-s>
+    \ denite#do_map('do_action', 'split')
+    nnoremap <silent><buffer><expr> <c-v>
+    \ denite#do_map('do_action', 'vsplit')
+    nnoremap <silent><buffer><expr> p
+    \ denite#do_map('do_action', 'preview')
+    nnoremap <silent><buffer><expr><nowait> q
+    \ denite#do_map('quit')
+    nnoremap <silent><buffer><expr> i
+    \ denite#do_map('open_filter_buffer')
+    nnoremap <silent><buffer><expr> <space>
+    \ denite#do_map('toggle_select')
+  endfunction
+  autocmd FileType denite-filter call s:denite_filter_my_settings()
+  function! s:denite_filter_my_settings() abort
+    imap <silent><buffer> <esc> <Plug>(denite_filter_quit)
+  endfunction
   nnoremap [Denite] <Nop>
   nmap <silent><space> [Denite]
   nnoremap [Denite]f :<c-u>Denite file/rec<CR>
@@ -9,22 +30,8 @@ hook_add='''
   nnoremap [Denite]/ :<c-u>Denite line<CR>
   nnoremap [Denite]g :<c-u>Denite grep<CR>
   nnoremap [Denite]r :<c-u>Denite -resume<CR>
+  nnoremap [Denite]p :<c-u>Denite neosnippet<CR>
   nnoremap [Denite]<space> :Denite source<CR>
-  call denite#custom#map('insert', '<c-n>', '<denite:move_to_next_line>', 'noremap')
-  call denite#custom#map('insert', '<c-p>', '<denite:move_to_previous_line>', 'noremap')
-  call denite#custom#map('insert', '<esc>', '<denite:enter_mode:normal>', 'noremap')
-  call denite#custom#map('normal', 'dd', '<denite:delete_entire_text>', 'noremap')
-  call denite#custom#map('normal', 'h', '<denite:move_caret_to_left>', 'noremap')
-  call denite#custom#map('normal', 'l', '<denite:move_caret_to_right>', 'noremap')
-  call denite#custom#map('normal', 'b', '<denite:move_caret_to_one_word_left>', 'noremap')
-  call denite#custom#map('normal', 'w', '<denite:move_caret_to_one_word_right>', 'noremap')
-  call denite#custom#map('normal', 'x', '<denite:delete_char_before_caret>', 'noremap')
-  call denite#custom#map('normal', '0', '<denite:move_caret_to_head>', 'noremap')
-  call denite#custom#map('normal', '$', '<denite:move_caret_to_tail>', 'noremap')
-  call denite#custom#map('normal', '<c-s>', '<denite:do_action:split>', 'noremap')
-  call denite#custom#map('normal', '<c-v>', '<denite:do_action:vsplit>', 'noremap')
-  call denite#custom#map('insert', '<c-s>', '<denite:do_action:split>', 'noremap')
-  call denite#custom#map('insert', '<c-v>', '<denite:do_action:vsplit>', 'noremap')
 
   if executable("ag")
     call denite#custom#var('file_rec', 'command',
@@ -78,7 +85,16 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'Shougo/neosnippet.vim'
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
 repo = 'bronson/vim-trailing-whitespace'
+hook_add='''
+let g:extra_whitespace_ignored_filetypes=['denite']
+'''
 
 [[plugins]]
 repo = 'autozimu/LanguageClient-neovim'
