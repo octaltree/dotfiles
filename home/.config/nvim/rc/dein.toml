@@ -70,13 +70,13 @@ let g:deoplete#auto_complete_delay = 0
 let g:deoplete#auto_complete_start_length = 1
 inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
-"imap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-"function! s:my_cr_function() abort
-"  return deoplete#close_popup() . "\<CR>"
-"endfunction
-imap <silent><expr> <cr> neosnippet#expandable_or_jumpable()?
-  \ "\<Plug>(neosnippet_expand_or_jump)":
-  \ deoplete#close_popup() . "\<CR>"
+imap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function() abort
+  return deoplete#close_popup() . "\<CR>"
+endfunction
+"imap <silent><expr> <cr> neosnippet#expandable_or_jumpable()?
+"  \ "\<Plug>(neosnippet_expand_or_jump)":
+"  \ deoplete#close_popup() . "\<CR>"
 '''
 [[plugins]] # deoplete source from syntax highlight
 repo = 'Shougo/neco-syntax'
@@ -92,9 +92,10 @@ let g:echodoc#type = 'virtual'
 [[plugins]]
 repo = 'Shougo/neosnippet.vim'
 hook_add='''
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+imap <silent><expr> <tab> neosnippet#expandable_or_jumpable()? "\<Plug>(neosnippet_expand_or_jump)": "\<tab>"
+smap <silent><expr> <tab> neosnippet#expandable_or_jumpable()? "\<Plug>(neosnippet_expand_or_jump)": "\<tab>"
+nmap <silent><expr> <tab> neosnippet#expandable_or_jumpable()? "\<Plug>(neosnippet_expand_or_jump)": "\<tab>"
+xmap <silent><expr> <tab> neosnippet#expandable()? "\<Plug>(neosnippet_expand_target)": "\<tab>"
 "let g:neosnippet#enable_complete_done = 1
 '''
 
