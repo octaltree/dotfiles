@@ -1,4 +1,14 @@
 [[plugins]]
+repo = 'Shougo/echodoc.vim'
+on_event = 'CompleteDone'
+hook_source = '''
+"set noshowmode
+"let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = 'virtual'
+call echodoc#enable()
+'''
+
+[[plugins]]
 repo = 'Shougo/Unite.vim'
 on_cmd = 'Unite'
 hook_add='''
