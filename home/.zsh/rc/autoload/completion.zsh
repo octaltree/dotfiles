@@ -1,6 +1,7 @@
 
-autoload -Uz compinit
-compinit
+# incr2とか他でやってくれるからなくてよさそう
+#autoload -Uz compinit
+#compinit
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
