@@ -1,3 +1,7 @@
+function removePath(){
+  export PATH=`echo -n $PATH | awk -v RS=: -v ORS=: '$0 != "'$1'"' | sed 's/:$//'`;
+}
+
 function currentEnv(){
   for p in `echo "$CURRENT_ADDED_PATH"| sed 's/:/ /g'`; do
     removePath "$p"

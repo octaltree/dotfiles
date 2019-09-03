@@ -34,7 +34,3 @@ which nvim > /dev/null 2>&1 &&\
 #  echo "$PATH" > /tmp/cache-zsh-path
 #fi
 export PATH="${HOME}/bin/handyScript:${HOME}/bin:${PATH}"
-
-function removePath(){
-  export PATH=`echo -n $PATH | awk -v RS=: -v ORS=: '$0 != "'$1'"' | sed 's/:$//'`;
-}
