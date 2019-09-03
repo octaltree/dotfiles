@@ -46,46 +46,7 @@ hook_add='''
   endif
 '''
 [[plugins]]
-repo = 'Shougo/neomru.vim'
-[[plugins]]
-repo = 'altercation/vim-colors-solarized'
-hook_add='''
-  colorscheme solarized
-  let g:solarized_termtrans=1
-  let g:solarized_visibility="low"
-  let g:solarized_termcolors=256
-'''
-[[plugins]]
-repo = 'tpope/vim-surround'
-[[plugins]]
-repo = 'Shougo/vimproc.vim'
-build = 'make'
-[[plugins]]
 repo = 'Shougo/context_filetype.vim'
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-hook_add='''
-set completeopt+=noselect
-set completeopt-=preview
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_delay = 0
-let g:deoplete#auto_complete_start_length = 1
-inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
-imap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-let g:cache_completed = {}
-function! s:my_cr_function() abort
-  if has_key(v:completed_item, 'word') && g:cache_completed != v:completed_item
-    let g:cache_completed = v:completed_item
-    return deoplete#close_popup()
-  else
-    return deoplete#close_popup() . "\<CR>"
-  endif
-endfunction
-"imap <silent><expr> <cr> neosnippet#expandable_or_jumpable()?
-"  \ "\<Plug>(neosnippet_expand_or_jump)":
-"  \ deoplete#close_popup() . "\<CR>"
-'''
 [[plugins]] # deoplete source from syntax highlight
 repo = 'Shougo/neco-syntax'
 
@@ -101,7 +62,22 @@ xmap <silent><expr> <tab> neosnippet#expandable()? "\<Plug>(neosnippet_expand_ta
 
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
+#[[plugins]]
+#repo = 'Shougo/vimproc.vim'
+#build = 'make'
+#[[plugins]]
+#repo = 'Shougo/neomru.vim'
 
+[[plugins]]
+repo = 'altercation/vim-colors-solarized'
+hook_add='''
+  colorscheme solarized
+  let g:solarized_termtrans=1
+  let g:solarized_visibility="low"
+  let g:solarized_termcolors=256
+'''
+[[plugins]]
+repo = 'tpope/vim-surround'
 [[plugins]]
 repo = 'bronson/vim-trailing-whitespace'
 hook_add='''
