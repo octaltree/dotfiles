@@ -1,5 +1,6 @@
-autoload -Uz promptinit
-promptinit
+
+#autoload -Uz promptinit
+#promptinit
 
 #PROMPT='[%n@%m %~]%# '    # default prompt
 #zshプロンプトにモード表示####################################
