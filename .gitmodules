@@ -14,3 +14,6 @@
 	path = home/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
 	ignore = dirty
+[submodule "home/.zsh/plugins/zplugin"]
+	path = home/.zsh/plugins/zplugin
+	url = https://github.com/zdharma/zplugin
