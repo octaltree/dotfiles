@@ -65,8 +65,8 @@ repo = 'Shougo/neosnippet-snippets'
 #[[plugins]]
 #repo = 'Shougo/vimproc.vim'
 #build = 'make'
-#[[plugins]]
-#repo = 'Shougo/neomru.vim'
+[[plugins]]
+repo = 'Shougo/neomru.vim'
 
 [[plugins]]
 repo = 'altercation/vim-colors-solarized'
