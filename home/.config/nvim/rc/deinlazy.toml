@@ -35,12 +35,12 @@ let g:echodoc#type = 'virtual'
 call echodoc#enable()
 '''
 
-[[plugins]]
-repo = 'Shougo/Unite.vim'
-on_cmd = 'Unite'
-hook_add='''
-let g:unite_enable_start_insert = 1
-'''
+#[[plugins]]
+#repo = 'Shougo/Unite.vim'
+#on_cmd = 'Unite'
+#hook_add='''
+#let g:unite_enable_start_insert = 1
+#'''
 # web
 [[plugins]]
 repo  = 'othree/html5.vim'
@@ -114,12 +114,19 @@ let g:rust_fold=1
 #let g:racer_experimental_completer = 1
 #nmap gd <Plug>(rust-def)
 #'''
+#[[plugins]]
+#repo = 'rhysd/rust-doc.vim'
+#on_ft = 'rust'
+#hook_add='''
+#let g:rust_doc#downloaded_rust_doc_dir = '$HOME/.rustup/toolchains/stable-*'
+#nnoremap <silent><space>s :<c-u>Unite rust/doc<CR>
+#'''
 [[plugins]]
-repo = 'rhysd/rust-doc.vim'
+repo = 'octaltree/rust-doc.vim'
 on_ft = 'rust'
 hook_add='''
 let g:rust_doc#downloaded_rust_doc_dir = '$HOME/.rustup/toolchains/stable-*'
-nnoremap <silent><space>s :<c-u>Unite rust/doc<CR>
+nnoremap <silent><space>s :<c-u>Denite rust/doc<CR>
 '''
 # C/ C++
 [[plugins]]
