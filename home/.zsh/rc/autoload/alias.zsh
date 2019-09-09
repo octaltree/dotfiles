@@ -31,3 +31,7 @@ alias rpr='git rev-parse --show-toplevel'
 alias sa='git stash'
 alias so='git show'
 alias st='git status'
+
+function mkdcd(){
+  mkdir "$1" && cd "$1"
+}
