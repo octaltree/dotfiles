@@ -11,14 +11,17 @@ let g:deoplete#auto_complete_start_length = 1
 inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
 imap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-let g:cache_completed = {}
+"let g:cache_completed = {}
+"function! s:my_cr_function() abort
+"  if has_key(v:completed_item, 'word') && g:cache_completed != v:completed_item
+"    let g:cache_completed = v:completed_item
+"    return deoplete#close_popup()
+"  else
+"    return deoplete#close_popup() . "\<CR>"
+"  endif
+"endfunction
 function! s:my_cr_function() abort
-  if has_key(v:completed_item, 'word') && g:cache_completed != v:completed_item
-    let g:cache_completed = v:completed_item
-    return deoplete#close_popup()
-  else
-    return deoplete#close_popup() . "\<CR>"
-  endif
+  return deoplete#close_popup() . "\<CR>"
 endfunction
 "imap <silent><expr> <cr> neosnippet#expandable_or_jumpable()?
 "  \ "\<Plug>(neosnippet_expand_or_jump)":
