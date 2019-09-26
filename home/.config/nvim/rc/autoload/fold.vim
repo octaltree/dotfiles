@@ -7,4 +7,6 @@ function MyFoldText()
   let sub = substitute(line, '/\*\|\*/\|{{{\d\=', '', 'g')
   return sub . ' ' . v:folddashes
 endfunction
+
+let javaScript_fold = 1
 " vim: foldmethod=syntax:
