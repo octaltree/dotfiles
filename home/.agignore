@@ -5,8 +5,6 @@ vendor
 .vim/bundle
 .vim/dict
 .git
-lib
-libs
 jquery-*.js
 *.swp
 *.swo
@@ -18,6 +16,7 @@ jquery-*.js
 *.log
 .stack-work
 ve
+node_modules
 __pycache__
 .fuse*
 .nfs*
