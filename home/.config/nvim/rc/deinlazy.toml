@@ -75,6 +75,9 @@ hook_add = '''
         \, 'indentaion': '  '
         \}
 '''
+[[plugins]]
+repo = 'MaxMEllon/vim-jsx-pretty'
+on_ft = ['javascriptreact']
 # vim
 [[plugins]]
 repo = 'Shougo/neco-vim'
