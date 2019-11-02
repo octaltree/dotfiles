@@ -4,6 +4,13 @@ autoload -Uz _zplugin
 
 #zplugin ice wait'' atinit'zpcompinit'; zplugin load _local/incr
 zplugin ice wait'' atinit'zpcompinit'; zplugin load _local/auto_menu
+zplugin ice wait'' atinit'zpcompinit'; zplugin load zsh-users/zsh-autosuggestions
 zplugin ice wait'!0'; zplugin load _local/sandbox
 zplugin ice wait'!0'; zplugin load zsh-users/zsh-syntax-highlighting
 zplugin ice wait'!0'; zplugin load zsh-users/zsh-completions
+
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
+ZSH_AUTOSUGGEST_STRATEGY=(completion history)
+ZSH_AUTOSUGGEST_USE_ASYNC=1
+bindkey -M viins '^f' forward-word
