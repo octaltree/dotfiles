@@ -67,3 +67,23 @@ function get-branch-status {
   # echo ${color}${res}'%{'${reset_color}'%}'
   echo ${color} # 色だけ返す
 }
+
+
+
+vi-paste-a-x-selection(){
+  LBUFFER=$LBUFFER$RBUFFER[1]
+  RBUFFER=$(xclip -sel clipboard -o)$RBUFFER[2,-1]
+}
+vi-paste-b-x-selection(){
+  RBUFFER=$(xclip -sel clipboard -o)$RBUFFER
+}
+zle -N vi-paste-a-x-selection
+zle -N vi-paste-b-x-selection
+bindkey -M vicmd 'p' vi-paste-a-x-selection
+bindkey -M vicmd 'P' vi-paste-b-x-selection
+# vi-yank-x-selection(){
+#   print -rn -- $BUFFER[$CURSOR+1,$MARK]| xclip -sel clipboard
+#   deactivate-region
+# }
+# zle -N vi-yank-x-selection
+# bindkey -M vicmd 'y' vi-yank-x-selection
