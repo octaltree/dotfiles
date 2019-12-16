@@ -28,7 +28,7 @@
     /* The height of the area at the top of the screen that causes the nav-bar to be shown
     If zero, you can still focus with <C-l> or F6.
      */
-    --tridactyl-auto-show-zone: 2px;
+    --tridactyl-auto-show-zone: 1px;
 }
 
 /* Hide grey container box */
