@@ -1,5 +1,5 @@
 if [ -z $TMUX ]; then
-  tmux attach || tmux -2
+  tmux attach || tmux
 fi
 
 setxkbmap -option ctrl:swapcaps

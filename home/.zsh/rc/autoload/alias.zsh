@@ -2,7 +2,6 @@
 alias ls='ls --color=auto'
 alias ll='ls -al --color | less -R'
 alias ssx='ssh -XC'
-alias tmux='tmux -2'
 alias opn='xdg-open'
 alias mv='mv -i'
 alias d='docker'
