@@ -87,6 +87,8 @@ hook_add='''
 let g:extra_whitespace_ignored_filetypes=['denite']
 autocmd BufWinEnter * if ShouldMatchWhitespace() | match ExtraWhitespace /\\\@<![\u3000[:space:]]\+$/ | else | match ExtraWhitespace /^^/ | endif
 '''
+[[plugins]]
+repo = 'sheerun/vim-polyglot'
 
 [[plugins]]
 repo = 'autozimu/LanguageClient-neovim'
@@ -103,5 +105,5 @@ let g:LanguageClient_serverCommands = {
 nnoremap [Denite]h :call LanguageClient#textDocument_hover()<CR>
 '''
 
-[[plugins]]
-repo = 'https://github.com/purescript-contrib/purescript-vim'
+#[[plugins]]
+#repo = 'https://github.com/purescript-contrib/purescript-vim'
