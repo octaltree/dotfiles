@@ -8,5 +8,4 @@ function MyFoldText()
   return sub . ' ' . v:folddashes
 endfunction
 
-let javaScript_fold = 1
-" vim: foldmethod=syntax:
+" vim: foldmethod=syntax
