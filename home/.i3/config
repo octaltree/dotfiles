@@ -32,7 +32,7 @@ bindsym $mod+Ctrl+m exec pavucontrol
 ################################################################################################
 
 # 使う
-bindsym $mod+Return exec terminal
+bindsym $mod+Return exec alacritty
 bindsym $mod+d kill
 bindsym $mod+m exec --no-startup-id dmenu_recency
 bindsym XF86AudioMute exec "pulsemixer --toggle-mute"
@@ -350,7 +350,7 @@ mode "$mode_gaps_outer" {
 }
 
 workspace_layout tabbed
-exec --no-startup-id terminal
+exec --no-startup-id alacritty
 exec --no-startup-id firefox
 no_focus [class="Slack"]
 assign [class="Slack"] 4
