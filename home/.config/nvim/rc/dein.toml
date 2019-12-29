@@ -70,13 +70,14 @@ repo = 'Shougo/neosnippet-snippets'
 repo = 'Shougo/neomru.vim'
 
 [[plugins]]
-repo = 'altercation/vim-colors-solarized'
+#repo = 'altercation/vim-colors-solarized'
+repo = 'lifepillar/vim-solarized8'
 hook_add='''
   "colorscheme solarized
   let g:solarized_termtrans=1
   let g:solarized_visibility="low"
   let g:solarized_termcolors=256
-  autocmd VimEnter * nested colorscheme solarized
+  autocmd VimEnter * nested colorscheme solarized8
 '''
 [[plugins]]
 repo = 'tpope/vim-surround'

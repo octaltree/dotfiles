@@ -1,3 +1,4 @@
+set termguicolors
 set number
 set notitle
 set showmatch
@@ -12,6 +13,8 @@ set list
 set listchars=eol:'
 set background=dark
 set clipboard=unnamed,unnamedplus
+set pumblend=30
+set winblend=30
 
 au QuickfixCmdPost make,grep,grepadd,vimgrep cwindow
 
