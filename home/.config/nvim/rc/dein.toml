@@ -29,6 +29,11 @@ hook_source='''
 let g:extra_whitespace_ignored_filetypes=['denite']
 autocmd BufWinEnter * if ShouldMatchWhitespace() | match ExtraWhitespace /\\\@<![\u3000[:space:]]\+$/ | else | match ExtraWhitespadce /^^/ | endif
 '''
+[[plugins]]
+repo = 'yuratomo/w3m.vim'
+hook_add='''
+command! -nargs=+ Eng execute "W3mTab https://ejje.weblio.jp/content/" . substitute(<q-args>, ' ', '+', 'g')
+'''
 
 # denite {{{
 [[plugins]]
