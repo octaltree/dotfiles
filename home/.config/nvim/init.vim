@@ -36,12 +36,6 @@ augroup forbid_auto_comment_out
   autocmd BufEnter * set formatoptions-=ro
 augroup END
 
-augroup py
-  autocmd!
-  autocmd FileType python setlocal ts=4 sw=4 sts=4 fdm=indent fdl=0 fdn=1 si et
-  autocmd FileType python setlocal cinw=if,elif,else,for,while,try,except,finally,def,class
-augroup END
-
 " ## search ##########
 set incsearch
 set hlsearch
