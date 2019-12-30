@@ -9,12 +9,14 @@ set completeopt-=preview
 "let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_complete_delay = 0
 let g:deoplete#auto_complete_start_length = 1
-
+call deoplete#custom#option('auto_refresh_delay', 10)
 
 inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
 imap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-
+function! s:my_cr_function() abort
+  return deoplete#close_popup() . "\<CR>"
+endfunction
 "let g:cache_completed = {}
 "function! s:my_cr_function() abort
 "  if has_key(v:completed_item, 'word') && g:cache_completed != v:completed_item
@@ -24,12 +26,10 @@ imap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 "    return deoplete#close_popup() . "\<CR>"
 "  endif
 "endfunction
-function! s:my_cr_function() abort
-  return deoplete#close_popup() . "\<CR>"
-endfunction
 "imap <silent><expr> <cr> neosnippet#expandable_or_jumpable()?
 "  \ "\<Plug>(neosnippet_expand_or_jump)":
 "  \ deoplete#close_popup() . "\<CR>"
+
 call deoplete#enable()
 '''
 # }}}
@@ -42,9 +42,6 @@ hook_source = '''
 let g:echodoc#type = 'floating'
 call echodoc#enable()
 '''
-[[plugins]]
-repo = 'simeji/winresizer'
-on_cmd = ['WinResizerStartResize', 'WinResizerStartFocus', 'WinResizerStartMove']
 
 # markdown {{{
 [[plugins]]

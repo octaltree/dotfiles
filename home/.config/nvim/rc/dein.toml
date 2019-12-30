@@ -10,6 +10,8 @@ repo = 'Shougo/neomru.vim'
 repo = 'tpope/vim-surround'
 [[plugins]]
 repo = 'sheerun/vim-polyglot'
+[[plugins]]
+repo = 'simeji/winresizer'
 
 [[plugins]]
 #repo = 'altercation/vim-colors-solarized'
@@ -32,6 +34,16 @@ autocmd BufWinEnter * if ShouldMatchWhitespace() | match ExtraWhitespace /\\\@<!
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 hook_add='''
+  "let s:denite_win_width_percent = 0.9
+  "let s:denite_win_height_percent = 0.8
+  "call denite#custom#option('default', {
+  "    \ 'split': 'floating',
+  "    \ 'winwidth': float2nr(&columns * s:denite_win_width_percent),
+  "    \ 'wincol': float2nr((&columns - (&columns * s:denite_win_width_percent)) / 2),
+  "    \ 'winheight': float2nr(&lines * s:denite_win_height_percent),
+  "    \ 'winrow': float2nr((&lines - (&lines * s:denite_win_height_percent)) / 2),
+  "    \ })
+
   autocmd FileType denite call s:denite_my_settings()
   function! s:denite_my_settings() abort
     nnoremap <silent><buffer><expr> <cr>
@@ -56,12 +68,12 @@ hook_add='''
   endfunction
   nnoremap [Denite] <Nop>
   nmap <silent><space> [Denite]
-  nnoremap [Denite]f :<c-u>Denite file/rec -split=floating<CR>
-  nnoremap [Denite]m :<c-u>Denite file_mru -split=floating<CR>
-  nnoremap [Denite]/ :<c-u>Denite line -split=floating<CR>
-  nnoremap [Denite]g :<c-u>Denite grep -split=floating<CR>
-  nnoremap [Denite]r :<c-u>Denite -resume -split=floating<CR>
-  nnoremap [Denite]<space> :Denite source -split=floating<CR>
+  nnoremap [Denite]f :<c-u>Denite file/rec<CR>
+  nnoremap [Denite]m :<c-u>Denite file_mru<CR>
+  nnoremap [Denite]/ :<c-u>Denite line<CR>
+  nnoremap [Denite]g :<c-u>Denite grep<CR>
+  nnoremap [Denite]r :<c-u>Denite -resume<CR>
+  nnoremap [Denite]<space> :Denite source<CR>
 
   if executable("ag")
     call denite#custom#var('file_rec', 'command',
@@ -84,7 +96,7 @@ imap <silent><expr> <tab> neosnippet#expandable_or_jumpable()? "\<Plug>(neosnipp
 smap <silent><expr> <tab> neosnippet#expandable_or_jumpable()? "\<Plug>(neosnippet_expand_or_jump)": "\<tab>"
 nmap <silent><expr> <tab> neosnippet#expandable_or_jumpable()? "\<Plug>(neosnippet_expand_or_jump)": "\<tab>"
 xmap <silent><expr> <tab> neosnippet#expandable()? "\<Plug>(neosnippet_expand_target)": "\<tab>"
-let g:neosnippet#enable_complete_done = 1
+"let g:neosnippet#enable_complete_done = 1
 '''
 
 # languageclient {{{
@@ -134,5 +146,6 @@ endfunction
 
 autocmd FileType * call LC_maps()
 nnoremap [Denite]c :Denite contextMenu<CR>
+let g:LanguageClient_hasSnippetSupport = 0
 '''
 # }}}
