@@ -10,6 +10,7 @@ alias ca='cargo'
 alias enja='trans en:ja'
 alias jaen='trans ja:en'
 alias rmcolor='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g"'
+alias rmpac='paccache -k 2 -r && paccache -ruk0'
 
 alias ad='git add'
 alias br='git branch'
