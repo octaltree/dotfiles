@@ -1,3 +1,13 @@
+[[plugins]]
+repo = 'Shougo/echodoc.vim'
+on_event = 'CompleteDone'
+hook_source = '''
+"set noshowmode
+"let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = 'floating'
+call echodoc#enable()
+'''
+
 # deoplete {{{
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
@@ -33,15 +43,6 @@ endfunction
 call deoplete#enable()
 '''
 # }}}
-[[plugins]]
-repo = 'Shougo/echodoc.vim'
-on_event = 'CompleteDone'
-hook_source = '''
-"set noshowmode
-"let g:echodoc#enable_at_startup = 1
-let g:echodoc#type = 'floating'
-call echodoc#enable()
-'''
 
 # markdown {{{
 [[plugins]]
