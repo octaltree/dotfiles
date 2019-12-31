@@ -21,8 +21,8 @@ keymap : ;
 bind --mode=ex <C-y> ex.insert_space_or_completion.
 bind j scrollline 1
 bind k scrollline -1
-bind H scrollpx -1
-bind L scrollpx 1
+bind H scrollpx -5
+bind L scrollpx 5
 bind h tabprev
 bind l tabnext_gt
 bind <c-h> tabmove -10
