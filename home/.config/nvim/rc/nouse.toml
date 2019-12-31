@@ -84,3 +84,27 @@ let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
 [[plugins]]
 repo = 'https://github.com/rupurt/vim-mql5'
 on_ft = ['mq5', 'mql5']
+
+# firenvim {{{
+[[plugins]]
+repo = 'glacambre/firenvim'
+hook_post_update='''
+call firenvim#install(0)
+'''
+hook_add='''
+let g:firenvim_config = {
+    \ 'localSettings': {
+        \ '.*': {
+            \ 'selector': 'textarea, div[role="textbox"]',
+            \ 'priority': 0,
+        \ }
+    \ }
+\ }
+augroup Firenvim
+  au BufEnter play.golang.org_*.txt setlocal filetype=go
+  au BufEnter play.rust-lang.org_*.txt setlocal filetype=rust
+  au BufEnter github.com_*.txt setlocal filetype=markdown
+  au BufEnter localhost*ipynb*.txt setlocal filetype=python
+augroup END
+'''
+# }}}
