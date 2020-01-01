@@ -14,6 +14,8 @@ repo = 'sheerun/vim-polyglot'
 repo = 'simeji/winresizer'
 [[plugins]]
 repo = 'yuratomo/w3m.vim'
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
 
 [[plugins]]
 #repo = 'altercation/vim-colors-solarized'
