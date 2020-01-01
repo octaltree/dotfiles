@@ -132,11 +132,11 @@ function LC_maps()
     nnoremap <buffer><silent>K :call LanguageClient#textDocument_hover()<CR>
     nnoremap <buffer><silent>gd :call LanguageClient_textDocument_definition()<CR>
 
-    augroup LCHighlight
-      autocmd!
-      autocmd CursorHold,CursorHoldI * call LanguageClient#textDocument_documentHighlight()
-    augroup END
-    set updatetime=50
+    "augroup LCHighlight
+    "  autocmd!
+    "  autocmd CursorHold,CursorHoldI * call LanguageClient#textDocument_documentHighlight()
+    "augroup END
+    "set updatetime=50
 
     augroup LanguageClient_config
       autocmd!
