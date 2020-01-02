@@ -12,7 +12,7 @@ call echodoc#enable()
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
 depends = 'context_filetype.vim'
-on_event = 'InsertEnter'
+on_i = 1
 hook_source = '''
 set completeopt+=noselect
 set completeopt-=preview
