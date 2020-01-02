@@ -38,15 +38,17 @@ autocmd BufWinEnter * if ShouldMatchWhitespace() | match ExtraWhitespace /\\\@<!
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 hook_add='''
-  "let s:denite_win_width_percent = 0.9
-  "let s:denite_win_height_percent = 0.8
-  "call denite#custom#option('default', {
-  "    \ 'split': 'floating',
-  "    \ 'winwidth': float2nr(&columns * s:denite_win_width_percent),
-  "    \ 'wincol': float2nr((&columns - (&columns * s:denite_win_width_percent)) / 2),
-  "    \ 'winheight': float2nr(&lines * s:denite_win_height_percent),
-  "    \ 'winrow': float2nr((&lines - (&lines * s:denite_win_height_percent)) / 2),
-  "    \ })
+  let s:denite_win_width_percent = 0.9
+  let s:denite_win_height_percent = 0.8
+  call denite#custom#option('default', {
+      \ 'split': 'floating',
+      \ 'winwidth': float2nr(&columns * s:denite_win_width_percent),
+      \ 'wincol': float2nr((&columns - (&columns * s:denite_win_width_percent)) / 2),
+      \ 'winheight': float2nr(&lines * s:denite_win_height_percent),
+      \ 'winrow': float2nr((&lines - (&lines * s:denite_win_height_percent)) / 2),
+      \ 'prompt': '> ',
+      \ })
+  hi NormalFloat guifg=#586e75 guibg=#fdf6e3 guisp=NONE gui=NONE cterm=NONE
 
   autocmd FileType denite call s:denite_my_settings()
   function! s:denite_my_settings() abort
