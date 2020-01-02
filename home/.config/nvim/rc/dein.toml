@@ -48,7 +48,7 @@ hook_add='''
       \ 'winrow': float2nr((&lines - (&lines * s:denite_win_height_percent)) / 2),
       \ 'prompt': '> ',
       \ })
-  hi NormalFloat guifg=#586e75 guibg=#fdf6e3 guisp=NONE gui=NONE cterm=NONE
+  hi NormalFloat guibg=NONE " よくわからないけど見やすくなる
 
   autocmd FileType denite call s:denite_my_settings()
   function! s:denite_my_settings() abort
