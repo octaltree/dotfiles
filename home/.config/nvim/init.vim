@@ -2,7 +2,7 @@ set termguicolors
 set number
 set notitle
 set showmatch
-set ambiwidth=double
+set ambiwidth=single
 set autoread
 set history=10000
 set colorcolumn=80
