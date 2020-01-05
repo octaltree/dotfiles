@@ -1,8 +1,10 @@
 nnoremap ; q:a
 nnoremap : ;
 nnoremap q; :
-nnoremap / q/a\v
+nnoremap / q/a
 nnoremap q/ /
+nnoremap ? q?a
+nnoremap q? ?
 
 vnoremap ; q:a
 vnoremap : ;
