@@ -22,7 +22,7 @@ au QuickfixCmdPost make,grep,grepadd,vimgrep cwindow
 set fileformat=unix
 set fileformats=unix,dos,mac
 set fileencoding=utf-8
-set fileencodings=utf-8,euc-jp,cp932,iso-2022-jp
+set fileencodings=utf-8,euc-jp,cp932,iso-2022-jp,utf-16le
 
 " ## indent ##########
 set expandtab
