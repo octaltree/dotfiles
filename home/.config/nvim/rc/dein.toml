@@ -18,8 +18,7 @@ repo = 'vim-jp/vimdoc-ja'
 [[plugins]] # polyglot {{{
 repo = 'sheerun/vim-polyglot'
 hook_add='''
-let g:csv_no_conceal=1
-let b:csv_headerline = 0
+let g:polyglot_disabled = ['csv']
 ''' # }}}
 
 [[plugins]] # solarized {{{
