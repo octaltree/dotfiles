@@ -8,8 +8,7 @@ let g:echodoc#type = 'floating'
 call echodoc#enable()
 '''
 
-# deoplete {{{
-[[plugins]]
+[[plugins]] # deoplete {{{
 repo = 'Shougo/deoplete.nvim'
 depends = 'context_filetype.vim'
 on_i = 1
@@ -41,20 +40,16 @@ endfunction
 "  \ deoplete#close_popup() . "\<CR>"
 
 call deoplete#enable()
-'''
-# }}}
+''' # }}}
 
-# markdown {{{
-[[plugins]]
+[[plugins]] # markdown {{{
 repo = 'kannokanno/previm'
 on_cmd = 'PrevimOpen'
 hook_add = '''
   let g:previm_open_cmd = 'firefox'
-'''
-# }}}
+''' # }}}
 
-# web {{{
-[[plugins]]
+[[plugins]] # web {{{
 repo = 'mattn/emmet-vim'
 on_ft = ['html', 'css', 'php', 'smarty', 'javascript']
 hook_add = '''
@@ -66,11 +61,9 @@ hook_add = '''
         \{ 'variables': { 'lang': 'ja'}
         \, 'indentaion': '  '
         \}
-'''
-# }}}
+''' # }}}
 
-# vim {{{
-[[plugins]]
+[[plugins]] # vim {{{
 repo = 'Shougo/neco-vim'
 on_ft = 'vim'
 # }}}

@@ -13,4 +13,6 @@ augroup ccs
   au BufEnter *aHR0cH* nnoremap <buffer>k k
 augroup END
 
+au BufRead,BufNewFile *.mq5 set filetype=cpp
+
 "set runtimepath+=~/workspace/*

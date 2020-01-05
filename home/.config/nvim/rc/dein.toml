@@ -9,15 +9,18 @@ repo = 'Shougo/neomru.vim'
 [[plugins]]
 repo = 'tpope/vim-surround'
 [[plugins]]
-repo = 'sheerun/vim-polyglot'
-[[plugins]]
 repo = 'simeji/winresizer'
 [[plugins]]
 repo = 'yuratomo/w3m.vim'
 [[plugins]]
 repo = 'vim-jp/vimdoc-ja'
 
-[[plugins]]
+[[plugins]] # polyglot {{{
+repo = 'sheerun/vim-polyglot'
+hook_add='''
+''' # }}}
+
+[[plugins]] # solarized {{{
 #repo = 'altercation/vim-colors-solarized'
 repo = 'lifepillar/vim-solarized8'
 hook_add='''
@@ -26,16 +29,16 @@ hook_add='''
   "let g:solarized_termcolors=256
   let g:solarized_termtrans=1
   autocmd VimEnter * nested colorscheme solarized8
-'''
-[[plugins]]
+''' # }}}
+
+[[plugins]] # whitespace {{{
 repo = 'bronson/vim-trailing-whitespace'
 hook_source='''
 let g:extra_whitespace_ignored_filetypes=['denite']
 autocmd BufWinEnter * if ShouldMatchWhitespace() | match ExtraWhitespace /\\\@<![\u3000[:space:]]\+$/ | else | match ExtraWhitespadce /^^/ | endif
-'''
+''' # }}}
 
-# denite {{{
-[[plugins]]
+[[plugins]] # denite {{{
 repo = 'Shougo/denite.nvim'
 hook_add='''
   let s:denite_win_width_percent = 0.9
@@ -92,10 +95,9 @@ hook_add='''
     call denite#custom#var('grep', 'separator', ['--'])
     call denite#custom#var('grep', 'final_opts', [])
   endif
-'''
-# }}}
+''' # }}}
 
-[[plugins]]
+[[plugins]] # neosnippet {{{
 repo = 'Shougo/neosnippet.vim'
 hook_add='''
 imap <silent><expr> <tab> neosnippet#expandable_or_jumpable()? "\<Plug>(neosnippet_expand_or_jump)": "\<tab>"
@@ -103,10 +105,9 @@ smap <silent><expr> <tab> neosnippet#expandable_or_jumpable()? "\<Plug>(neosnipp
 nmap <silent><expr> <tab> neosnippet#expandable_or_jumpable()? "\<Plug>(neosnippet_expand_or_jump)": "\<tab>"
 xmap <silent><expr> <tab> neosnippet#expandable()? "\<Plug>(neosnippet_expand_target)": "\<tab>"
 "let g:neosnippet#enable_complete_done = 1
-'''
+''' # }}}
 
-# languageclient {{{
-[[plugins]]
+[[plugins]] # languageclient {{{
 repo = 'autozimu/LanguageClient-neovim'
 build = './install.sh'
 hook_add = '''
@@ -153,5 +154,4 @@ endfunction
 autocmd FileType * call LC_maps()
 nnoremap [Denite]c :Denite contextMenu<CR>
 let g:LanguageClient_hasSnippetSupport = 0
-'''
-# }}}
+''' # }}}
