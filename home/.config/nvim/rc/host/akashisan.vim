@@ -6,6 +6,11 @@ if executable('trans')
   command! -nargs=+ ENJA split | execute "terminal echo " . <q-args> . "| trans en:ja"
 endif
 
+if executable('tmux') && executable('w3m')
+  command! -nargs=+ W3ms execute 'silent ! tmux split-window -- w3m ' . <q-args>
+  command! -nargs=+ W3mv execute 'silent ! tmux split-window -h -- w3m ' . <q-args>
+endif
+
 augroup ccs
   au!
   au BufEnter *aHR0cH* setlocal cursorline

@@ -11,8 +11,6 @@ repo = 'tpope/vim-surround'
 [[plugins]]
 repo = 'simeji/winresizer'
 [[plugins]]
-repo = 'yuratomo/w3m.vim'
-[[plugins]]
 repo = 'vim-jp/vimdoc-ja'
 
 [[plugins]] # vimproc {{{
