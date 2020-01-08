@@ -1,5 +1,8 @@
-set foldmethod=marker
+set foldmethod=syntax
+set foldnestmax=1
 set foldcolumn=0
+
+" 折りたたみの見た目
 set fillchars=vert:\|
 set foldtext=MyFoldText()
 function MyFoldText()
@@ -8,4 +11,6 @@ function MyFoldText()
   return sub . ' ' . v:folddashes
 endfunction
 
-" vim: foldmethod=syntax
+au FileType python,haskell,vim,makefile,shell setlocal foldmethod=indent
+
+" markerつけたらファイル末尾で設定する

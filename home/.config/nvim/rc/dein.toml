@@ -53,6 +53,7 @@ hook_add='''
   "let g:solarized_termcolors=256
   let g:solarized_termtrans=1
   autocmd VimEnter * nested colorscheme solarized8
+  autocmd ColorScheme * hi Folded guifg=#839496 guibg=None guisp=#002b36 gui=None cterm=None
 ''' # }}}
 
 [[plugins]] # whitespace {{{
@@ -179,3 +180,5 @@ autocmd FileType * call LC_maps()
 nnoremap [Denite]c :Denite contextMenu<CR>
 let g:LanguageClient_hasSnippetSupport = 0
 ''' # }}}
+
+# vim: foldmethod=marker

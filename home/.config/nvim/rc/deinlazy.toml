@@ -67,3 +67,5 @@ hook_add = '''
 repo = 'Shougo/neco-vim'
 on_ft = 'vim'
 # }}}
+
+# vim: foldmethod=marker
