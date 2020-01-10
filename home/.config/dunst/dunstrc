@@ -300,4 +300,7 @@
 #     background = "#30AB70"
 #     foreground = "#F67245"
 #
+[history_file]
+  summary = "*"
+  script = ~/.config/dunst/dunst_history.sh
 # vim: ft=cfg
