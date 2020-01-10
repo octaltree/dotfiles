@@ -41,7 +41,7 @@ let g:quickrun_config._ = {
 [[plugins]] # polyglot {{{
 repo = 'sheerun/vim-polyglot'
 hook_add='''
-let g:polyglot_disabled = ['csv']
+let g:polyglot_disabled = ['csv', 'markdown']
 ''' # }}}
 
 [[plugins]] # solarized {{{
