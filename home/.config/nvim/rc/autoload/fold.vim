@@ -1,4 +1,4 @@
-set foldmethod=syntax
+set foldmethod=indent
 set foldnestmax=1
 set foldcolumn=0
 
@@ -10,7 +10,5 @@ function MyFoldText()
   let sub = substitute(line, '/\*\|\*/\|{{{\d\=', '', 'g')
   return sub . ' ' . v:folddashes
 endfunction
-
-au FileType python,haskell,vim,makefile,shell setlocal foldmethod=indent
 
 " markerつけたらファイル末尾で設定する
