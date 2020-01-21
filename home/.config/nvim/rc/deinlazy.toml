@@ -54,7 +54,7 @@ repo = 'mattn/emmet-vim'
 on_ft = ['html', 'css', 'php', 'smarty', 'javascript']
 hook_add = '''
   let g:user_emmet_install_global = 0
-  autocmd FileType html,css,php,smarty EmmetInstall
+  autocmd FileType html,css,php,smarty,javascript EmmetInstall
   let g:user_emmet_mode='niv'
   let g:user_emmet_expandabbr_key = '<c-e>'
   let g:user_emmet_settings =
