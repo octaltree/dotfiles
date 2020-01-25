@@ -358,5 +358,5 @@ exec --no-startup-id sleep 120 && slack --startup
 exec --no-startup-id sleep 180 && slack
 no_focus [class="Thunderbird"]
 assign [class="Thunderbird"] 4
-exec --no-startup-id sleep 120 && thunderbird
+exec --no-startup-id sleep 600 && thunderbird
 exec --no-startup-id /home/octaltree/bin/changeWallpaperd
