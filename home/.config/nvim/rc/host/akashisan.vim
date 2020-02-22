@@ -20,6 +20,7 @@ augroup ccs
 augroup END
 
 au BufRead,BufNewFile *.mq5 set filetype=cpp
+au BufRead,BufNewFile *.mqh set filetype=cpp
 au BufRead,BufNewFile *.tag set filetype=javascript
 
 "set runtimepath+=~/workspace/*
