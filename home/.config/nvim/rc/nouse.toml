@@ -83,7 +83,7 @@ let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
 
 [[plugins]]
 repo = 'https://github.com/rupurt/vim-mql5'
-on_ft = ['mq5', 'mql5']
+on_ft = ['mql5', 'cpp']
 
 # firenvim {{{
 [[plugins]]
