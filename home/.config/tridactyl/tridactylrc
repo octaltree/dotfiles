@@ -1,8 +1,8 @@
 sanitize tridactyllocal tridactylsync
 reset all
 
-set csp clobber
-fixamo_quiet
+"set csp clobber
+"fixamo_quiet
 
 "set theme dark
 set theme shydactyl
