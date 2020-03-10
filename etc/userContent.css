@@ -8,12 +8,11 @@
   color: #ccc !important;
 }
 
-/* Make images transparent */
 img {
-opacity: 0.75 !important;
-background-color: #ddd !important;
+  opacity: 0.75 !important;
+  background-color: #ddd !important;
 }
 img:hover {
-opacity: 1 !important;
-background-color: #888 !important;
+  opacity: 1 !important;
+  background-color: #888 !important;
 }
