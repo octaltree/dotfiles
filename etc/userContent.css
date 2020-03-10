@@ -16,3 +16,8 @@ img:hover {
   opacity: 1 !important;
   background-color: #888 !important;
 }
+
+:root{
+  scrollbar-color: rgb(56, 56, 61) rgb(7, 50, 84);
+  scrollbar-width: auto;
+}

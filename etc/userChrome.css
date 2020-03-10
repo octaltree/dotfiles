@@ -26,3 +26,7 @@
 browser[type="content-primary"], browser[type="content"] {
   background: #212121 !important;
 }
+
+#sidebar-splitter {
+  background-color: rgb(56, 56, 61) !important;
+}
