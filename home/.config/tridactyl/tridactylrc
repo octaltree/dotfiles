@@ -1,16 +1,16 @@
-sanitize tridactyllocal tridactylsync
-reset all
-
-"set csp clobber
-"fixamo_quiet
-
-"set theme dark
+"sanitize tridactyllocal tridactylsync
+"reset all
+"
+""set csp clobber
+""fixamo_quiet
+"
+""set theme dark
 set theme shydactyl
 
 set hintuppercase false
 set hintchars jfkdls;a
 set yankto both
-set editorcmd alacritty -e nvim %f -c 'normal %lG%cl'
+"set editorcmd alacritty -e nvim %f -c 'normal %lG%cl'
 
 unbind p
 unbind P
@@ -18,34 +18,27 @@ unbind O
 unbind --mode=ex <Space>
 keymap ; :
 keymap : ;
-bind --mode=ex <C-y> ex.insert_space_or_completion.
 bind j scrollline 1
 bind k scrollline -1
-bind H scrollpx -5
-bind L scrollpx 5
+bind H scrollpx -10
+bind L scrollpx 10
 bind h tabprev
 bind l tabnext_gt
-bind <c-h> tabmove -10
-bind <c-l> tabmove +10
+bind <c-h> tabmove -1
+bind <c-l> tabmove +1
 bind <c-o> back
 bind <c-i> forward
 bind --mode=insert <c-h> im_delete_backward_char
 bind --mode=input <c-h> im_delete_backward_char
-bind z0 zoom 195
 bind co composite get_current_url| tabopen -c oct
 bind cs composite get_current_url| tabopen -c sol
 bind cn composite get_current_url| tabopen -c nic
 
 bindurl todoist.com f hint -c a,input,button,textarea,select,div.ist_checkbox,#gear_holder,.menu_item>td,li.filter,.clickable,.richtext_editor
-autocmd DocStart .* zoom 195
-autocmd DocLoad .* zoom 195
-autocmd TabEnter .* zoom 195
 autocmd DocLoad moneyforward.com/users/two_step_verifications/new js document.getElementsByClassName('not-now')[0].click()
 autocmd DocLoad inoreader.com js document.body.innerHTML += '<style>.inno_dialog[id*="wrapper"], .inno_dialog_modal_overlay[id*="overlay"], .inno_dialog_scroll_overlay[id*="overlay"] { display: none; }</style>'; (function loop(){ const xs = document.querySelectorAll('.adb_right_link_passive > a'); if( xs.length ) xs[0].click(); else setTimeout(loop, 100); }());
 command openInoreader js Array.from(document.querySelectorAll('.article_magazine_title a')).map(a => a.href).forEach(u => window.open(u, '_blank'));
 autocmd DocLoad sp.nicovideo.jp js document.location.href = document.location.href.replace('sp.nicovideo.jp', 'www.nicovideo.jp');
 source ~/.config/tridactyl/pixiv.tridactyl
-command listErrorDropbox js alert(Array.from(document.querySelectorAll('.upload-file.error .filename')).map(x => x.innerText).join('\n'));
-command openCw js (async function(){ const c = e => e && e.click(); const wait = ms => new Promise(resolve => setTimeout(resolve, ms)); let fold = null; while( true ){ fold = document.querySelector('.cw-message-folding'); if( fold ) break; await wait(100); } c(fold); let ms = []; while( true ){ ms = Array.from(document.querySelectorAll('.openable')); fold = document.querySelector('.cw-message-folding'); if( ! fold && ms.length > 0 ) break; await wait(100); } ms.forEach(e => c(e)); })();
 
 " vim: set ft=vim:
