@@ -17,7 +17,7 @@ unbind P
 unbind O
 unbind --mode=ex <Space>
 keymap ; :
-keymap : ;
+"keymap : ;
 bind j scrollline 1
 bind k scrollline -1
 bind H scrollpx -10
