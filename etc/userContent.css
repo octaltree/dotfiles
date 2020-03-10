@@ -1,3 +1,5 @@
+/* chrome://browser/content/browser.xhtml */
+
 #command-line-holder, #tridactyl-colon, #tridactyl-input {
   background-color: #212121 !important;
   color: #ccc !important;
