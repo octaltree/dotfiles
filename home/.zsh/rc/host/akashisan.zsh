@@ -67,4 +67,7 @@ function proxyOff(){
   #else
   #  proxyOff $proxy
   #fi
+
+  PATH="~/.rbenv/shims:$PATH"
+  eval "$(rbenv init -)"
 }
