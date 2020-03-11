@@ -65,7 +65,7 @@ autocmd BufRead,BufNewFile * if ShouldMatchWhitespace() | match ExtraWhitespace 
 repo = 'Shougo/denite.nvim'
 hook_add='''
   let s:denite_win_width_percent = 0.9
-  let s:denite_win_height_percent = 0.8
+  let s:denite_win_height_percent = 0.9
   call denite#custom#option('default', {
       \ 'split': 'floating',
       \ 'winwidth': float2nr(&columns * s:denite_win_width_percent),

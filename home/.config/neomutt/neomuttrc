@@ -1,0 +1,10 @@
+#set editor=`echo \$EDITOR`
+set editor="nvim -c 'set tw=72 et ft=mail'"
+set sidebar_visible = yes
+
+set mbox_type=maildir
+set folder=~/.mail
+set header_cache = "~/.mutt/cache/headers"
+set message_cachedir = "~/.mutt/cache/bodies"
+
+source "rc/gmail"
