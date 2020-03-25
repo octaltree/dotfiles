@@ -84,6 +84,8 @@ hook_add='''
     \ denite#do_map('do_action', 'split')
     nnoremap <silent><buffer><expr> v
     \ denite#do_map('do_action', 'vsplit')
+    nnoremap <silent><buffer><expr> t
+    \ denite#do_map('do_action', 'tabopen')
     nnoremap <silent><buffer><expr> p
     \ denite#do_map('do_action', 'preview')
     nnoremap <silent><buffer><expr><nowait> q
