@@ -187,11 +187,8 @@ depends = 'context_filetype.vim'
 hook_add = '''
 set completeopt+=noselect
 set completeopt-=preview
-"let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_delay = 0
-let g:deoplete#auto_complete_start_length = 1
-"call deoplete#custom#option('auto_refresh_delay', 1)
-call deoplete#custom#option('refresh_always', v:true)
+call deoplete#custom#option('auto_refresh_delay', 0)
+call deoplete#custom#option('min_pattern_length', 1)
 
 inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
