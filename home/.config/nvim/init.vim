@@ -53,7 +53,7 @@ function! s:loadIfExist(relativepath)
   endif
 endfunction
 
-let g:dein_dir=expand("<sfile>:p:h") . "/dein"
+let g:dein_dir=s:thisdir . "/dein"
 call s:loadIfExist("rc/plug.vim")
 call s:loadIfExist("rc/plugafter.vim")
 call s:loadIfExist("rc/" . hostname() . ".vim")
