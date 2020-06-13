@@ -24,5 +24,6 @@ au BufRead,BufNewFile *.mq5 set filetype=cpp
 au BufRead,BufNewFile *.mqh set filetype=cpp
 au BufRead,BufNewFile *.mq5 setlocal foldmethod=syntax
 au BufRead,BufNewFile *.mqh setlocal foldmethod=syntax
+au FileType yaml setlocal indentkeys-=0# indentkeys-=<:>
 
 "set runtimepath+=~/workspace/*

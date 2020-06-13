@@ -33,7 +33,10 @@ set autoindent
 set smartindent
 augroup forbid_auto_comment_out
   autocmd!
-  autocmd BufEnter * set formatoptions-=ro
+  autocmd BufEnter * set formatoptions-=t
+  autocmd BufEnter * set formatoptions-=c
+  autocmd BufEnter * set formatoptions-=r
+  autocmd BufEnter * set formatoptions-=o
 augroup END
 
 " ## search ##########
