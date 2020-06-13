@@ -4,8 +4,8 @@ if filereadable(s:dein_repo_dir . "/bin/installer.sh")
 
   if dein#load_state(g:dein_dir)
     call dein#begin(g:dein_dir)
-    let s:toml = expand("<sfile>:p:h") . "/dein.toml"
-    let s:tomllazy = expand("<sfile>:p:h") . "/deinlazy.toml"
+    let s:toml = expand("<sfile>:p:h") . "/dein2.toml"
+    let s:tomllazy = expand("<sfile>:p:h") . "/deinlazy2.toml"
     if !filereadable(s:toml)
       execute '! touch' s:toml
     endif

@@ -1,0 +1,8 @@
+[[plugins]] # markdown {{{
+repo = 'kannokanno/previm'
+on_cmd = 'PrevimOpen'
+hook_add = '''
+  let g:previm_open_cmd = 'firefox'
+''' # }}}
+
+# vim: foldmethod=marker:

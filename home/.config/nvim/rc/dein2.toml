@@ -1,0 +1,133 @@
+[[plugins]]
+repo = 'tpope/vim-surround'
+[[plugins]]
+repo = 'simeji/winresizer'
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
+
+[[plugins]] # polyglot {{{
+repo = 'sheerun/vim-polyglot'
+hook_add='''
+let g:polyglot_disabled = ['csv', 'markdown']
+''' # }}}
+
+[[plugins]] # solarized {{{
+#repo = 'altercation/vim-colors-solarized'
+repo = 'lifepillar/vim-solarized8'
+hook_add='''
+  "colorscheme solarized
+  "let g:solarized_visibility="low"
+  "let g:solarized_termcolors=256
+  let g:solarized_termtrans=1
+  autocmd VimEnter * nested colorscheme solarized8
+  autocmd ColorScheme * hi Folded guifg=#839496 guibg=None guisp=#002b36 gui=None cterm=None
+''' # }}}
+
+[[plugins]] # whitespace {{{
+repo = 'bronson/vim-trailing-whitespace'
+hook_source='''
+let g:extra_whitespace_ignored_filetypes=['denite']
+autocmd BufRead,BufNewFile * if ShouldMatchWhitespace() | match ExtraWhitespace /\\\@<![\u3000[:space:]]\+$/ | else | match ExtraWhitespadce /^^/ | endif
+''' # }}}
+
+[[plugins]] # denite {{{
+repo = 'Shougo/denite.nvim'
+hook_add='''
+  let s:denite_win_width_percent = 0.9
+  let s:denite_win_height_percent = 0.9
+  call denite#custom#option('default', {
+      \ 'split': 'floating',
+      \ 'winwidth': float2nr(&columns * s:denite_win_width_percent),
+      \ 'wincol': float2nr((&columns - (&columns * s:denite_win_width_percent)) / 2),
+      \ 'winheight': float2nr(&lines * s:denite_win_height_percent),
+      \ 'winrow': float2nr((&lines - (&lines * s:denite_win_height_percent)) / 2),
+      \ 'prompt': '> ',
+      \ })
+  hi NormalFloat guibg=NONE " よくわからないけど見やすくなる
+
+  autocmd FileType denite call s:denite_my_settings()
+  function! s:denite_my_settings() abort
+    nnoremap <silent><buffer><expr> <cr>
+    \ denite#do_map('do_action')
+    nnoremap <silent><buffer><expr> s
+    \ denite#do_map('do_action', 'split')
+    nnoremap <silent><buffer><expr> v
+    \ denite#do_map('do_action', 'vsplit')
+    nnoremap <silent><buffer><expr> t
+    \ denite#do_map('do_action', 'tabopen')
+    nnoremap <silent><buffer><expr> p
+    \ denite#do_map('do_action', 'preview')
+    nnoremap <silent><buffer><expr><nowait> q
+    \ denite#do_map('quit')
+    nnoremap <silent><buffer><expr> i
+    \ denite#do_map('open_filter_buffer')
+    nnoremap <silent><buffer><expr> <space>
+    \ denite#do_map('toggle_select')
+  endfunction
+  autocmd FileType denite-filter call s:denite_filter_my_settings()
+  function! s:denite_filter_my_settings() abort
+    imap <silent><buffer> <esc> <Plug>(denite_filter_quit)
+    imap <silent><buffer> <cr> <esc><cr>
+  endfunction
+  nnoremap [Denite] <Nop>
+  nmap <silent><space> [Denite]
+  nnoremap [Denite]f :<c-u>Denite file/rec<CR>
+  nnoremap [Denite]o :<c-u>Denite file/old<CR>
+  nnoremap [Denite]/ :<c-u>Denite line<CR>
+  nnoremap [Denite]g :<c-u>Denite grep<CR>
+  nnoremap [Denite]r :<c-u>Denite -resume<CR>
+  nnoremap [Denite]<space> :Denite source<CR>
+
+  if executable("ag")
+    call denite#custom#var('file/rec', 'command',
+        \ ['ag', '-U', '--hidden', '--follow', '--nocolor', '--nogroup', '-g', ''])
+    call denite#custom#var('grep', 'command', ['ag'])
+    call denite#custom#var('grep', 'default_opts',
+        \ ['--hidden', '--follow', '-S', '--vimgrep'])
+    call denite#custom#var('grep', 'recursive_opts', [])
+    call denite#custom#var('grep', 'pattern_opt', [])
+    call denite#custom#var('grep', 'separator', ['--'])
+    call denite#custom#var('grep', 'final_opts', [])
+  endif
+''' # }}}
+
+[[plugins]] # nvim-lsp {{{
+repo = 'neovim/nvim-lsp'
+hook_add='''
+''' # }}}
+
+[[plugins]] # deoplete {{{
+repo = 'Shougo/deoplete.nvim'
+depends = 'context_filetype.vim'
+hook_add = '''
+set completeopt+=noselect
+set completeopt-=preview
+call deoplete#custom#option('auto_refresh_delay', 0)
+call deoplete#custom#option('min_pattern_length', 1)
+
+inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
+imap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function() abort
+  return deoplete#close_popup() . "\<CR>"
+endfunction
+"let g:cache_completed = {}
+"function! s:my_cr_function() abort
+"  if has_key(v:completed_item, 'word') && g:cache_completed != v:completed_item
+"    let g:cache_completed = v:completed_item
+"    return deoplete#close_popup()
+"  else
+"    return deoplete#close_popup() . "\<CR>"
+"  endif
+"endfunction
+"imap <silent><expr> <cr> neosnippet#expandable_or_jumpable()?
+"  \ "\<Plug>(neosnippet_expand_or_jump)":
+"  \ deoplete#close_popup() . "\<CR>"
+
+call deoplete#enable()
+''' # }}}
+
+[[plugins]]
+repo = 'Shougo/deoplete-lsp'
+
+# vim: foldmethod=marker
