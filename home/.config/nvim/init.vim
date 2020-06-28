@@ -47,16 +47,8 @@ set smartcase
 set wrapscan
 
 " ## ex ##########
-runtime! macros/matchit.vim
 runtime! rc/autoload/*
 let s:thisdir = expand("<sfile>:p:h")
-function! s:loadIfExist(relativepath)
-  if filereadable(join([s:thisdir, a:relativepath], '/'))
-    execute 'source' join([s:thisdir, a:relativepath], '/')
-  endif
-endfunction
-
 let g:dein_dir=s:thisdir . "/dein"
-call s:loadIfExist("rc/plug.vim")
-call s:loadIfExist("rc/plugafter.vim")
-call s:loadIfExist("rc/" . hostname() . ".vim")
+
+runtime rc/plug.vim
