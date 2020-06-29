@@ -8,6 +8,13 @@ let g:echodoc#type = 'floating'
 call echodoc#enable()
 '''
 
+[[plugins]] # sudo {{{
+repo = 'lambdalisue/suda.vim'
+on_event = 'BufRead'
+hook_add = '''
+let g:suda_smart_edit = 1
+''' # }}}
+
 [[plugins]] # markdown {{{
 repo = 'kannokanno/previm'
 on_cmd = 'PrevimOpen'
