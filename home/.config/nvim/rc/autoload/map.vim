@@ -14,6 +14,7 @@ nnoremap k gk
 nnoremap <c-k> zk
 nnoremap <c-j> zj
 
+inoremap jj <ESC>
 vmap <c-[> <ESC>
 nnoremap <ESC><ESC> :nohlsearch<CR>
 
