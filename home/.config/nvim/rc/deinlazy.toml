@@ -8,6 +8,26 @@ let g:echodoc#type = 'floating'
 call echodoc#enable()
 '''
 
+[[plugins]]
+repo = 'simeji/winresizer'
+on_cmd = 'WinResizerStartResize'
+
+[[plugins]] # neosnippet {{{
+repo = 'Shougo/neosnippet.vim'
+on_i = 1
+hook_add='''
+imap <silent><expr> <tab> neosnippet#expandable_or_jumpable()? "\<Plug>(neosnippet_expand_or_jump)": "\<tab>"
+smap <silent><expr> <tab> neosnippet#expandable_or_jumpable()? "\<Plug>(neosnippet_expand_or_jump)": "\<tab>"
+nmap <silent><expr> <tab> neosnippet#expandable_or_jumpable()? "\<Plug>(neosnippet_expand_or_jump)": "\<tab>"
+xmap <silent><expr> <tab> neosnippet#expandable()? "\<Plug>(neosnippet_expand_target)": "\<tab>"
+"let g:neosnippet#enable_complete_done = 1
+'''
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+on_i = 1
+# }}}
+
 [[plugins]] # sudo {{{
 repo = 'lambdalisue/suda.vim'
 on_event = 'BufRead'
