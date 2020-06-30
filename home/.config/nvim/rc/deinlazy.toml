@@ -61,4 +61,13 @@ repo = 'Shougo/neco-vim'
 on_ft = 'vim'
 # }}}
 
+[[plugins]]
+repo = 'rhysd/rust-doc.vim'
+on_ft = 'rust'
+hook_add='''
+let g:rust_doc#downloaded_rust_doc_dir = '$HOME/.rustup/toolchains/stable-*'
+nnoremap <silent><space>s :<c-u>Denite rust/doc<CR>
+let g:rust_doc#define_map_K = 0
+'''
+
 # vim: foldmethod=marker
