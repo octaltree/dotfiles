@@ -146,9 +146,11 @@ let g:LanguageClient_hasSnippetSupport = 0
 repo = 'Shougo/deoplete.nvim'
 depends = 'context_filetype.vim'
 hook_add = '''
+let g:deoplete#enable_at_startup = 1
 set completeopt+=noselect
-set completeopt-=preview
-call deoplete#custom#option('auto_refresh_delay', 0)
+"set completeopt-=preview
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | silent! pclose | endif
+call deoplete#custom#option('auto_refresh_delay', 1)
 call deoplete#custom#option('min_pattern_length', 1)
 
 inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
@@ -169,8 +171,6 @@ endfunction
 "imap <silent><expr> <cr> neosnippet#expandable_or_jumpable()?
 "  \ "\<Plug>(neosnippet_expand_or_jump)":
 "  \ deoplete#close_popup() . "\<CR>"
-
-call deoplete#enable()
 ''' # }}}
 
 # vim: foldmethod=marker
