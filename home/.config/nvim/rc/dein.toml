@@ -177,4 +177,9 @@ endfunction
 "  \ deoplete#close_popup() . "\<CR>"
 ''' # }}}
 
+[[plugins]] # vimproc {{{
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+# }}}
+
 # vim: foldmethod=marker

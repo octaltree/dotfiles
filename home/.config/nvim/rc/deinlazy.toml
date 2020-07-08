@@ -78,4 +78,17 @@ let g:rustfmt_autosave = 1
 nnoremap sm :<c-u>w<CR>:make build<CR><CR>
 ''' # }}}
 
+[[plugins]] # w3m {{{
+repo = 'yuratomo/w3m.vim'
+depends = 'Shougo/vimproc.vim'
+on_cmd = ['W3m', 'W3mTab', 'W3mSplit', 'W3mVSplit']
+hook_add='''
+let g:w3m#external_browser = 'firefox'
+let g:w3m#homepage = "http://www.google.co.jp/"
+let g:w3m#lang = 'ja_JP'
+let g:w3m#search_engine = 'http://www.google.com/search?ie=' . &encoding . '&q=%s'
+au Filetype w3m setlocal foldnestmax=0
+au Filetype w3m nmap <buffer><c-o> <Plug>(w3m-back)
+''' # }}}
+
 # vim: foldmethod=marker
