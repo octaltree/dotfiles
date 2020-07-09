@@ -8,7 +8,7 @@ if [ -d ~/.zsh/rc/autoload ] && [ -r ~/.zsh/rc/autoload ]; then
   done
 fi
 
-source ~/.zsh/rc/`hostname -s`.zsh
+source ~/.zsh/rc/localhost.zsh
 
 if which zprof > /dev/null 2>&1; then
   zprof
