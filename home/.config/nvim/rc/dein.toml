@@ -6,6 +6,8 @@ repo = 'tpope/vim-surround'
 repo = 'Shougo/neco-syntax'
 [[plugins]]
 repo = 'vim-jp/vimdoc-ja'
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]] # polyglot {{{
 repo = 'sheerun/vim-polyglot'
