@@ -38,8 +38,8 @@ bindsym $mod+m exec --no-startup-id dmenu_recency
 bindsym XF86AudioMute exec "pulsemixer --toggle-mute"
 bindsym XF86AudioRaiseVolume exec "pulsemixer --change-volume +1; notify-send `pulsemixer --get-volume| sed 's/ /:/'`"
 bindsym XF86AudioLowerVolume exec "pulsemixer --change-volume -1; notify-send `pulsemixer --get-volume| sed 's/ /:/'`"
-bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
-bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+bindsym XF86MonBrightnessUp exec "light -A 5; notify-send 'brightness up'"
+bindsym XF86MonBrightnessDown exec "light -U 5; notify-send 'brightness down'"
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+space focus mode_toggle
