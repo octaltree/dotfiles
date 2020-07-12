@@ -14,7 +14,7 @@ new_float normal
 hide_edge_borders none
 
 # Font for window titles
-font xft:Noto Sans 1
+font xft:Noto Sans 5
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
