@@ -184,14 +184,7 @@ repo = 'Shougo/vimproc.vim'
 build = 'make'
 # }}}
 
-[[plugins]] # lsp {{{
-repo = 'neovim/nvim-lsp'
-hook_add = '''
-''' # }}}
-
-
 [[plugins]]
 repo = 'Shougo/deoplete-lsp'
-depends = ['Shougo/deoplete.nvim', 'neovim/nvim-lsp']
 
 # vim: foldmethod=marker

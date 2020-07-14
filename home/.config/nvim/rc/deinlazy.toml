@@ -87,4 +87,27 @@ au Filetype w3m setlocal foldnestmax=0
 au Filetype w3m nmap <buffer><c-o> <Plug>(w3m-back)
 ''' # }}}
 
+[[plugins]] # lsp {{{
+repo = 'neovim/nvim-lsp'
+on_ft = ['rust']
+hook_source = '''
+if executable('rls')
+  lua require'nvim_lsp'.rls.setup{}
+  call deoplete#custom#source('lsp', 'min_pattern_length', 0)
+  call deoplete#custom#source('lsp', 'input_patterns', {
+      \ 'rust': '(::|[. (])\w*',
+      \ })
+endif
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> ss    <cmd>lua vim.lsp.buf.formatting()<cr>
+''' # }}}
+
 # vim: foldmethod=marker
