@@ -89,15 +89,21 @@ au Filetype w3m nmap <buffer><c-o> <Plug>(w3m-back)
 
 [[plugins]] # lsp {{{
 repo = 'neovim/nvim-lsp'
-on_ft = ['rust']
+on_ft = ['rust', 'c', 'c++']
 hook_source = '''
+setlocal signcolumn=yes
 if executable('rls')
   lua require'nvim_lsp'.rls.setup{}
-  call deoplete#custom#source('lsp', 'min_pattern_length', 0)
-  call deoplete#custom#source('lsp', 'input_patterns', {
-      \ 'rust': '(::|[. (])\w*',
-      \ })
 endif
+if executable('clangd')
+    lua require'nvim_lsp'.clangd.setup{}
+endif
+call deoplete#custom#source('lsp', 'min_pattern_length', 0)
+call deoplete#custom#source('lsp', 'input_patterns', {
+    \ 'rust': '(::|[. (])\w*',
+    \ 'c': '[. (]\w*',
+    \ 'c++': '[. (]\w*',
+    \ })
 nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
