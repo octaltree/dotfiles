@@ -87,4 +87,50 @@ au Filetype w3m setlocal foldnestmax=0
 au Filetype w3m nmap <buffer><c-o> <Plug>(w3m-back)
 ''' # }}}
 
+[[plugins]] # lsp {{{
+repo = 'neovim/nvim-lsp'
+on_ft = ['rust', 'c', 'c++', 'sh', 'html', 'python', 'vim', 'tex']
+hook_source = '''
+setlocal signcolumn=yes
+if executable('rls')
+  lua require'nvim_lsp'.rls.setup{}
+endif
+if executable('clangd')
+  lua require'nvim_lsp'.clangd.setup{}
+endif
+if executable('bash-language-server')
+  lua require'nvim_lsp'.bashls.setup{}
+endif
+if executable('html-languageserver')
+  lua require'nvim_lsp'.html.setup{}
+endif
+if executable('pyls')
+  lua require'nvim_lsp'.pyls.setup{}
+endif
+if executable('vim-language-server')
+  lua require'nvim_lsp'.vimls.setup{}
+endif
+if executable('texlab')
+  lua require'nvim_lsp'.texlab.setup{}
+endif
+call deoplete#custom#source('lsp', 'min_pattern_length', 0)
+call deoplete#custom#source('lsp', 'input_patterns', {
+    \ 'rust': '(::|[. (])\w*',
+    \ 'c': '[. (]\w*',
+    \ 'c++': '[. (]\w*',
+    \ 'sh '[ ]\w*',
+    \ 'python '[. (]\w*',
+    \ })
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> ss    <cmd>lua vim.lsp.buf.formatting()<cr>
+''' # }}}
+
 # vim: foldmethod=marker
