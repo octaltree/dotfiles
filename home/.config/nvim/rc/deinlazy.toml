@@ -89,7 +89,7 @@ au Filetype w3m nmap <buffer><c-o> <Plug>(w3m-back)
 
 [[plugins]] # lsp {{{
 repo = 'neovim/nvim-lsp'
-on_ft = ['rust', 'c', 'c++', 'sh', 'html', 'python', 'vim', 'tex']
+on_ft = ['rust', 'c', 'c++', 'sh', 'html', 'python', 'tex']
 hook_source = '''
 setlocal signcolumn=yes
 if executable('rls')
@@ -106,9 +106,6 @@ if executable('html-languageserver')
 endif
 if executable('pyls')
   lua require'nvim_lsp'.pyls.setup{}
-endif
-if executable('vim-language-server')
-  lua require'nvim_lsp'.vimls.setup{}
 endif
 if executable('texlab')
   lua require'nvim_lsp'.texlab.setup{}
