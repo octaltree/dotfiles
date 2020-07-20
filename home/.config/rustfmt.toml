@@ -1,3 +1,2 @@
-fn_single_line = true
 normalize_comments = true
 reorder_imports = true
