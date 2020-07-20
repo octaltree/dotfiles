@@ -1,2 +1,1 @@
-fn_single_line = true
-normalize_comments = true
+edition = "2018"
