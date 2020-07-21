@@ -99,7 +99,8 @@ augroup END
 set updatetime=50
 
 if executable('rls')
-  lua require'nvim_lsp'.rls.setup{}
+  lua require'nvim_lsp'.rls.setup{
+    \settings = {rust = {clippy_preference = "on" } } }
 endif
 if executable('clangd')
   lua require'nvim_lsp'.clangd.setup{}
