@@ -92,6 +92,12 @@ repo = 'neovim/nvim-lsp'
 on_ft = ['rust', 'c', 'c++', 'sh', 'html', 'python', 'tex']
 hook_source = '''
 setlocal signcolumn=yes
+augroup LspHover
+  autocmd!
+  autocmd CursorHold,CursorHoldI * lua vim.lsp.buf.hover()
+augroup END
+set updatetime=50
+
 if executable('rls')
   lua require'nvim_lsp'.rls.setup{}
 endif
@@ -115,19 +121,19 @@ call deoplete#custom#source('lsp', 'input_patterns', {
     \ 'rust': '(::|[. (])\w*',
     \ 'c': '[. (]\w*',
     \ 'c++': '[. (]\w*',
-    \ 'sh '[ ]\w*',
-    \ 'python '[. (]\w*',
+    \ 'sh': '[ ]\w*',
+    \ 'python': '[. (]\w*',
     \ })
-nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-nnoremap <silent> ss    <cmd>lua vim.lsp.buf.formatting()<cr>
+nnoremap <silent><buffer><c-]> :lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent><buffer>gd    :lua vim.lsp.buf.definition()<CR>
+nnoremap <silent><buffer>K     :lua vim.lsp.buf.hover()<CR>
+nnoremap <silent><buffer>gD    :lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent><buffer><c-k> :lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent><buffer>1gD   :lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent><buffer>gr    :lua vim.lsp.buf.references()<CR>
+nnoremap <silent><buffer>g0    :lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent><buffer>gW    :lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent><buffer>ss    :lua vim.lsp.buf.formatting()<cr>
 ''' # }}}
 
 # vim: foldmethod=marker
