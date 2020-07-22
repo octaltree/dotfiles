@@ -92,12 +92,6 @@ repo = 'neovim/nvim-lsp'
 on_ft = ['rust', 'c', 'c++', 'sh', 'html', 'python', 'tex']
 hook_source = '''
 setlocal signcolumn=yes
-augroup LspHover
-  autocmd!
-  autocmd CursorHold,CursorHoldI * lua vim.lsp.buf.hover()
-augroup END
-set updatetime=50
-
 if executable('rls')
   lua require'nvim_lsp'.rls.setup{
     \settings = {rust = {clippy_preference = "on" } } }
