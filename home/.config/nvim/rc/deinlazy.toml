@@ -64,6 +64,7 @@ hook_add='''
 let g:rust_doc#downloaded_rust_doc_dir = '$HOME/.rustup/toolchains/stable-*'
 nnoremap <silent><space>s :<c-u>Denite rust/doc<CR>
 let g:rust_doc#define_map_K = 0
+set colorcolumn=100
 '''
 
 [[plugins]]
