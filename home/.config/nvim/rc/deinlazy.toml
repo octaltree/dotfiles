@@ -67,13 +67,13 @@ let g:rust_doc#define_map_K = 0
 set colorcolumn=100
 '''
 
-[[plugins]]
-repo = 'rust-lang/rust.vim'
-on_ft = 'rust'
-hook_add='''
-let g:rustfmt_autosave = 1
-nnoremap sm :<c-u>w<CR>:make build<CR><CR>
-''' # }}}
+#[[plugins]]
+#repo = 'rust-lang/rust.vim'
+#on_ft = 'rust'
+#hook_add='''
+#let g:rustfmt_autosave = 1
+#nnoremap sm :<c-u>w<CR>:make build<CR><CR>
+#''' # }}}
 
 [[plugins]] # w3m {{{
 repo = 'yuratomo/w3m.vim'
@@ -93,6 +93,11 @@ repo = 'neovim/nvim-lsp'
 on_ft = ['rust', 'c', 'c++', 'sh', 'html', 'python', 'tex']
 hook_source = '''
 setlocal signcolumn=yes
+augroup auto_style
+  autocmd!
+  autocmd bufWritePost *.rs :lua vim.lsp.buf.formatting()
+augroup END
+
 if executable('rls')
   lua require'nvim_lsp'.rls.setup{
     \settings = {rust = {clippy_preference = "on" } } }
