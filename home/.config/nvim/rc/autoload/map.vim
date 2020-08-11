@@ -22,3 +22,5 @@ nnoremap s <nop>
 vnoremap s <nop>
 nnoremap sm :<c-u>w<CR>:silent make -k -j4<CR>:redraw!<CR>
 nnoremap sudo :<c-u>w !sudo tee % > /dev/null
+
+let mapleader = "\<space>"

@@ -187,4 +187,11 @@ build = 'make'
 [[plugins]]
 repo = 'Shougo/deoplete-lsp'
 
+[[plugins]] # nerdcommenter {{{
+repo = 'preservim/nerdcommenter'
+hook_add = '''
+let g:NERDDefaultAlign = 'left'
+''' # }}}
+
+
 # vim: foldmethod=marker
