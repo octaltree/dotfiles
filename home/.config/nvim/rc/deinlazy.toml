@@ -89,7 +89,7 @@ au Filetype w3m nmap <buffer><c-o> <Plug>(w3m-back)
 ''' # }}}
 
 [[plugins]] # lsp {{{
-repo = 'neovim/nvim-lsp'
+repo = 'neovim/nvim-lspconfig'
 on_ft = ['rust', 'c', 'c++', 'sh', 'html', 'python', 'tex']
 hook_source = '''
 set signcolumn=yes
