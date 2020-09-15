@@ -1,7 +1,7 @@
-"set foldmethod=indent
-"set foldnestmax=1
-"set foldcolumn=0
-"
+set foldmethod=indent
+set foldnestmax=1
+set foldcolumn=0
+
 " 折りたたみの見た目
 set fillchars=vert:\|
 set foldtext=MyFoldText()

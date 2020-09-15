@@ -91,35 +91,56 @@ au Filetype w3m nmap <buffer><c-o> <Plug>(w3m-back)
  # lsp {{{
 [[plugins]]
 repo = 'weilbith/nvim-lsp-denite'
-on_ft = ['rust', 'c', 'c++', 'sh', 'html', 'python', 'tex']
+on_ft = ['rust', 'c', 'cpp', 'sh', 'html', 'python', 'tex']
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
-on_ft = ['rust', 'c', 'c++', 'sh', 'html', 'python', 'tex']
+on_ft = ['rust', 'c', 'cpp', 'sh', 'html', 'python', 'tex']
 hook_source = '''
-set signcolumn=yes
 augroup auto_style
   autocmd!
   autocmd bufWritePost *.rs :lua vim.lsp.buf.formatting()
 augroup END
 
+function LC_maps()
+  nnoremap <silent><buffer><c-]> :lua vim.lsp.buf.declaration()<CR>
+  nnoremap <silent><buffer>gd    :lua vim.lsp.buf.definition()<CR>
+  nnoremap <silent><buffer>K     :lua vim.lsp.buf.hover()<CR>
+  nnoremap <silent><buffer>gD    :lua vim.lsp.buf.implementation()<CR>
+  nnoremap <silent><buffer><c-k> :lua vim.lsp.buf.signature_help()<CR>
+  nnoremap <silent><buffer>1gD   :lua vim.lsp.buf.type_definition()<CR>
+  nnoremap <silent><buffer>gr    :lua vim.lsp.buf.references()<CR>
+  nnoremap <silent><buffer>g0    :lua vim.lsp.buf.document_symbol()<CR>
+  nnoremap <silent><buffer>gW    :lua vim.lsp.buf.workspace_symbol()<CR>
+  nnoremap <silent><buffer>ss    :lua vim.lsp.buf.formatting()<cr>
+  setlocal signcolumn=yes
+endfunction
+call LC_maps()
+
 if executable('rls')
   lua require'nvim_lsp'.rls.setup{
     \settings = {rust = {clippy_preference = "on" } } }
+  autocmd FileType rust call LC_maps()
 endif
 if executable('clangd')
   lua require'nvim_lsp'.clangd.setup{}
+  autocmd FileType c call LC_maps()
+  autocmd FileType cpp call LC_maps()
 endif
 if executable('bash-language-server')
   lua require'nvim_lsp'.bashls.setup{}
+  autocmd FileType sh call LC_maps()
 endif
 if executable('html-languageserver')
   lua require'nvim_lsp'.html.setup{}
+  autocmd FileType html call LC_maps()
 endif
 if executable('pyls')
   lua require'nvim_lsp'.pyls.setup{}
+  autocmd FileType python call LC_maps()
 endif
 if executable('texlab')
   lua require'nvim_lsp'.texlab.setup{}
+  autocmd FileType tex call LC_maps()
 endif
 call deoplete#custom#source('lsp', 'min_pattern_length', 0)
 call deoplete#custom#source('lsp', 'input_patterns', {
@@ -129,16 +150,6 @@ call deoplete#custom#source('lsp', 'input_patterns', {
     \ 'sh': '[ ]\w*',
     \ 'python': '[. (]\w*',
     \ })
-nnoremap <silent><buffer><c-]> :lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent><buffer>gd    :lua vim.lsp.buf.definition()<CR>
-nnoremap <silent><buffer>K     :lua vim.lsp.buf.hover()<CR>
-nnoremap <silent><buffer>gD    :lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent><buffer><c-k> :lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent><buffer>1gD   :lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent><buffer>gr    :lua vim.lsp.buf.references()<CR>
-nnoremap <silent><buffer>g0    :lua vim.lsp.buf.document_symbol()<CR>
-nnoremap <silent><buffer>gW    :lua vim.lsp.buf.workspace_symbol()<CR>
-nnoremap <silent><buffer>ss    :lua vim.lsp.buf.formatting()<cr>
 ''' # }}}
 
 # vim: foldmethod=marker
