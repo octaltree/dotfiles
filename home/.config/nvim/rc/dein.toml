@@ -81,6 +81,7 @@ hook_add='''
   nnoremap [Denite]g :<c-u>Denite grep<CR>
   nnoremap [Denite]r :<c-u>Denite -resume<CR>
   nnoremap [Denite]<space> :Denite source<CR>
+  nnoremap [Denite]d :Denite lsp_references<CR>
 
   if executable("ag")
     call denite#custom#var('file/rec', 'command',

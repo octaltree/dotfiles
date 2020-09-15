@@ -88,7 +88,11 @@ au Filetype w3m setlocal foldnestmax=0
 au Filetype w3m nmap <buffer><c-o> <Plug>(w3m-back)
 ''' # }}}
 
-[[plugins]] # lsp {{{
+ # lsp {{{
+[[plugins]]
+repo = 'weilbith/nvim-lsp-denite'
+on_ft = ['rust', 'c', 'c++', 'sh', 'html', 'python', 'tex']
+[[plugins]]
 repo = 'neovim/nvim-lspconfig'
 on_ft = ['rust', 'c', 'c++', 'sh', 'html', 'python', 'tex']
 hook_source = '''
