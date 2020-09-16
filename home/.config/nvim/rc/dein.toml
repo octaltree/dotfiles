@@ -47,6 +47,7 @@ hook_add='''
       \ 'winrow': float2nr((&lines - (&lines * s:denite_win_height_percent)) / 2),
       \ 'prompt': '> ',
       \ })
+  call denite#custom#kind('file', 'default_action', 'switch')
   hi NormalFloat guibg=NONE " よくわからないけど見やすくなる
 
   autocmd FileType denite call s:denite_my_settings()
@@ -81,7 +82,7 @@ hook_add='''
   nnoremap [Denite]g :<c-u>Denite grep<CR>
   nnoremap [Denite]r :<c-u>Denite -resume<CR>
   nnoremap [Denite]<space> :Denite source<CR>
-  nnoremap [Denite]t :Denite buffer<CR>
+  nnoremap [Denite]t :Denite buffer -default-action=tabswitch<CR>
   nnoremap [Denite]d :Denite lsp_references<CR>
 
   if executable("ag")
