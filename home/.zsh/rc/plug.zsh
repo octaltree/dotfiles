@@ -1,13 +1,13 @@
-source ~/.zsh/plugins/zplugin/zplugin.zsh
-autoload -Uz _zplugin
-(( ${+_comps} )) && _comps[zplugin]=_zplugin
+source ~/.zsh/plugins/zplugin/zinit.zsh
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
-#zplugin ice wait'' atinit'zpcompinit'; zplugin load _local/incr
-zplugin ice wait'' atinit'zpcompinit'; zplugin load _local/auto_menu
-zplugin ice wait'' atinit'zpcompinit'; zplugin load zsh-users/zsh-autosuggestions
-zplugin ice wait'!0'; zplugin load _local/sandbox
-zplugin ice wait'!0'; zplugin load zsh-users/zsh-syntax-highlighting
-zplugin ice wait'!0'; zplugin load zsh-users/zsh-completions
+#zinit ice wait'' atinit'zpcompinit'; zinit load _local/incr
+zinit ice wait'' atinit'zpcompinit'; zinit load _local/auto_menu
+zinit ice wait'' atinit'zpcompinit'; zinit load zsh-users/zsh-autosuggestions
+zinit ice silent lucid wait'!1'; zinit load _local/sandbox
+zinit ice silent lucid wait'!1'; zinit load zsh-users/zsh-syntax-highlighting
+zinit ice silent lucid wait'!1'; zinit load zsh-users/zsh-completions
 
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
