@@ -9,11 +9,11 @@ repo = 'vim-jp/vimdoc-ja'
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
 
-[[plugins]] # polyglot {{{
-repo = 'sheerun/vim-polyglot'
-hook_add='''
-let g:polyglot_disabled = ['csv', 'markdown']
-''' # }}}
+#[[plugins]] # polyglot {{{
+#repo = 'sheerun/vim-polyglot'
+#hook_add='''
+#let g:polyglot_disabled = ['csv', 'markdown']
+#''' # }}}
 
 [[plugins]] # solarized {{{
 #repo = 'altercation/vim-colors-solarized'
