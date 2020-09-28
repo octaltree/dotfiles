@@ -67,13 +67,12 @@ let g:rust_doc#define_map_K = 0
 autocmd FileType rust setlocal colorcolumn=100
 '''
 
-#[[plugins]]
-#repo = 'rust-lang/rust.vim'
-#on_ft = 'rust'
-#hook_add='''
-#let g:rustfmt_autosave = 1
-#nnoremap sm :<c-u>w<CR>:make build<CR><CR>
-#''' # }}}
+[[plugins]]
+repo = 'rust-lang/rust.vim'
+on_ft = 'rust'
+hook_add='''
+let g:rustfmt_autosave = 1
+''' # }}}
 
 [[plugins]] # w3m {{{
 repo = 'yuratomo/w3m.vim'
@@ -96,10 +95,10 @@ on_ft = ['rust', 'c', 'cpp', 'sh', 'html', 'python', 'tex']
 repo = 'neovim/nvim-lspconfig'
 on_ft = ['rust', 'c', 'cpp', 'sh', 'html', 'python', 'tex']
 hook_source = '''
-augroup auto_style
-  autocmd!
-  autocmd bufWritePost *.rs :lua vim.lsp.buf.formatting()
-augroup END
+"augroup auto_style
+"  autocmd!
+"  autocmd bufWritePost *.rs :lua vim.lsp.buf.formatting()
+"augroup END
 
 function LC_maps()
   nnoremap <silent><buffer><c-]> :lua vim.lsp.buf.declaration()<CR>
