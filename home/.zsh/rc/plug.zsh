@@ -3,11 +3,11 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 #zinit ice wait'' atinit'zpcompinit'; zinit load _local/incr
-zinit ice wait'' atinit'zpcompinit'; zinit load _local/auto_menu
-zinit ice wait'' atinit'zpcompinit'; zinit load zsh-users/zsh-autosuggestions
-zinit ice silent lucid wait'!1'; zinit load _local/sandbox
-zinit ice silent lucid wait'!1'; zinit load zsh-users/zsh-syntax-highlighting
-zinit ice silent lucid wait'!1'; zinit load zsh-users/zsh-completions
+zinit ice lucid wait'' atinit'zpcompinit'; zinit load _local/auto_menu
+zinit ice lucid wait'' atinit'zpcompinit'; zinit load zsh-users/zsh-autosuggestions
+zinit ice lucid wait'!1'; zinit load _local/sandbox
+zinit ice lucid wait'!1'; zinit load zsh-users/zsh-syntax-highlighting
+zinit ice lucid wait'!1'; zinit load zsh-users/zsh-completions
 
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
