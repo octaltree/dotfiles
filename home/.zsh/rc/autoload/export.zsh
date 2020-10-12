@@ -6,3 +6,5 @@ export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$HOME/bin/handyScript:$PATH"
 export PATH="$HOME/bin:$PATH"
+
+export RUST_BACKTRACE=full
