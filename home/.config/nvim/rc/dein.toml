@@ -88,7 +88,7 @@ hook_add='''
 
   if executable("ag")
     call denite#custom#var('file/rec', 'command',
-        \ ['ag', '-U', '--hidden', '--follow', '--nocolor', '--nogroup', '-g', ''])
+        \ ['ag', '--hidden', '--follow', '--nocolor', '--nogroup', '-g', ''])
     call denite#custom#var('grep', 'command', ['ag'])
     call denite#custom#var('grep', 'default_opts',
         \ ['--hidden', '--follow', '-S', '--vimgrep'])
