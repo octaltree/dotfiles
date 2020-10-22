@@ -120,6 +120,10 @@ if executable('rls')
     \settings = {rust = {clippy_preference = "on" } } }
   autocmd FileType rust call LC_maps()
 endif
+"if executable('rust-analyzer')
+"  lua require'nvim_lsp'.rust_analyzer.setup{}
+"  autocmd FileType rust call LC_maps()
+"endif
 if executable('clangd')
   lua require'nvim_lsp'.clangd.setup{}
   autocmd FileType c call LC_maps()
