@@ -137,6 +137,18 @@ mode "$mode_move_switch_workspace" {
   bindsym Ctrl+[ mode "default"
   bindsym Ctrl+c mode "default"
 }
+bindsym $mod+Shift+w mode "$mode_move_workspace"
+mode "$mode_move_workspace" {
+  bindsym h move workspace to output left
+  bindsym j move workspace to output down
+  bindsym k move workspace to output up
+  bindsym l move workspace to output right
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym Ctrl+[ mode "default"
+  bindsym Ctrl+c mode "default"
+}
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
