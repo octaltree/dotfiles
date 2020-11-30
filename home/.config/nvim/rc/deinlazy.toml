@@ -115,15 +115,15 @@ function LC_maps()
 endfunction
 call LC_maps()
 
-if executable('rls')
-  lua require'lspconfig'.rls.setup{
-    \settings = {rust = {clippy_preference = "on" } } }
-  autocmd FileType rust call LC_maps()
-endif
-"if executable('rust-analyzer')
-"  lua require'lspconfig'.rust_analyzer.setup{}
+"if executable('rls')
+"  lua require'lspconfig'.rls.setup{
+"    \settings = {rust = {clippy_preference = "on" } } }
 "  autocmd FileType rust call LC_maps()
 "endif
+if executable('rust-analyzer')
+  lua require'lspconfig'.rust_analyzer.setup{}
+  autocmd FileType rust call LC_maps()
+endif
 if executable('clangd')
   lua require'lspconfig'.clangd.setup{}
   autocmd FileType c call LC_maps()
