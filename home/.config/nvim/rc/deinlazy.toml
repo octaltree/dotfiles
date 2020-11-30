@@ -116,33 +116,33 @@ endfunction
 call LC_maps()
 
 if executable('rls')
-  lua require'nvim_lsp'.rls.setup{
+  lua require'lspconfig'.rls.setup{
     \settings = {rust = {clippy_preference = "on" } } }
   autocmd FileType rust call LC_maps()
 endif
 "if executable('rust-analyzer')
-"  lua require'nvim_lsp'.rust_analyzer.setup{}
+"  lua require'lspconfig'.rust_analyzer.setup{}
 "  autocmd FileType rust call LC_maps()
 "endif
 if executable('clangd')
-  lua require'nvim_lsp'.clangd.setup{}
+  lua require'lspconfig'.clangd.setup{}
   autocmd FileType c call LC_maps()
   autocmd FileType cpp call LC_maps()
 endif
 if executable('bash-language-server')
-  lua require'nvim_lsp'.bashls.setup{}
+  lua require'lspconfig'.bashls.setup{}
   autocmd FileType sh call LC_maps()
 endif
 if executable('html-languageserver')
-  lua require'nvim_lsp'.html.setup{}
+  lua require'lspconfig'.html.setup{}
   autocmd FileType html call LC_maps()
 endif
 if executable('pyls')
-  lua require'nvim_lsp'.pyls.setup{}
+  lua require'lspconfig'.pyls.setup{}
   autocmd FileType python call LC_maps()
 endif
 if executable('texlab')
-  lua require'nvim_lsp'.texlab.setup{}
+  lua require'lspconfig'.texlab.setup{}
   autocmd FileType tex call LC_maps()
 endif
 call deoplete#custom#source('lsp', 'min_pattern_length', 0)
