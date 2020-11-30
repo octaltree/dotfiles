@@ -65,6 +65,8 @@ let g:rust_doc#downloaded_rust_doc_dir = '$HOME/.rustup/toolchains/stable-*'
 nnoremap <silent><space>s :<c-u>Denite rust/doc<CR>
 let g:rust_doc#define_map_K = 0
 autocmd FileType rust setlocal colorcolumn=100
+
+inoremap <c-f> ::
 '''
 
 [[plugins]]
