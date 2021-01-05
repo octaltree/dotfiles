@@ -8,3 +8,4 @@ export PATH="$HOME/bin/handyScript:$PATH"
 export PATH="$HOME/bin:$PATH"
 
 export RUST_BACKTRACE=1
+export GOPATH="$HOME/.go"
