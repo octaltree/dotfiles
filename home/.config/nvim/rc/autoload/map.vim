@@ -22,6 +22,7 @@ nnoremap s <nop>
 vnoremap s <nop>
 nnoremap sm :<c-u>w<CR>:silent make -k -j4<CR>:redraw!<CR>
 nnoremap sudo :<c-u>w !sudo tee % > /dev/null
+nnoremap sd @
 
 nnoremap sc viw:s/\%V\(_\\|-\)\(.\)/\u\2/g<CR>
 nnoremap s_ viw:s/\%V\([A-Z]\)/_\l\1/g<CR>
