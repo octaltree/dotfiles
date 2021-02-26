@@ -92,10 +92,10 @@ au Filetype w3m nmap <buffer><c-o> <Plug>(w3m-back)
  # lsp {{{
 [[plugins]]
 repo = 'weilbith/nvim-lsp-denite'
-on_ft = ['rust', 'c', 'cpp', 'sh', 'html', 'python', 'tex']
+on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex']
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
-on_ft = ['rust', 'c', 'cpp', 'sh', 'html', 'python', 'tex']
+on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex']
 hook_source = '''
 "augroup auto_style
 "  autocmd!
@@ -135,10 +135,10 @@ if executable('bash-language-server')
   lua require'lspconfig'.bashls.setup{}
   autocmd FileType sh call LC_maps()
 endif
-if executable('html-languageserver')
-  lua require'lspconfig'.html.setup{}
-  autocmd FileType html call LC_maps()
-endif
+"if executable('html-languageserver')
+"  lua require'lspconfig'.html.setup{}
+"  autocmd FileType html call LC_maps()
+"endif
 if executable('pyls')
   lua require'lspconfig'.pyls.setup{}
   autocmd FileType python call LC_maps()
