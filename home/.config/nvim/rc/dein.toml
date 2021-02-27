@@ -200,7 +200,7 @@ let g:NERDDefaultAlign = 'left'
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
 hook_post_update = 'TSUpdate'
-hook_post_source = '''
+hook_add = '''
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained",
