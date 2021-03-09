@@ -201,7 +201,7 @@ hook_post_update = 'TSUpdate'
 [[plugins]]
 repo = 'ujihisa/neco-look'
 hook_add = '''
-call deoplete#custom#source('look', 'min_pattern_length', 3)
+call deoplete#custom#source('look', 'min_pattern_length', 7)
 '''
 
 # vim: foldmethod=marker
