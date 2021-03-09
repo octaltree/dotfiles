@@ -8,8 +8,7 @@ repo = 'Shougo/neco-syntax'
 repo = 'vim-jp/vimdoc-ja'
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
-[[plugins]]
-repo = 'ujihisa/neco-look'
+
 
 [[plugins]] # polyglot {{{
 repo = 'sheerun/vim-polyglot'
@@ -160,10 +159,6 @@ set completeopt+=noselect
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | silent! pclose | endif
 call deoplete#custom#option('auto_refresh_delay', 1)
 call deoplete#custom#option('min_pattern_length', 1)
-call deoplete#custom#source('LanguageClient', 'min_pattern_length', 0)
-call deoplete#custom#source('LanguageClient', 'input_patterns', {
-    \ 'rust': '(::|[. (])\w*',
-    \ })
 
 inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
@@ -203,5 +198,10 @@ let g:NERDDefaultAlign = 'left'
 repo = 'nvim-treesitter/nvim-treesitter'
 hook_post_update = 'TSUpdate'
 
+[[plugins]]
+repo = 'ujihisa/neco-look'
+hook_add = '''
+call deoplete#custom#source('look', 'min_pattern_length', 3)
+'''
 
 # vim: foldmethod=marker
