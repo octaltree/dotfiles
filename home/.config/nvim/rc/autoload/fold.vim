@@ -1,5 +1,5 @@
 set foldmethod=indent
-set foldnestmax=2
+set foldnestmax=1
 set foldcolumn=0
 
 au WinEnter * if nvim_win_get_config(0)['relative'] != '' | setlocal foldnestmax=0 | endif
