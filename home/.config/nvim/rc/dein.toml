@@ -80,7 +80,7 @@ hook_add='''
   nmap <silent><space> [Denite]
   nnoremap [Denite]f :<c-u>Denite file/rec<CR>
   nnoremap [Denite]o :<c-u>Denite file/old<CR>
-  nnoremap [Denite]/ :<c-u>Denite line<CR>
+  nnoremap [Denite]/ :<c-u>Denite line -start-filter<CR>
   nnoremap [Denite]g :<c-u>Denite grep<CR>
   nnoremap [Denite]r :<c-u>Denite -resume<CR>
   nnoremap [Denite]<space> :Denite source<CR>
