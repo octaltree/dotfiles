@@ -26,6 +26,7 @@ hook_add='''
   let g:solarized_termtrans=1
   autocmd VimEnter * nested colorscheme solarized8
   autocmd ColorScheme * hi Folded guifg=#839496 guibg=None guisp=#002b36 gui=None cterm=None
+  autocmd ColorScheme * hi NormalFloat guibg=None
 ''' # }}}
 
 [[plugins]] # whitespace {{{
@@ -50,7 +51,6 @@ hook_add='''
       \ 'prompt': '> ',
       \ })
   call denite#custom#kind('file', 'default_action', 'switch')
-  hi NormalFloat guibg=NONE " よくわからないけど見やすくなる
 
   autocmd FileType denite call s:denite_my_settings()
   function! s:denite_my_settings() abort

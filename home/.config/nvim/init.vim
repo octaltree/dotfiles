@@ -15,6 +15,7 @@ set background=dark
 set clipboard=unnamed,unnamedplus
 set pumblend=30
 set winblend=30
+set shortmess+=I
 
 au QuickfixCmdPost make,grep,grepadd,vimgrep cwindow
 
