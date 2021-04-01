@@ -207,12 +207,19 @@ let g:NERDDefaultAlign = 'left'
 
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
-hook_post_update = 'TSUpdate'
+build = 'TSUpdate'
 
 [[plugins]]
 repo = 'ujihisa/neco-look'
 hook_add = '''
 call deoplete#custom#source('look', 'min_pattern_length', 7)
+'''
+
+[[plugins]]
+repo = 'octaltree/rustdoc-index'
+build = 'make denite'
+hook_add = '''
+nnoremap <silent><space>s :<c-u>Denite rustdoc-index<CR>
 '''
 
 # vim: foldmethod=marker
