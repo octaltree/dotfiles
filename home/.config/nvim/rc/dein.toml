@@ -219,7 +219,7 @@ call deoplete#custom#source('look', 'min_pattern_length', 7)
 repo = 'octaltree/rustdoc-index'
 build = 'make denite'
 hook_add = '''
-nnoremap <silent><space>s :<c-u>Denite rustdoc-index<CR>
+nnoremap <silent><space>s :<c-u>Denite rustdoc-index -start-filter<CR>
 '''
 
 # vim: foldmethod=marker
