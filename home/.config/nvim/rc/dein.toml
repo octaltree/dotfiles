@@ -6,15 +6,23 @@ repo = 'tpope/vim-surround'
 repo = 'Shougo/neco-syntax'
 [[plugins]]
 repo = 'vim-jp/vimdoc-ja'
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
 
+[[plugins]]
+repo = 'octaltree/rustdoc-index'
+build = 'make denite'
+hook_add = '''
+nnoremap <silent><space>s :<c-u>Denite rustdoc-index<CR>
+'''
 
 [[plugins]] # polyglot {{{
 repo = 'sheerun/vim-polyglot'
 hook_add='''
 let g:polyglot_disabled = ['csv', 'markdown']
 ''' # }}}
+
+[[plugins]] # treesitter {{{
+repo = 'nvim-treesitter/nvim-treesitter'
+build = 'TSUpdate' # }}}
 
 [[plugins]] # solarized {{{
 #repo = 'altercation/vim-colors-solarized'
@@ -31,195 +39,15 @@ hook_add='''
 
 [[plugins]] # whitespace {{{
 repo = 'bronson/vim-trailing-whitespace'
-hook_source='''
+hook_add='''
 let g:extra_whitespace_ignored_filetypes=['denite']
 autocmd BufRead,BufNewFile * if ShouldMatchWhitespace() | match ExtraWhitespace /\\\@<![\u3000[:space:]]\+$/ | else | match ExtraWhitespadce /^^/ | endif
 ''' # }}}
-
-[[plugins]] # denite {{{
-repo = 'Shougo/denite.nvim'
-hook_add='''
-  let s:denite_win_width_percent = 0.9
-  let s:denite_win_height_percent = 0.9
-  call denite#custom#option('default', {
-      \ 'auto-resize': 'true',
-      \ 'split': 'floating',
-      \ 'winwidth': float2nr(&columns * s:denite_win_width_percent),
-      \ 'wincol': float2nr((&columns - (&columns * s:denite_win_width_percent)) / 2),
-      \ 'winheight': float2nr(&lines * s:denite_win_height_percent),
-      \ 'winrow': float2nr((&lines - (&lines * s:denite_win_height_percent)) / 2),
-      \ 'prompt': '> ',
-      \ })
-  call denite#custom#kind('file', 'default_action', 'switch')
-
-  autocmd FileType denite call s:denite_my_settings()
-  function! s:denite_my_settings() abort
-    nnoremap <silent><buffer><expr> <cr>
-    \ denite#do_map('do_action')
-    nnoremap <silent><buffer><expr> s
-    \ denite#do_map('do_action', 'split')
-    nnoremap <silent><buffer><expr> v
-    \ denite#do_map('do_action', 'vsplit')
-    nnoremap <silent><buffer><expr> t
-    \ denite#do_map('do_action', 'tabopen')
-    nnoremap <silent><buffer><expr> p
-    \ denite#do_map('do_action', 'preview')
-    nnoremap <silent><buffer><expr><nowait> q
-    \ denite#do_map('quit')
-    nnoremap <silent><buffer><expr> i
-    \ denite#do_map('open_filter_buffer')
-    nnoremap <silent><buffer><expr> <space>
-    \ denite#do_map('toggle_select')
-  endfunction
-  autocmd FileType denite-filter call s:denite_filter_my_settings()
-  function! s:denite_filter_my_settings() abort
-    imap <silent><buffer> <ESC> <Plug>(denite_filter_update)
-    imap <silent><buffer> <CR> <ESC><CR>
-  endfunction
-  nnoremap [Denite] <Nop>
-  nmap <silent><space> [Denite]
-  nnoremap [Denite]f :<c-u>Denite file/rec<CR>
-  nnoremap [Denite]o :<c-u>Denite file/old<CR>
-  nnoremap [Denite]/ :<c-u>Denite line<CR>
-  nnoremap [Denite]g :<c-u>Denite grep<CR>
-  nnoremap [Denite]r :<c-u>Denite -resume<CR>
-  nnoremap [Denite]<space> :Denite source<CR>
-  nnoremap [Denite]t :Denite buffer -default-action=tabswitch<CR>
-  nnoremap [Denite]d :Denite lsp_references<CR>
-
-  if executable("ag")
-    call denite#custom#var('file/rec', 'command',
-        \ ['ag', '--hidden', '--follow', '--nocolor', '--nogroup', '-g', ''])
-    call denite#custom#var('grep', 'command', ['ag'])
-    call denite#custom#var('grep', 'default_opts',
-        \ ['--hidden', '--follow', '-S', '--vimgrep'])
-    call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'pattern_opt', [])
-    call denite#custom#var('grep', 'separator', ['--'])
-    call denite#custom#var('grep', 'final_opts', [])
-  endif
-  if executable("rg")
-    call denite#custom#var('file/rec', 'command',
-        \ ['rg', '--hidden', '--follow', '--files', '-g', '!.git'])
-    call denite#custom#var('grep', 'command', ['rg'])
-    call denite#custom#var('grep', 'default_opts',
-        \ ['--hidden', '--follow', '-S', '--no-heading', '--vimgrep', '-g', '!.git'])
-    call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'pattern_opt', [])
-    call denite#custom#var('grep', 'separator', ['--'])
-    call denite#custom#var('grep', 'final_opts', [])
-  endif
-''' # }}}
-
-#[[plugins]] # languageclient {{{
-#repo = 'autozimu/LanguageClient-neovim'
-#build = './install.sh'
-#hook_add = '''
-#set hidden
-#let g:LanguageClient_loggingFile = '/tmp/languageclient.log'
-#  let g:LanguageClient_serverCommands = {}
-#if executable('clangd')
-#  let g:LanguageClient_serverCommands['c'] = ['clangd']
-#  let g:LanguageClient_serverCommands['cpp'] = ['clangd']
-#endif
-#if executable('pyls')
-#  let g:LanguageClient_serverCommands['python'] = ['pyls']
-#endif
-#if executable('stack')
-#  let g:LanguageClient_serverCommands['haskell'] = ['stack', 'exec', 'hie', '--', '--lsp']
-#endif
-#if executable('rls')
-#  let g:LanguageClient_serverCommands['rust'] = ['rls']
-#endif
-#if executable('purescript-language-server')
-#  let g:LanguageClient_serverCommands['purescript'] = ['purescript-language-server', '--stdio']
-#endif
-#
-#function LC_maps()
-#  if has_key(g:LanguageClient_serverCommands, &filetype)
-#    " any keybindings you want, such as ...
-#    nnoremap <buffer><silent>K :call LanguageClient#textDocument_hover()<CR>
-#    nnoremap <buffer><silent>gd :call LanguageClient_textDocument_definition()<CR>
-#
-#    "augroup LCHighlight
-#    "  autocmd!
-#    "  autocmd CursorHold,CursorHoldI * call LanguageClient#textDocument_documentHighlight()
-#    "augroup END
-#    "set updatetime=50
-#
-#    augroup LanguageClient_config
-#      autocmd!
-#      autocmd User LanguageClientStarted setlocal signcolumn=yes
-#      autocmd User LanguageClientStopped setlocal signcolumn=auto
-#    augroup END
-#  endif
-#endfunction
-#
-#autocmd FileType * call LC_maps()
-#nnoremap [Denite]c :Denite contextMenu<CR>
-#let g:LanguageClient_hasSnippetSupport = 0
-#''' # }}}
-
-[[plugins]] # deoplete {{{
-repo = 'Shougo/deoplete.nvim'
-depends = 'context_filetype.vim'
-hook_add = '''
-let g:deoplete#enable_at_startup = 1
-set completeopt+=noselect
-"set completeopt-=preview
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | silent! pclose | endif
-call deoplete#custom#option('auto_refresh_delay', 1)
-call deoplete#custom#option('min_pattern_length', 1)
-
-inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
-imap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function() abort
-  return deoplete#close_popup() . "\<CR>"
-endfunction
-"let g:cache_completed = {}
-"function! s:my_cr_function() abort
-"  if has_key(v:completed_item, 'word') && g:cache_completed != v:completed_item
-"    let g:cache_completed = v:completed_item
-"    return deoplete#close_popup()
-"  else
-"    return deoplete#close_popup() . "\<CR>"
-"  endif
-"endfunction
-"imap <silent><expr> <cr> neosnippet#expandable_or_jumpable()?
-"  \ "\<Plug>(neosnippet_expand_or_jump)":
-"  \ deoplete#close_popup() . "\<CR>"
-''' # }}}
-
-[[plugins]] # vimproc {{{
-repo = 'Shougo/vimproc.vim'
-build = 'make'
-# }}}
-
-[[plugins]]
-repo = 'Shougo/deoplete-lsp'
 
 [[plugins]] # nerdcommenter {{{
 repo = 'preservim/nerdcommenter'
 hook_add = '''
 let g:NERDDefaultAlign = 'left'
 ''' # }}}
-
-[[plugins]]
-repo = 'nvim-treesitter/nvim-treesitter'
-build = 'TSUpdate'
-
-[[plugins]]
-repo = 'ujihisa/neco-look'
-hook_add = '''
-call deoplete#custom#source('look', 'min_pattern_length', 7)
-'''
-
-[[plugins]]
-repo = 'octaltree/rustdoc-index'
-build = 'make denite'
-hook_add = '''
-nnoremap <silent><space>s :<c-u>Denite rustdoc-index<CR>
-'''
 
 # vim: foldmethod=marker
