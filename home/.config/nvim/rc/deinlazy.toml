@@ -1,9 +1,3 @@
-[[plugins]] # vimproc {{{
-repo = 'Shougo/vimproc.vim'
-build = 'make'
-on_cmd = ['PrevimOpen', 'W3m', 'W3mSplit', 'W3mTab', 'W3mVSplit']
-# }}}
-
 [[plugins]] # denite {{{
 repo = 'Shougo/denite.nvim'
 on_cmd = ["Denite", "DeniteCursorWord"]
@@ -158,7 +152,6 @@ let g:suda_smart_edit = 1
 [[plugins]] # markdown {{{
 repo = 'kannokanno/previm'
 on_cmd = 'PrevimOpen'
-depends = ['vimproc.vim']
 hook_add = '''
   let g:previm_open_cmd = 'firefox'
 ''' # }}}
@@ -194,9 +187,7 @@ inoremap <c-f> ::
 
 [[plugins]] # w3m {{{
 repo = 'yuratomo/w3m.vim'
-depends = 'Shougo/vimproc.vim'
 on_cmd = ['W3m', 'W3mTab', 'W3mSplit', 'W3mVSplit']
-depends = ['vimproc.vim']
 hook_add='''
 let g:w3m#external_browser = 'firefox'
 let g:w3m#homepage = "http://www.google.co.jp/"
