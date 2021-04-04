@@ -82,6 +82,16 @@ au Filetype w3m nmap <buffer><c-o> <Plug>(w3m-back)
 
  # lsp {{{
 [[plugins]]
+repo = 'https://github.com/nvim-lua/lsp_extensions.nvim'
+on_ft = ['rust']
+hook_source = '''
+if executable('rust-analyzer')
+  autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
+    \ lua require'lsp_extensions'.inlay_hints{
+      \ prefix = ' » ', highlight = "Comment", only_current_line = false, enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }
+endif
+'''
+[[plugins]]
 repo = 'weilbith/nvim-lsp-denite'
 on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex']
 [[plugins]]
@@ -104,6 +114,7 @@ function LC_maps()
   nnoremap <silent><buffer>g0    :lua vim.lsp.buf.document_symbol()<CR>
   nnoremap <silent><buffer>gW    :lua vim.lsp.buf.workspace_symbol()<CR>
   nnoremap <silent><buffer>ss    :lua vim.lsp.buf.formatting()<cr>
+  nnoremap <silent>ga    <cmd>lua vim.lsp.buf.code_action()<CR>
   setlocal signcolumn=yes
 endfunction
 call LC_maps()
@@ -114,7 +125,15 @@ call LC_maps()
 "  autocmd FileType rust call LC_maps()
 "endif
 if executable('rust-analyzer')
-  lua require'lspconfig'.rust_analyzer.setup{}
+  lua require'lspconfig'.rust_analyzer.setup{
+    \settings = {
+    \  ["rust-analyzer"] = {
+    \    procMacro = {
+    \      enable = true
+    \    }
+    \  }
+    \}
+    \}
   autocmd FileType rust call LC_maps()
 endif
 if executable('clangd')
