@@ -122,10 +122,25 @@ call deoplete#custom#source('look', 'min_pattern_length', 7)
 repo = 'hrsh7th/vim-vsnip'
 on_event = 'InsertEnter'
 depends = ['deoplete.nvim']
+hook_add='''
+"imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+"smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+"imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+"smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+
+imap <expr> <C-i>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-i>'
+smap <expr> <C-i>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-i>'
+imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+'''
+#[[plugins]]
+#repo = 'rafamadriz/friendly-snippets'
+#on_event = 'InsertEnter'
+#depends = ['vim-vsnip']
 [[plugins]]
-repo = 'rafamadriz/friendly-snippets'
+repo= 'hrsh7th/vim-vsnip-integ'
 on_event = 'InsertEnter'
-depends = ['vim-vsnip']
+depends = ['deoplete-lsp']
 # }}}
 
 [[plugins]] # echodoc {{{
@@ -211,6 +226,9 @@ endif
 [[plugins]]
 repo = 'Shougo/deoplete-lsp'
 on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex']
+hook_add='''
+let g:deoplete#lsp#use_icons_for_candidates = v:true
+'''
 [[plugins]]
 repo = 'weilbith/nvim-lsp-denite'
 on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex']
