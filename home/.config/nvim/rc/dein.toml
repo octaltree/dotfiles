@@ -14,12 +14,6 @@ hook_add = '''
 nnoremap <silent><space>s :<c-u>Denite rustdoc-index<CR>
 '''
 
-[[plugins]] # polyglot {{{
-repo = 'sheerun/vim-polyglot'
-hook_add='''
-let g:polyglot_disabled = ['csv', 'markdown']
-''' # }}}
-
 [[plugins]] # treesitter {{{
 repo = 'nvim-treesitter/nvim-treesitter'
 build = 'TSUpdate' # }}}
