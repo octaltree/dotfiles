@@ -1,6 +1,3 @@
-if exists("did_load_filetypes")
-  finish
-endif
 augroup filetypedetect
   au! BufEnter,BufNewFile *aHR0cH* setfiletype ccs
   au! BufEnter,BufNewFile *.tag setfiletype javascript
