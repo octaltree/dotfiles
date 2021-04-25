@@ -11,3 +11,7 @@ augroup vimrc-auto-mkdir  " {{{
     endif
   endfunction  " }}}
 augroup END  " }}}
+
+if executable("cargo-play")
+  command! CargoPlay w ! cargo play --stdin
+endif
