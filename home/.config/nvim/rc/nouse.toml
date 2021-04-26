@@ -263,7 +263,6 @@ on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex']
 hook_add='''
 let g:deoplete#lsp#use_icons_for_candidates = v:true
 '''
-
 [[plugins]]
 repo = 'altercation/vim-colors-solarized'
 hook_add='''

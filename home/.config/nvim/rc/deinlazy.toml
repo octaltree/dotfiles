@@ -1,16 +1,37 @@
-[[plugins]] # deoplete source {{{
-repo = 'ujihisa/neco-look'
-depends = ['deoplete.nvim']
+
+[[plugins]]
+repo = 'hrsh7th/nvim-compe'
+build = 'make'
 on_event = 'InsertEnter'
-hook_source = '''
-call deoplete#custom#source('look', 'min_pattern_length', 7)
+hook_add='''
+set completeopt+=menuone,noselect
+
+let g:compe = {}
+let g:compe.enabled = v:true
+let g:compe.autocomplete = v:true
+let g:compe.debug = v:false
+let g:compe.min_length = 0
+let g:compe.preselect = 'disable'
+let g:compe.throttle_time = 40
+let g:compe.source_timeout = 200
+let g:compe.incomplete_delay = 400
+let g:compe.max_abbr_width = 100
+let g:compe.max_kind_width = 100
+let g:compe.max_menu_width = 100
+let g:compe.documentation = v:true
+
+let g:compe.source = {}
+let g:compe.source.path = v:true
+let g:compe.source.buffer = v:true
+let g:compe.source.calc = v:true
+let g:compe.source.nvim_lsp = v:true
+let g:compe.source.nvim_lua = v:true
+let g:compe.source.vsnip = v:true
 '''
-# }}}
 
 [[plugins]] # snippet {{{
 repo = 'hrsh7th/vim-vsnip'
 on_event = 'InsertEnter'
-depends = ['deoplete.nvim']
 hook_add='''
 "imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
 "smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
@@ -22,14 +43,13 @@ smap <expr> <C-i>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-i
 imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 '''
-#[[plugins]]
-#repo = 'rafamadriz/friendly-snippets'
-#on_event = 'InsertEnter'
-#depends = ['vim-vsnip']
+[[plugins]]
+repo = 'rafamadriz/friendly-snippets'
+on_event = 'InsertEnter'
+depends = ['vim-vsnip']
 [[plugins]]
 repo= 'hrsh7th/vim-vsnip-integ'
 on_event = 'InsertEnter'
-depends = ['deoplete-lsp']
 # }}}
 
 [[plugins]] # echodoc {{{
@@ -111,12 +131,6 @@ if executable('rust-analyzer')
 endif
 '''
 [[plugins]]
-repo = 'Shougo/deoplete-lsp'
-on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex', 'javascript', 'typescript']
-hook_add='''
-let g:deoplete#lsp#use_icons_for_candidates = v:true
-'''
-[[plugins]]
 repo = 'weilbith/nvim-lsp-denite'
 on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex', 'javascript', 'typescript']
 [[plugins]]
@@ -185,14 +199,6 @@ if executable('texlab')
   lua require'lspconfig'.texlab.setup{}
   autocmd FileType tex call LC_maps()
 endif
-call deoplete#custom#source('lsp', 'min_pattern_length', 0)
-call deoplete#custom#source('lsp', 'input_patterns', {
-    \ 'rust': '(::|[. (])\w*',
-    \ 'c': '[. (]\w*',
-    \ 'c++': '[. (]\w*',
-    \ 'sh': '[ ]\w*',
-    \ 'python': '[. (]\w*',
-    \ })
 ''' # }}}
 
 # vim: foldmethod=marker
