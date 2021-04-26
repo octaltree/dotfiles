@@ -155,6 +155,14 @@ endfunction
 "  \ deoplete#close_popup() . "\<CR>"
 ''' # }}}
 
+[[plugins]]
+repo = 'liuchengxu/vim-clap'
+build='make'
+hook_add='''
+call denite#custom#filter('matcher/clap', 'clap_path', expand('~/.config/nvim/dein/repos/github.com/liuchengxu/vim-clap'))
+call denite#custom#source('_', 'matcher', ['matcher/clap'])
+'''
+
 #hrsh7th/nvim-compe
 #hrsh7th/vim-vsnip
 
