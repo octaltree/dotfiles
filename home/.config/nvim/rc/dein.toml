@@ -6,6 +6,8 @@ repo = 'tpope/vim-surround'
 repo = 'Shougo/neco-syntax'
 [[plugins]]
 repo = 'vim-jp/vimdoc-ja'
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'
 
 [[plugins]]
 repo = 'octaltree/rustdoc-index'
@@ -13,10 +15,6 @@ build = 'make denite'
 hook_add = '''
 nnoremap <silent><space>s :<c-u>Denite rustdoc-index<CR>
 '''
-
-[[plugins]] # treesitter {{{
-repo = 'nvim-treesitter/nvim-treesitter'
-build = 'TSUpdate' # }}}
 
 [[plugins]] # solarized {{{
 #repo = 'altercation/vim-colors-solarized'
@@ -66,7 +64,6 @@ hook_add = '''
   let s:denite_win_width_percent = 0.9
   let s:denite_win_height_percent = 0.9
   call denite#custom#option('default', {
-      \ 'auto-resize': 'true',
       \ 'split': 'floating',
       \ 'winwidth': float2nr(&columns * s:denite_win_width_percent),
       \ 'wincol': float2nr((&columns - (&columns * s:denite_win_width_percent)) / 2),
@@ -157,5 +154,8 @@ endfunction
 "  \ "\<Plug>(neosnippet_expand_or_jump)":
 "  \ deoplete#close_popup() . "\<CR>"
 ''' # }}}
+
+#hrsh7th/nvim-compe
+#hrsh7th/vim-vsnip
 
 # vim: foldmethod=marker
