@@ -61,6 +61,9 @@ hook_add = '''
   nnoremap [Denite]t :Denite buffer -default-action=tabswitch<CR>
   nnoremap [Denite]d :Denite lsp_references<CR>
 
+  nnoremap [Denite]c/ :<c-u>DeniteCursorWord line<CR>
+  nnoremap [Denite]cg :<c-u>DeniteCursorWord grep<CR>
+
   let s:denite_win_width_percent = 0.9
   let s:denite_win_height_percent = 0.9
   call denite#custom#option('default', {
