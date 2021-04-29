@@ -17,17 +17,13 @@ nnoremap <silent><space>s :<c-u>Denite rustdoc-index<CR>
 '''
 
 [[plugins]] # solarized {{{
-#repo = 'altercation/vim-colors-solarized'
 repo = 'lifepillar/vim-solarized8'
 hook_add='''
-  "colorscheme solarized
-  "let g:solarized_visibility="low"
-  "let g:solarized_termcolors=256
-  let g:solarized_termtrans=1
-  let g:solarized_extra_hi_groups = 1
-  autocmd VimEnter * nested colorscheme solarized8
-  autocmd ColorScheme * hi Folded guifg=#839496 guibg=None guisp=#002b36 gui=None cterm=None
-  autocmd ColorScheme * hi NormalFloat guibg=None
+let g:solarized_termtrans=1
+let g:solarized_extra_hi_groups = 1
+autocmd VimEnter * nested colorscheme solarized8
+autocmd ColorScheme * hi Folded guifg=#839496 guibg=None guisp=#002b36 gui=None cterm=None
+autocmd ColorScheme * hi NormalFloat guibg=None
 ''' # }}}
 
 [[plugins]] # whitespace {{{

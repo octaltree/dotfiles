@@ -114,16 +114,16 @@ endif
 '''
 [[plugins]]
 repo = 'Shougo/deoplete-lsp'
-on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex']
+on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex', 'javascript', 'typescript']
 hook_add='''
 let g:deoplete#lsp#use_icons_for_candidates = v:true
 '''
 [[plugins]]
 repo = 'weilbith/nvim-lsp-denite'
-on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex']
+on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex', 'javascript', 'typescript']
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
-on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex']
+on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex', 'javascript', 'typescript']
 hook_source = '''
 "augroup auto_style
 "  autocmd!
@@ -146,21 +146,24 @@ function LC_maps()
 endfunction
 call LC_maps()
 
-"if executable('rls')
-"  lua require'lspconfig'.rls.setup{
-"    \settings = {rust = {clippy_preference = "on" } } }
-"  autocmd FileType rust call LC_maps()
-"endif
 if executable('rust-analyzer')
-  lua require'lspconfig'.rust_analyzer.setup{
-    \settings = {
-    \  ["rust-analyzer"] = {
-    \    procMacro = {
-    \      enable = true
-    \    }
-    \  }
-    \}
-    \}
+  lua local capabilities = vim.lsp.protocol.make_client_capabilities();
+    \ capabilities.textDocument.completion.completionItem.snippetSupport = true;
+    \ capabilities.textDocument.completion.completionItem.resolveSupport = {
+    \   properties = {
+    \     'documentation',
+    \     'detail',
+    \     'additionalTextEdits',
+    \   }
+    \ };
+    \ require'lspconfig'.rust_analyzer.setup{
+    \   capabilities = capabilities,
+    \   settings = {
+    \     ["rust-analyzer"] = {
+    \       procMacro = { enable = true }
+    \     }
+    \   }
+    \ }
   autocmd FileType rust call LC_maps()
 endif
 if executable('clangd')
@@ -172,13 +175,18 @@ if executable('bash-language-server')
   lua require'lspconfig'.bashls.setup{}
   autocmd FileType sh call LC_maps()
 endif
-"if executable('html-languageserver')
-"  lua require'lspconfig'.html.setup{}
-"  autocmd FileType html call LC_maps()
-"endif
 if executable('pyls')
   lua require'lspconfig'.pyls.setup{}
   autocmd FileType python call LC_maps()
+endif
+if executable('typescript-language-server')
+  lua require'lspconfig'.tsserver.setup{}
+  autocmd FileType javascript call LC_maps()
+  autocmd FileType typescript call LC_maps()
+elseif executable('deno')
+  lua require'lspconfig'.denols.setup{}
+  autocmd FileType javascript call LC_maps()
+  autocmd FileType typescript call LC_maps()
 endif
 if executable('texlab')
   lua require'lspconfig'.texlab.setup{}

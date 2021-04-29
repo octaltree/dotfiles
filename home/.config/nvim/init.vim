@@ -4,7 +4,7 @@ set notitle
 set showmatch
 set ambiwidth=single
 set autoread
-set history=500
+set history=100
 set colorcolumn=80
 set wildmode=longest:full,full
 set wildmenu

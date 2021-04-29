@@ -18,9 +18,9 @@ if filereadable(s:dein_repo_dir . "/bin/installer.sh")
     call dein#save_state()
   endif
 
-  if dein#check_install()
-    call dein#install()
-  endif
+  "if dein#check_install()
+  "  call dein#install()
+  "endif
 endif
 filetype plugin indent on
 syntax enable
