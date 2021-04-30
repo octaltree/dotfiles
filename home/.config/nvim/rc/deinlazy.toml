@@ -87,6 +87,7 @@ let g:rustfmt_autosave = 1
 
 autocmd FileType rust setlocal colorcolumn=100
 inoremap <c-f> ::
+inoremap <c-k> ::
 ''' # }}}
 
 [[plugins]] # w3m {{{
