@@ -29,7 +29,7 @@ autocmd ColorScheme * hi NormalFloat guibg=None
 [[plugins]] # whitespace {{{
 repo = 'bronson/vim-trailing-whitespace'
 hook_add='''
-let g:extra_whitespace_ignored_filetypes=['denite']
+let g:extra_whitespace_ignored_filetypes=['denite', 'markdown']
 autocmd BufRead,BufNewFile * if ShouldMatchWhitespace() | match ExtraWhitespace /\\\@<![\u3000[:space:]]\+$/ | else | match ExtraWhitespadce /^^/ | endif
 ''' # }}}
 
