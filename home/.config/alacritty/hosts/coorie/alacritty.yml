@@ -2,6 +2,23 @@ font:
   normal:
     familly: Cica
     style: Regular
+  bold:
+    family: Cica
+    style: Bold
+  italic:
+    family: Cica
+    style: RegularItalic
+
+  #normal:
+  #  familly: Ricty
+  #  style: Regular
+  #bold:
+  #  family: Ricty
+  #  style: Bold
+  #italic:
+  #  family: Ricty
+  #  style: Oblique
+
   size: 18
 
 background_opacity: 0.97
