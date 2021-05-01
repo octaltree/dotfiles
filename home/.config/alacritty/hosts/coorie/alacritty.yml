@@ -1,23 +1,23 @@
 font:
-  normal:
-    familly: Cica
-    style: Regular
-  bold:
-    family: Cica
-    style: Bold
-  italic:
-    family: Cica
-    style: RegularItalic
-
   #normal:
-  #  familly: Ricty
+  #  familly: Cica
   #  style: Regular
   #bold:
-  #  family: Ricty
+  #  family: Cica
   #  style: Bold
   #italic:
-  #  family: Ricty
-  #  style: Oblique
+  #  family: Cica
+  #  style: RegularItalic
+
+  normal:
+    familly: Ricty
+    style: Regular
+  bold:
+    family: Ricty
+    style: Bold
+  italic:
+    family: Ricty
+    style: Oblique
 
   size: 18
 
