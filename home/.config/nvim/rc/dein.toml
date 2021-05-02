@@ -68,13 +68,14 @@ hook_add = '''
   nnoremap [Denite]cg :<c-u>DeniteCursorWord grep<CR>
 
   let s:denite_win_width_percent = 0.9
-  let s:denite_win_height_percent = 0.9
+  let s:denite_win_height_percent = 0.6
   call denite#custom#option('default', {
       \ 'split': 'floating',
       \ 'winwidth': float2nr(&columns * s:denite_win_width_percent),
       \ 'wincol': float2nr((&columns - (&columns * s:denite_win_width_percent)) / 2),
       \ 'winheight': float2nr(&lines * s:denite_win_height_percent),
-      \ 'winrow': float2nr((&lines - (&lines * s:denite_win_height_percent)) / 2),
+      \ 'winrow': float2nr(&lines - (&lines * s:denite_win_height_percent)),
+      \ 'filter_split_floating_direction': 'above',
       \ 'prompt': '> ',
       \ })
   call denite#custom#kind('file', 'default_action', 'switch')
