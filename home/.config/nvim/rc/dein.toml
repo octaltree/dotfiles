@@ -6,8 +6,14 @@ repo = 'tpope/vim-surround'
 repo = 'Shougo/neco-syntax'
 [[plugins]]
 repo = 'vim-jp/vimdoc-ja'
-[[plugins]]
+[[plugins]] # treesitter {{{
 repo = 'nvim-treesitter/nvim-treesitter'
+hook_add='''
+lua require'nvim-treesitter.configs'.setup {
+  \   ensure_installed = "maintained",
+  \   highlight = { enable = true }
+  \ }
+''' # }}}
 
 [[plugins]]
 repo = 'octaltree/rustdoc-index'
