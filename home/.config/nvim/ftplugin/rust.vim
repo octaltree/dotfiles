@@ -1,3 +1,3 @@
-autocmd FileType rust setlocal colorcolumn=100
+setlocal colorcolumn=99
 inoremap <c-f> ::
 inoremap <c-k> ::

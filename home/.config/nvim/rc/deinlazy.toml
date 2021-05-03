@@ -84,6 +84,7 @@ repo = 'rust-lang/rust.vim'
 on_ft = 'rust'
 hook_add='''
 let g:rustfmt_autosave = 1
+let g:rust_conceal_mod_path = 1
 ''' # }}}
 
 [[plugins]] # w3m {{{
