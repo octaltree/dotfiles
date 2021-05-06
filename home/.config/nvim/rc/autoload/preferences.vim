@@ -1,3 +1,5 @@
+let g:vim_syn_embed='lP'
+
 augroup vimrc-auto-mkdir  " {{{
   autocmd!
   autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
