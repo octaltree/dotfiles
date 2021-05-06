@@ -151,7 +151,8 @@ if executable('rust-analyzer')
     \   capabilities = capabilities,
     \   settings = {
     \     ["rust-analyzer"] = {
-    \       procMacro = { enable = true }
+    \       procMacro = { enable = true },
+    \       lruCapacity = 512
     \     }
     \   }
     \ }
