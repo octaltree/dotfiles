@@ -122,11 +122,6 @@ on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex', 'javascript', 'typescript']
 repo = 'neovim/nvim-lspconfig'
 on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex', 'javascript', 'typescript']
 hook_source = '''
-"augroup auto_style
-"  autocmd!
-"  autocmd bufWritePost *.rs :lua vim.lsp.buf.formatting()
-"augroup END
-
 function LC_maps()
   nnoremap <silent><buffer><c-]> :lua vim.lsp.buf.declaration()<CR>
   nnoremap <silent><buffer>gd    :lua vim.lsp.buf.definition()<CR>

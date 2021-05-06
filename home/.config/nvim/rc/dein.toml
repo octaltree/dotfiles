@@ -6,14 +6,6 @@ repo = 'tpope/vim-surround'
 repo = 'Shougo/neco-syntax'
 [[plugins]]
 repo = 'vim-jp/vimdoc-ja'
-[[plugins]] # treesitter {{{
-repo = 'nvim-treesitter/nvim-treesitter'
-hook_add='''
-lua require'nvim-treesitter.configs'.setup {
-  \   ensure_installed = "maintained",
-  \   highlight = { enable = true }
-  \ }
-''' # }}}
 
 [[plugins]]
 repo = 'octaltree/rustdoc-index'
@@ -30,6 +22,15 @@ let g:solarized_extra_hi_groups = 1
 autocmd VimEnter * nested colorscheme solarized8
 autocmd ColorScheme * hi Folded guifg=#839496 guibg=None guisp=#002b36 gui=None cterm=None
 autocmd ColorScheme * hi NormalFloat guibg=None
+''' # }}}
+
+[[plugins]] # treesitter {{{
+repo = 'nvim-treesitter/nvim-treesitter'
+hook_add='''
+lua require'nvim-treesitter.configs'.setup {
+  \   ensure_installed = "maintained",
+  \   highlight = { enable = true }
+  \ }
 ''' # }}}
 
 [[plugins]] # whitespace {{{
@@ -161,13 +162,13 @@ endfunction
 "  \ deoplete#close_popup() . "\<CR>"
 ''' # }}}
 
-[[plugins]]
+[[plugins]] # clap matcher {{{
 repo = 'liuchengxu/vim-clap'
 build='make'
 hook_add='''
 call denite#custom#filter('matcher/clap', 'clap_path', expand('~/.config/nvim/dein/repos/github.com/liuchengxu/vim-clap'))
 call denite#custom#source('_', 'matcher', ['matcher/clap'])
-'''
+''' # }}}
 
 #hrsh7th/nvim-compe
 #hrsh7th/vim-vsnip
