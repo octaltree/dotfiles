@@ -28,10 +28,14 @@ nnoremap ) ])
 nnoremap ( [(
 nnoremap { [{
 nnoremap } ]}
+vnoremap ) ])
+vnoremap ( [(
+vnoremap { [{
+vnoremap } ]}
 
 nnoremap sc viw:s/\%V\(_\\|-\)\(.\)/\u\2/g<CR>
 nnoremap s_ viw:s/\%V\([A-Z]\)/_\l\1/g<CR>
-xnoremap sc :s/\%V\(_\\|-\)\(.\)/\u\2/g<CR>
-xnoremap s_ :s/\%V\([A-Z]\)/_\l\1/g<CR>
+vnoremap sc :s/\%V\(_\\|-\)\(.\)/\u\2/g<CR>
+vnoremap s_ :s/\%V\([A-Z]\)/_\l\1/g<CR>
 
 let mapleader = "\<space>"
