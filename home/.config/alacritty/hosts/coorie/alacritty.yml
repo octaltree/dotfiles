@@ -22,4 +22,9 @@ font:
 
   size: 18
 
-background_opacity: 0.97
+colors:
+  primary:
+    background: '0x090909'
+    #foreground: '0xbbc2cf'
+
+background_opacity: 1
