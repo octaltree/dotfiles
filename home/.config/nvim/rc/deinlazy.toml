@@ -39,6 +39,7 @@ hook_source = '''
 "set noshowmode
 "let g:echodoc#enable_at_startup = 1
 let g:echodoc#type = 'floating'
+let g:echodoc#use_nvim_lsp = v:true
 call echodoc#enable()
 ''' # }}}
 
