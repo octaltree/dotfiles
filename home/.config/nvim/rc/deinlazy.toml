@@ -1,7 +1,6 @@
 
 [[plugins]]
 repo = 'hrsh7th/nvim-compe'
-build = 'make'
 on_event = 'InsertEnter'
 hook_add='''
 set completeopt+=menuone,noselect
