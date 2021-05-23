@@ -29,6 +29,7 @@ repo = 'nvim-treesitter/nvim-treesitter'
 hook_add='''
 lua require'nvim-treesitter.configs'.setup {
   \   ensure_installed = "maintained",
+  \   disable = {'php'},
   \   highlight = { enable = true }
   \ }
 ''' # }}}
