@@ -161,14 +161,97 @@ call denite#custom#filter('matcher/clap', 'clap_path', expand('~/.config/nvim/de
 call denite#custom#source('_', 'matcher', ['matcher/clap'])
 ''' # }}}
 
-#[[plugins]]
-#repo = 'hrsh7th/nvim-cmp'
-#hook_add='''
-#lua << EOF
-#local cmp = require('cmp')
-#cmp.setup({
-#})
-#EOF
-#'''
+[[plugins]]
+repo = 'hrsh7th/vim-candle'
+hook_add='''
+augroup vimrc
+ autocmd!
+augroup END
+
+"
+" global mapping
+"
+nnoremap <silent> <Leader>k :<C-u>call candle#mapping#toggle()<CR>
+nnoremap <silent> <Leader>n :<C-u>call candle#mapping#action_next('default')<CR>
+nnoremap <silent> <Leader>p :<C-u>call candle#mapping#action_prev('default')<CR>
+
+"
+" mapping for candle buffer
+"
+autocmd vimrc User candle#start call s:on_candle_start()
+function! s:on_candle_start()
+  nnoremap <silent><buffer> k     :<C-u>call candle#mapping#cursor_move(-1)<CR>
+  nnoremap <silent><buffer> j     :<C-u>call candle#mapping#cursor_move(1)<CR>
+  nnoremap <silent><buffer> K     :<C-u>call candle#mapping#cursor_move(-10)<CR>
+  nnoremap <silent><buffer> J     :<C-u>call candle#mapping#cursor_move(10)<CR>
+  nnoremap <silent><buffer> gg    :<C-u>call candle#mapping#cursor_top()<CR>
+  nnoremap <silent><buffer> G     :<C-u>call candle#mapping#cursor_bottom()<CR>
+  nnoremap <silent><buffer> -     :<C-u>call candle#mapping#toggle_select()<CR>
+  nnoremap <silent><buffer> *     :<C-u>call candle#mapping#toggle_select_all()<CR>
+  nnoremap <silent><buffer> i     :<C-u>call candle#mapping#input_open()<CR>
+  nnoremap <silent><buffer> a     :<C-u>call candle#mapping#input_open()<CR>
+  nnoremap <silent><buffer> <Tab> :<C-u>call candle#mapping#choose_action()<CR>
+  nnoremap <silent><buffer> <C-l> :<C-u>call candle#mapping#restart()<CR>
+
+  nnoremap <silent><buffer> <CR>  :<C-u>call candle#mapping#action('default')<CR>
+  nnoremap <silent><buffer> s     :<C-u>call candle#mapping#action('split')<CR>
+  nnoremap <silent><buffer> v     :<C-u>call candle#mapping#action('vsplit')<CR>
+  nnoremap <silent><buffer> d     :<C-u>call candle#mapping#action('delete')<CR>
+endfunction
+
+"
+" mapping for candle.input buffer
+"
+autocmd vimrc User candle#input#start call s:on_candle_input_start()
+function! s:on_candle_input_start()
+  cnoremap <silent><buffer> <Tab> <Esc>:<C-u>call candle#mapping#choose_action()<CR>
+  cnoremap <silent><buffer> <C-y> <Esc>:<C-u>call candle#mapping#action('default')<CR>
+  cnoremap <silent><buffer> <C-p> <Esc>:<C-u>call candle#mapping#cursor_move(-1) \| call candle#mapping#input_open()<CR>
+  cnoremap <silent><buffer> <C-n> <Esc>:<C-u>call candle#mapping#cursor_move(+1) \| call candle#mapping#input_open()<CR>
+endfunction
+
+nnoremap <silent>file :<C-u>call candle#start({
+\   'file': {
+\     'root_path': '~/workspace',
+\     'ignore_patterns': ['.git/', 'node_modules'],
+\   }
+\ })<CR>
+'''
+
+[[plugins]]
+repo = 'Yggdroot/LeaderF'
+hook_add='''
+" don't show the help in normal mode
+let g:Lf_HideHelp = 1
+let g:Lf_UseCache = 0
+let g:Lf_UseVersionControlTool = 0
+let g:Lf_IgnoreCurrentBufferName = 1
+" popup mode
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
+let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
+let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
+
+let g:Lf_ShortcutF = "<leader>ff"
+noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+
+noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
+noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
+" search visually selected text literally
+xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
+noremap go :<C-U>Leaderf! rg --recall<CR>
+
+" should use `Leaderf gtags --update` first
+let g:Lf_GtagsAutoGenerate = 0
+let g:Lf_Gtagslabel = 'native-pygments'
+noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
+noremap <leader>fn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
+noremap <leader>fp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
+'''
 
 # vim: foldmethod=marker
