@@ -1,3 +1,5 @@
+" :h map-table
+
 nnoremap ; q:a
 nnoremap : ;
 nnoremap q; :
