@@ -26,6 +26,7 @@ alias rp='git rev-parse'
 alias rpr='git rev-parse --show-toplevel'
 alias so='git show'
 alias st='git status'
+alias reb='git rebase'
 
 function mkdcd(){
   mkdir "$1" && cd "$1"
