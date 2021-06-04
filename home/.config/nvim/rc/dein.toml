@@ -8,6 +8,18 @@ repo = 'Shougo/neco-syntax'
 repo = 'vim-jp/vimdoc-ja'
 
 [[plugins]]
+repo = 'octaltree/vimrocks'
+hook_add='''
+lua <<EOF
+local vimrocks = require('vimrocks')
+if not vimrocks.luarocks_installed() then
+  vimrocks.local_install_luarocks()
+end
+vimrocks.append_path()
+EOF
+'''
+
+[[plugins]]
 repo = 'octaltree/rustdoc-index'
 build = 'make denite'
 hook_add = '''
