@@ -44,7 +44,14 @@ set ignorecase
 set smartcase
 set wrapscan
 
-nnoremap ; :
+nnoremap ; q:a
 nnoremap : ;
+nnoremap q; :
+nnoremap / q/a
+nnoremap q/ /
+nnoremap ? q?a
+nnoremap q? ?
+vnoremap ; q:a
 vnoremap : ;
-vnoremap ; :
+
+set rtp+=~/workspace/linearfinder
