@@ -8,6 +8,14 @@ repo = 'Shougo/neco-syntax'
 repo = 'vim-jp/vimdoc-ja'
 
 [[plugins]]
+repo = 'octaltree/virtualsnip'
+build = 'make'
+hook_add='''
+let g:virtualsnip#sign = ' » '
+let g:virtualsnip#highlight_base = 'Comment'
+'''
+
+[[plugins]]
 repo = 'octaltree/vimrocks'
 hook_add='''
 lua <<EOF
