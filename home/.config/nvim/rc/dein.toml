@@ -11,6 +11,7 @@ repo = 'vim-jp/vimdoc-ja'
 repo = 'octaltree/virtualsnip'
 build = 'make'
 hook_add='''
+let g:virtualsnip#enable_at_startup = v:true
 let g:virtualsnip#sign = ' » '
 let g:virtualsnip#highlight_base = 'Comment'
 '''
