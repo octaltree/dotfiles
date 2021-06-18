@@ -17,23 +17,6 @@ let g:virtualsnip#highlight_base = 'Comment'
 '''
 
 [[plugins]]
-repo = 'octaltree/vimrocks'
-hook_add='''
-lua <<EOF
-local vimrocks = require('vimrocks')
-if not vimrocks.luarocks_installed() then
-  vimrocks.local_install_luarocks()
-end
-vimrocks.append_path()
-EOF
-'''
-
-[[plugins]]
-repo = '~/workspace/linearfinder'
-hook_add='''
-'''
-
-[[plugins]]
 repo = 'octaltree/rustdoc-index'
 build = 'make denite'
 hook_add = '''

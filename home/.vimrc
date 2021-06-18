@@ -53,14 +53,3 @@ nnoremap ? q?a
 nnoremap q? ?
 vnoremap ; q:a
 vnoremap : ;
-
-set rtp+=~/workspace/linearfinder
-set rtp+=~/.config/nvim/dein/repos/github.com/octaltree/vimrocks
-
-lua <<EOF
-local vimrocks = require('vimrocks')
-if not vimrocks.luarocks_installed() then
-  vimrocks.local_install_luarocks()
-end
-EOF
-lua require('vimrocks').append_path()
