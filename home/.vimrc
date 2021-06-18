@@ -53,5 +53,3 @@ nnoremap ? q?a
 nnoremap q? ?
 vnoremap ; q:a
 vnoremap : ;
-
-set rtp+=~/workspace/linearfinder

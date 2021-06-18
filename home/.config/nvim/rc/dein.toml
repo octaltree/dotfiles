@@ -8,15 +8,12 @@ repo = 'Shougo/neco-syntax'
 repo = 'vim-jp/vimdoc-ja'
 
 [[plugins]]
-repo = 'octaltree/vimrocks'
+repo = 'octaltree/virtualsnip'
+build = 'make'
 hook_add='''
-lua <<EOF
-local vimrocks = require('vimrocks')
-if not vimrocks.luarocks_installed() then
-  vimrocks.local_install_luarocks()
-end
-vimrocks.append_path()
-EOF
+let g:virtualsnip#enable_at_startup = v:true
+let g:virtualsnip#sign = ' » '
+let g:virtualsnip#highlight_base = 'Comment'
 '''
 
 [[plugins]]
