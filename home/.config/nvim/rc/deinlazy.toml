@@ -1,3 +1,15 @@
+[[plugins]] # virtualsnip {{{
+repo = 'octaltree/virtualsnip'
+build = 'make'
+on_event = 'InsertEnter'
+depends = ['vim-vsnip']
+hook_source='call virtualsnip#enable()'
+hook_add='''
+"let g:virtualsnip#enable_at_startup = v:true
+let g:virtualsnip#sign = ' » '
+let g:virtualsnip#highlight_base = 'Comment'
+''' # }}}
+
 [[plugins]] # deoplete source {{{
 repo = 'ujihisa/neco-look'
 depends = ['deoplete.nvim']

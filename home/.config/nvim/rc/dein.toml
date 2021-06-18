@@ -8,15 +8,6 @@ repo = 'Shougo/neco-syntax'
 repo = 'vim-jp/vimdoc-ja'
 
 [[plugins]]
-repo = 'octaltree/virtualsnip'
-build = 'make'
-hook_add='''
-let g:virtualsnip#enable_at_startup = v:true
-let g:virtualsnip#sign = ' » '
-let g:virtualsnip#highlight_base = 'Comment'
-'''
-
-[[plugins]]
 repo = 'octaltree/rustdoc-index'
 build = 'make denite'
 hook_add = '''
