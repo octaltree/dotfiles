@@ -26,6 +26,7 @@ autocmd ColorScheme * hi NormalFloat guibg=None
 
 [[plugins]] # treesitter {{{
 repo = 'nvim-treesitter/nvim-treesitter'
+merged=0
 hook_add='''
 lua require'nvim-treesitter.configs'.setup {
   \   ensure_installed = "maintained",
