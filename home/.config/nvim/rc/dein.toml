@@ -174,7 +174,7 @@ call denite#custom#filter('matcher/clap', 'clap_path', expand('~/.config/nvim/de
 call denite#custom#source('_', 'matcher', ['matcher/clap'])
 ''' # }}}
 
-#hrsh7th/nvim-compe
-#hrsh7th/vim-vsnip
+#[[plugins]]
+#repo = 'hrsh7th/nvim-cmp'
 
 # vim: foldmethod=marker
