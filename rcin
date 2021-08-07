@@ -97,8 +97,8 @@ function installLatestPlug(){
 
 function update(){
   zsh -c 'source ~/.zshrc && zinit update --all' &&\
-  ~/.tmux/plugins/tpm/bin/install_plugins &&\
-  ~/.tmux/plugins/tpm/bin/update_plugins all &&\
+  ~/.tmux/plug/tpm/bin/install_plugins &&\
+  ~/.tmux/plug/tpm/bin/update_plugins all &&\
   nvim --headless \
    -c ":call dein#install()" \
    -c ":call dein#update()" \
