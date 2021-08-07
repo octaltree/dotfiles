@@ -1,7 +1,3 @@
-[submodule "home/.vimperator/plugins/vimppm"]
-	path = home/.vimperator/vimppm
-	url = https://github.com/cd01/vimppm
-	ignore = dirty
 [submodule "home/.vim/plugins/dein.vim"]
 	path = home/.config/nvim/dein/repos/github.com/Shougo/dein.vim
 	url = https://github.com/shougo/dein.vim
