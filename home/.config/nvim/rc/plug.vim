@@ -1,4 +1,5 @@
-let  s:dein_repo_dir = g:dein_dir . "/repos/github.com/Shougo/dein.vim"
+let s:dein_dir = "~/.local/share/dein"
+let s:dein_repo_dir = s:dein_dir . "/repos/github.com/Shougo/dein.vim"
 if filereadable(s:dein_repo_dir . "/bin/installer.sh")
   execute 'set runtimepath^=' . s:dein_repo_dir
 

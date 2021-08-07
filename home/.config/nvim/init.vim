@@ -49,8 +49,6 @@ set wrapscan
 
 " ## ex ##########
 runtime! rc/autoload/*
-let s:thisdir = expand("<sfile>:p:h")
-let g:dein_dir=s:thisdir . "/dein"
 
 runtime rc/plug.vim
 runtime rc/plugafter.vim
