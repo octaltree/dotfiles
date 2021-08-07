@@ -1,10 +1,10 @@
-let s:dein_dir = "~/.local/share/dein"
+let s:dein_dir = $HOME . "/.local/share/dein"
 let s:dein_repo_dir = s:dein_dir . "/repos/github.com/Shougo/dein.vim"
 if filereadable(s:dein_repo_dir . "/bin/installer.sh")
   execute 'set runtimepath^=' . s:dein_repo_dir
 
-  if dein#load_state(g:dein_dir)
-    call dein#begin(g:dein_dir)
+  if dein#load_state(s:dein_dir)
+    call dein#begin(s:dein_dir)
     let s:toml = expand("<sfile>:p:h") . "/dein.toml"
     let s:tomllazy = expand("<sfile>:p:h") . "/deinlazy.toml"
     if !filereadable(s:toml)
