@@ -1,4 +1,4 @@
-source ~/.zsh/plugins/zplugin/zinit.zsh
+source ~/.zsh/plug/zinit/zinit.zsh
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 

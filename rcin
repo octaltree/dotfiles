@@ -14,13 +14,12 @@ function fullpath(){ # {{{
   echo "$dir$base"
 } # }}}
 readonly DOTFILESROOT=$(fullpath `dirname $0`)
-readonly SUBCMDDIR="$DOTFILESROOT/subcmd"
-readonly SUBCMDS=`ls $SUBCMDDIR| awk -F. '{print $1}'`
 readonly BAKPREF="dotfilesbak"
 readonly BAKDIR=`date +"${HOME}/${BAKPREF}%Y%m%d%H%M%S"`
 readonly TRUE="notBlankString"
 readonly FALSE=""
 DRYRUN=${FALSE}
+HELP=${FALSE}
 function _(){ # {{{
   if [ "$UID" -eq 0 ]; then
     echo -n "# "
@@ -46,6 +45,66 @@ function _failsafe(){ # {{{
   fi
   return 0
 } # }}}
+
+function main(){
+  local i=0
+  for i in $@; do if [ $i = '-d' ] || [ $i = '--dry-run'  ]; then DRYRUN=$TRUE; fi done
+  for i in $@; do if [ $i = '-h' ] || [ $i = '--help'  ]; then HELP=$TRUE; fi done
+  if [ $HELP ]; then
+    help
+  elif [ "$1" = "clean" ]; then
+    clean
+  elif  [ "$1" = "all" ]; then
+    all
+  else
+    help
+  fi
+}
+
+function help(){
+  echo "Usage: $0 [subcommand] [option] ... "
+  echo "  subcommand"
+  echo "    all"
+  echo "    clean"
+  return 0
+}
+
+function clean(){
+  rmRec ${DOTFILESROOT}/home ${HOME}
+  if [ `ls -A $HOME| grep $BAKPREF| wc -l` -eq 0 ]; then return 0; fi
+  local bak="$HOME/`ls -av $HOME| grep ${BAKPREF}| head -n 1`"
+  restoreRec $bak ""
+  cleanPlug
+}
+
+function all(){
+  latestPlug
+  copyDirSymRec ${DOTFILESROOT}/home ${HOME}
+}
+
+function cleanPlug(){
+  rm -rf ~/.zsh/plug/zinit
+  rm -rf ~/.tmux/plug/tpm
+  rm -rf ~/.local/share/dein
+}
+
+function latestPlug(){
+  gitLatest https://github.com/zdharma/zinit ~/.zsh/plug/zinit
+  gitLatest https://github.com/tmux-plugins/tpm ~/.tmux/plug/tpm
+  gitLatest https://github.com/Shougo/dein.vim ~/.local/share/dein/repos/github.com/Shougo/dein.vim
+}
+
+function gitLatest(){
+  if ! [ -d "$2" ]; then
+    git clone "$1" "$2"
+  else
+    echo $2
+    cd "$2"
+    local branch=`git branch| sed '/^\*/!d'| sed 's/^\* //g'`
+    git fetch -p && git reset --hard "origin/$branch"
+  fi
+}
+
 function bakForDeploy(){ # {{{
   if [ -e $BAKDIR ] && ! [ -d $BAKDIR ]; then
     echo "$BAKDIR exists. try again." >&2
@@ -54,6 +113,7 @@ function bakForDeploy(){ # {{{
   mkdir -p $BAKDIR/`dirname $1`
   mv $1 $BAKDIR/`dirname $1`
 } # }}}
+
 function restoreRec(){ # {{{
   local originfiles=($(ls -ap $1| sed '/\//d'))
   local origindirs=($(ls -ap $1| sed '/\//!d'| awk -F/ '{print $1}'| sed '/^\.$/d' | sed '/^\.\.$/d'))
@@ -66,12 +126,14 @@ function restoreRec(){ # {{{
     restoreRec $1/$i $2/$i
   done
 } # }}}
+
 function newDir(){ # {{{
   if [ -e $1 ] && ! [ -d $1 ]; then
     bakForDeploy $1
   fi
   mkdir -p $1
 } # }}}
+
 function newSym(){ # {{{
   # 絶対パス
   from=$(fullpath $1)
@@ -86,29 +148,48 @@ function newSym(){ # {{{
   ln -s $from $to
 } # }}}
 
-function main(){
+function rmRec(){ # {{{
+  local originfiles=($(ls -ap $1| sed '/\//d'))
+  local origindirs=($(ls -ap $1| sed '/\//!d'| awk -F/ '{print $1}'| sed '/^\.$/d' | sed '/^\.\.$/d'))
   local i=0
-  for i in $@; do if [ $i = '-d' ] || [ $i = '--dry-run'  ]; then DRYRUN=$TRUE; fi done
-  local getcmds=$FALSE
-  for i in $SUBCMDS; do
-    if [ $i = "$1" ]; then
-      local cmd=$1; getcmds=$TRUE
-      . $SUBCMDDIR/$cmd.sh $@
+  for i in ${originfiles[@]}; do
+    [ -e $2/$i ] && _failsafe _ rm $2/$i
+  done
+  for i in ${origindirs[@]}; do
+    if [ $i = "host" ]; then
+      if [ $(ls -a1 $1/host| grep `hostname -s`| wc -l) = "1" ]; then
+        local filename=`ls -a1 $1/host| grep $(hostname -s)`
+        local to="$2/$filename"
+        [ -e $to ] && _failsafe _ rm $to
+      fi
+    else
+      rmRec $1/$i $2/$i
+      [ -e $2/$i ] &&\
+        [ `ls -A "$2/$i"| wc -l` -eq 0 ] &&\
+        _failsafe _ rmdir $2/$i
     fi
   done
-  if ! [ $getcmds ]; then
-    showHelp
-  fi
-  return 0;
-}
+} # }}}
 
-function showHelp(){ # {{{
-  echo "Usage: $0 [subcommand] [option] ... "
-  echo "  subcommand"
-  local i=0
-  for i in ${SUBCMDS[@]}; do echo "    ${i}"; done
-  return 0
+function copyDirSymRec(){ # {{{
+  # ディレクトリは作成 ファイルはシンボリックリンク を再帰的に
+  # ただしhosts/はhosts/`hostname -s`/*についてhostと同じ階層にリンクを張る
+  local originfiles=($(ls -ap $1| sed '/\//d'))
+  local origindirs=($(ls -ap $1| sed '/\//!d'| awk -F/ '{print $1}'| sed '/^\.$/d' | sed '/^\.\.$/d'))
+  for i in ${originfiles[@]}; do
+    _failsafe _ newSym $1/$i $2/$i
+  done
+  for i in ${origindirs[@]}; do
+    if [ $i = "hosts" ]; then
+      h="$1/hosts/`hostname -s`"
+      if ! [ -d "$h" ]; then continue; fi
+      copyDirSymRec $h $2
+    else
+      _failsafe _ newDir $2/$i
+      copyDirSymRec $1/$i $2/$i
+    fi
+  done
 } # }}}
 
 main $@
-# vim: foldmethod=marker:
+# vim: foldmethod=marker
