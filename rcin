@@ -78,30 +78,44 @@ function clean(){
 }
 
 function all(){
-  latestPlug
+  installLatestPlug
   copyDirSymRec ${DOTFILESROOT}/home ${HOME}
+  _failsafe update
 }
 
 function cleanPlug(){
-  rm -rf ~/.zsh/plug/zinit
-  rm -rf ~/.tmux/plug/tpm
-  rm -rf ~/.local/share/dein
+  _failsafe _ rm -rf ~/.zsh/plug/zinit
+  _failsafe _ rm -rf ~/.tmux/plug/tpm
+  _failsafe _ rm -rf ~/.local/share/dein
 }
 
-function latestPlug(){
+function installLatestPlug(){
   gitLatest https://github.com/zdharma/zinit ~/.zsh/plug/zinit
   gitLatest https://github.com/tmux-plugins/tpm ~/.tmux/plug/tpm
   gitLatest https://github.com/Shougo/dein.vim ~/.local/share/dein/repos/github.com/Shougo/dein.vim
 }
 
+function update(){
+  zsh -c 'source ~/.zshrc && zinit update --all' &&\
+  ~/.tmux/plugins/tpm/bin/install_plugins &&\
+  ~/.tmux/plugins/tpm/bin/update_plugins all &&\
+  nvim --headless \
+   -c ":call dein#install()" \
+   -c ":call dein#update()" \
+   -c ":UpdateRemotePlugins" \
+   -c ":TSUpdateSync" \
+   -c ":q"
+  return $?
+}
+
 function gitLatest(){
   if ! [ -d "$2" ]; then
-    git clone "$1" "$2"
+    _failsafe _ git clone "$1" "$2"
   else
-    echo $2
     cd "$2"
     local branch=`git branch| sed '/^\*/!d'| sed 's/^\* //g'`
-    git fetch -p && git reset --hard "origin/$branch"
+    _failsafe _ git fetch -p
+    _failsafe git reset --hard "origin/$branch"
   fi
 }
 
