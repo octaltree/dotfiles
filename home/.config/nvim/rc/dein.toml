@@ -27,15 +27,7 @@ autocmd ColorScheme * hi NormalFloat guibg=None
 [[plugins]] # treesitter {{{
 repo = 'nvim-treesitter/nvim-treesitter'
 merged=0
-hook_add='''
-lua require'nvim-treesitter.configs'.setup {
-  \   ensure_installed = "maintained",
-  \   highlight = {
-  \     enable = true,
-  \     disable = {'json', 'csv'}
-  \   }
-  \ }
-''' # }}}
+# }}}
 
 [[plugins]] # whitespace {{{
 repo = 'bronson/vim-trailing-whitespace'
@@ -176,5 +168,12 @@ call denite#custom#source('_', 'matcher', ['matcher/clap'])
 
 #[[plugins]]
 #repo = 'hrsh7th/nvim-cmp'
+#hook_add='''
+#lua << EOF
+#local cmp = require('cmp')
+#cmp.setup({
+#})
+#EOF
+#'''
 
 # vim: foldmethod=marker
