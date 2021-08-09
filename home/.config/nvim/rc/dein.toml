@@ -103,4 +103,38 @@ hook_add='''
 let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 '''
 
+[[plugins]]
+repo = 'vim-denops/denops.vim'
+
+# ddc {{{
+[[plugins]]
+repo = 'Shougo/ddc.vim'
+hook_add='''
+call ddc#custom#patch_global('sources', ['around', 'look'])
+call ddc#custom#patch_global('sourceOptions', {
+      \ '_': {
+      \   'matchers': ['matcher_head'],
+      \   'sorters': ['sorter_rank']},
+      \ 'look': {'converters': ['loud', 'matcher_head'], 'matchers': [], 'mark': 'l', 'isVolatile': v:true},
+      \ 'around': {'mark': 'A'}
+      \ })
+call ddc#custom#patch_global('sourceParams', {
+      \ 'look': {'convertCase': v:true}
+      \ })
+call ddc#enable()
+'''
+[[plugins]]
+repo = 'Shougo/ddc-around'
+[[plugins]]
+repo = 'Shougo/ddc-matcher_head'
+[[plugins]]
+repo = 'Shougo/ddc-sorter_rank'
+[[plugins]]
+repo = 'octaltree/cmp-look'
+[[plugins]]
+repo = 'LumaKernel/ddc-file'
+[[plugins]]
+repo = 'Shougo/ddc-nvim-lsp'
+# }}}
+
 # vim: foldmethod=marker
