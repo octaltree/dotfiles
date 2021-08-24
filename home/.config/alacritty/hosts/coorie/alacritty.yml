@@ -26,5 +26,3 @@ colors:
   primary:
     background: '0x000a15'
     #foreground: '0xbbc2cf'
-
-background_opacity: 1
