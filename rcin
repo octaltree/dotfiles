@@ -103,6 +103,7 @@ function update(){
    -c ":call dein#install()" \
    -c ":call dein#update()" \
    -c ":UpdateRemotePlugins" \
+   -c ":TSInstallSync maintained" \
    -c ":TSUpdateSync" \
    -c ":q"
   return $?
