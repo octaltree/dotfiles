@@ -31,3 +31,7 @@ alias reb='git rebase'
 function mkdcd(){
   mkdir "$1" && cd "$1"
 }
+
+function linestat(){
+  git log --numstat --pretty="%H" --author='octaltree' --no-merges | awk 'NF==3 {plus+=$1; minus+=$2} END {printf("%d (+%d, -%d)\n", plus+minus, plus, minus)}'
+}
