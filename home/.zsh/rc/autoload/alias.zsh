@@ -27,6 +27,7 @@ alias rpr='git rev-parse --show-toplevel'
 alias so='git show'
 alias st='git status'
 alias reb='git rebase'
+alias dt='git difftool --tool vimdiff --no-prompt'
 
 function mkdcd(){
   mkdir "$1" && cd "$1"
