@@ -59,3 +59,5 @@ let g:solarized_termtrans=1
 autocmd VimEnter * nested colorscheme solarized8
 
 set rtp+=~/.config/nvim/rc/autoload/own.vim
+
+let g:loaded_fzf=1

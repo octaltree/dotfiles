@@ -1,3 +1,4 @@
+let g:loaded_fzf = 1
 let g:vim_syn_embed='lP'
 
 augroup vimrc-auto-mkdir  " {{{
