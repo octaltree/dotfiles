@@ -54,6 +54,8 @@ nnoremap q? ?
 vnoremap ; q:a
 vnoremap : ;
 
+syntax on
+
 set rtp+=~/.local/share/dein/repos/github.com/lifepillar/vim-solarized8
 let g:solarized_termtrans=1
 autocmd VimEnter * nested colorscheme solarized8
