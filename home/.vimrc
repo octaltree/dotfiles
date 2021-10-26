@@ -54,7 +54,7 @@ nnoremap q? ?
 vnoremap ; q:a
 vnoremap : ;
 
-syntax on
+syntax enable
 
 set rtp+=~/.local/share/dein/repos/github.com/lifepillar/vim-solarized8
 function! s:set_colorscheme() abort

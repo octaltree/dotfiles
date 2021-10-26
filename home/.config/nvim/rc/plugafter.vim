@@ -9,3 +9,8 @@ if success then
   }
 end
 EOF
+
+augroup cmdwin_highlight
+  au!
+  au CmdwinEnter * syntax on
+augroup END
