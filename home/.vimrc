@@ -57,8 +57,14 @@ vnoremap : ;
 syntax on
 
 set rtp+=~/.local/share/dein/repos/github.com/lifepillar/vim-solarized8
-let g:solarized_termtrans=1
-autocmd VimEnter * nested colorscheme solarized8
+function! s:set_colorscheme() abort
+  try
+    let g:solarized_termtrans=1
+    colorscheme solarized8
+  catch /^Vim\%((\a\+)\)\=:E185/
+  endtry
+endfunction
+autocmd VimEnter * nested call s:set_colorscheme()
 
 set rtp+=~/.config/nvim/rc/autoload/own.vim
 
