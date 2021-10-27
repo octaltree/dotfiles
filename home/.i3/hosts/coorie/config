@@ -14,7 +14,7 @@ new_float normal
 hide_edge_borders none
 
 # Font for window titles
-font xft:Noto Sans 5
+font xft:Noto Sans 1
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -328,8 +328,8 @@ client.background       #2B2C2B
 #############################
 
 # Set inner/outer gaps
-gaps inner 10
-gaps outer -4
+gaps inner 5
+gaps outer -3
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
