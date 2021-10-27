@@ -2,6 +2,7 @@
 alias ls='ls --color=auto'
 alias ll='ls -al --color | less -R'
 alias ssx='TERM=xterm-256color ssh -XC'
+alias ssh='TERM=xterm-256color ssh'
 alias opn='xdg-open'
 alias mv='mv -i'
 alias d='docker'
