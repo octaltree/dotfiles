@@ -60,7 +60,7 @@ set rtp+=~/.local/share/dein/repos/github.com/lifepillar/vim-solarized8
 function! s:set_colorscheme() abort
   try
     let g:solarized_termtrans=1
-    colorscheme solarized8
+    colorscheme solarized8_flat
   catch /^Vim\%((\a\+)\)\=:E185/
   endtry
 endfunction
