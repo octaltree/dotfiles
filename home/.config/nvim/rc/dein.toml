@@ -24,11 +24,6 @@ autocmd ColorScheme * hi Folded guifg=#839496 guibg=None guisp=#002b36 gui=None 
 autocmd ColorScheme * hi NormalFloat guibg=None
 ''' # }}}
 
-[[plugins]] # treesitter {{{
-repo = 'nvim-treesitter/nvim-treesitter'
-merged=0
-# }}}
-
 [[plugins]] # whitespace {{{
 repo = 'bronson/vim-trailing-whitespace'
 hook_add='''
