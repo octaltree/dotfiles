@@ -90,24 +90,26 @@ function cleanPlug(){
 }
 
 function installLatestPlug(){
-  #gitLatest https://github.com/zdharma/zinit ~/.zsh/plug/zinit
+  gitLatest https://github.com/zdharma-continuum/zinit ~/.zsh/plug/zinit
   gitLatest https://github.com/tmux-plugins/tpm ~/.tmux/plug/tpm
   gitLatest https://github.com/Shougo/dein.vim ~/.local/share/dein/repos/github.com/Shougo/dein.vim
 }
 
 function update(){
-  #zsh -c 'source ~/.zshrc && zinit update --all' &&\
+  zsh -c 'source ~/.zshrc && zinit update --all' &&\
   ~/.tmux/plug/tpm/bin/install_plugins &&\
   ~/.tmux/plug/tpm/bin/update_plugins all &&\
   nvim --headless \
-   -c ":call dein#install()" \
-   -c ":call dein#update()" \
-   -c ":UpdateRemotePlugins" \
-   -c ":q"
+    -c "call dein#install()" \
+    -c "call dein#update()" \
+    -c "UpdateRemotePlugins" \
+    -c "q"
   nvim --headless \
-   -c ":TSInstallSync maintained" \
-   -c ":TSUpdateSync" \
-   -c ":q"
+    -c "set rtp+=~/.local/share/dein/repos/github.com/nvim-treesitter/nvim-treesitter" \
+    -c "source ~/.local/share/dein/repos/github.com/nvim-treesitter/nvim-treesitter/plugin/nvim-treesitter.vim" \
+    -c "TSInstallSync maintained" \
+    -c "TSUpdateSync" \
+    -c "q"
   return $?
 }
 
