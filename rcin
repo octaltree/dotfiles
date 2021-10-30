@@ -90,7 +90,7 @@ function cleanPlug(){
 }
 
 function installLatestPlug(){
-  gitLatest https://github.com/zdharma/zinit ~/.zsh/plug/zinit
+  #gitLatest https://github.com/zdharma/zinit ~/.zsh/plug/zinit
   gitLatest https://github.com/tmux-plugins/tpm ~/.tmux/plug/tpm
   gitLatest https://github.com/Shougo/dein.vim ~/.local/share/dein/repos/github.com/Shougo/dein.vim
 }
