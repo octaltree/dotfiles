@@ -96,7 +96,7 @@ function installLatestPlug(){
 }
 
 function update(){
-  zsh -c 'source ~/.zshrc && zinit update --all' &&\
+  #zsh -c 'source ~/.zshrc && zinit update --all' &&\
   ~/.tmux/plug/tpm/bin/install_plugins &&\
   ~/.tmux/plug/tpm/bin/update_plugins all &&\
   nvim --headless \
