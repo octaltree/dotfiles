@@ -173,7 +173,8 @@ if executable('rust-analyzer')
     \       procMacro = { enable = true },
     \       lruCapacity = 512
     \     }
-    \   }
+    \   },
+    \   cmd_env = {RA_LOG = 'rust-analyzer=error'}
     \ }
   autocmd FileType rust call LC_maps()
 endif
