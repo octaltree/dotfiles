@@ -121,6 +121,7 @@ au Filetype w3m nmap <buffer><c-o> <Plug>(w3m-back)
  # lsp {{{
 [[plugins]]
 repo = 'https://github.com/nvim-lua/lsp_extensions.nvim'
+depends = ['nvim-lspconfig']
 on_ft = ['rust']
 hook_source = '''
 if executable('rust-analyzer')
@@ -135,9 +136,6 @@ on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex', 'javascript', 'typescript']
 hook_add='''
 let g:deoplete#lsp#use_icons_for_candidates = v:true
 '''
-[[plugins]]
-repo = 'weilbith/nvim-lsp-denite'
-on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex', 'javascript', 'typescript']
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
 on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex', 'javascript', 'typescript']
