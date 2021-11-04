@@ -121,15 +121,7 @@ au Filetype w3m nmap <buffer><c-o> <Plug>(w3m-back)
  # lsp {{{
 [[plugins]]
 repo = 'https://github.com/nvim-lua/lsp_extensions.nvim'
-depends = ['nvim-lspconfig']
 on_ft = ['rust']
-hook_source = '''
-if executable('rust-analyzer')
-  autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
-    \ lua require'lsp_extensions'.inlay_hints{
-      \ prefix = ' » ', highlight = "Comment", only_current_line = false, enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }
-endif
-'''
 [[plugins]]
 repo = 'Shougo/deoplete-lsp'
 on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex', 'javascript', 'typescript']
@@ -138,6 +130,7 @@ let g:deoplete#lsp#use_icons_for_candidates = v:true
 '''
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
+depends = ['lsp_extensions.nvim']
 on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex', 'javascript', 'typescript']
 hook_source = '''
 function LC_maps()
@@ -157,25 +150,34 @@ endfunction
 call LC_maps()
 
 if executable('rust-analyzer')
-  lua local capabilities = vim.lsp.protocol.make_client_capabilities();
-    \ capabilities.textDocument.completion.completionItem.snippetSupport = true;
-    \ capabilities.textDocument.completion.completionItem.resolveSupport = {
-    \   properties = {
-    \     'documentation',
-    \     'detail',
-    \     'additionalTextEdits',
-    \   }
-    \ };
-    \ require'lspconfig'.rust_analyzer.setup{
-    \   capabilities = capabilities,
-    \   settings = {
-    \     ["rust-analyzer"] = {
-    \       procMacro = { enable = true },
-    \       lruCapacity = 512
-    \     }
-    \   },
-    \   cmd_env = {RA_LOG = 'rust-analyzer=error'}
-    \ }
+  lua<<EOF
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.completion.completionItem.snippetSupport = true;
+  capabilities.textDocument.completion.completionItem.resolveSupport = {
+      properties = {
+          'documentation',
+          'detail',
+          'additionalTextEdits',
+      }
+  }
+  require'lspconfig'.rust_analyzer.setup{
+      capabilities = capabilities,
+      settings = {
+          ["rust-analyzer"] = {
+              procMacro = { enable = true },
+              lruCapacity = 512
+          }
+      },
+      cmd_env = {RA_LOG = 'rust-analyzer=error'},
+      on_attach = function()
+          vim.api.nvim_command(table.concat({
+            'au',
+            'CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost',
+            '*',
+            'lua require("lsp_extensions").inlay_hints{ prefix = " » ", highlight = "Comment", only_current_line = false, enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }'}, ' '))
+      end
+  }
+EOF
   autocmd FileType rust call LC_maps()
 endif
 if executable('clangd')
