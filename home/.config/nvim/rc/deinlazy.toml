@@ -168,7 +168,6 @@ if executable('rust-analyzer')
               lruCapacity = 512
           }
       },
-      cmd_env = {RA_LOG = 'rust-analyzer=error'},
       on_attach = function()
           vim.api.nvim_command(table.concat({
             'au',
