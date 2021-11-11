@@ -1,5 +1,13 @@
 bindkey -v
 
+function vi-yank-xclip {
+  zle vi-yank
+  echo "$CUTBUFFER" | xclip -i -sel clipboard
+  echo "$CUTBUFFER" | xclip -i -sel primary
+}
+zle -N vi-yank-xclip
+bindkey -M vicmd 'y' vi-yank-xclip
+
 set no_beep
 setopt magic_equal_subst
 setopt list_packed
