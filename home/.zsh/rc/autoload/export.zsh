@@ -1,5 +1,6 @@
-which nvim > /dev/null 2>&1 &&\
-  export EDITOR=nvim
+export EDITOR=vim
+#which nvim > /dev/null 2>&1 &&\
+#  export EDITOR=nvim
 
 typeset -U PATH
 export PATH="$PATH:$HOME/.cargo/bin"
