@@ -25,5 +25,6 @@ font:
 colors:
   primary:
     #background: '0x000000'
-    background: '0x1d1f21'
+    #background: '0x1d1f21'
     #background: '0x000a15'
+    background: '0x10141c'
