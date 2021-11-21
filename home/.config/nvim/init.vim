@@ -62,3 +62,4 @@ runtime! rc/autoload/*
 runtime rc/plug.vim
 runtime rc/plugafter.vim
 runtime rc/localhost.vim
+runtime rc/own.vim
