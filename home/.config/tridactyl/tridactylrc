@@ -10,7 +10,7 @@ set theme shydactyl
 set hintuppercase false
 set hintchars jfkdls;a
 set yankto both
-"set editorcmd alacritty -e nvim %f -c 'normal %lG%cl'
+set editorcmd alacritty -e vim %f
 
 unbind p
 unbind P
@@ -28,17 +28,18 @@ bind <c-h> tabmove -1
 bind <c-l> tabmove +1
 bind <c-o> back
 bind <c-i> forward
-bind --mode=insert <c-h> im_delete_backward_char
-bind --mode=input <c-h> im_delete_backward_char
-bind co composite get_current_url| tabopen -c oct
-bind cs composite get_current_url| tabopen -c sol
-bind cn composite get_current_url| tabopen -c nic
+"bind --mode=insert <c-h> text.backward_kill_char
+"bind --mode=input <c-h> text.backward_kill_char
+"bind --mode=ex <c-h> text.backward_kill_char
+bind --mode=insert <A-space> composite unfocus | mode normal
+bind --mode=input <A-space> composite unfocus | mode normal
+bind --mode=ex <A-space> ex.hide_and_clear
 
 bindurl todoist.com f hint -c a,input,button,textarea,select,div.ist_checkbox,#gear_holder,.menu_item>td,li.filter,.clickable,.richtext_editor,.task_item_content_text,.task_content
-autocmd DocLoad moneyforward.com/users/two_step_verifications/new js document.getElementsByClassName('not-now')[0].click()
+autocmd DocLoad ^https://moneyforward.com/users/two_step_verifications/new js document.getElementsByClassName('not-now')[0].click()
+autocmd DocLoad ^https://sp.nicovideo.jp js document.location.href = document.location.href.replace('sp.nicovideo.jp', 'www.nicovideo.jp');
 autocmd DocLoad inoreader.com js document.body.innerHTML += '<style>.inno_dialog[id*="wrapper"], .inno_dialog_modal_overlay[id*="overlay"], .inno_dialog_scroll_overlay[id*="overlay"] { display: none; }</style>'; (function loop(){ const xs = document.querySelectorAll('.adb_right_link_passive > a'); if( xs.length ) xs[0].click(); else setTimeout(loop, 100); }());
 command openInoreader js Array.from(document.querySelectorAll('.article_magazine_title a')).map(a => a.href).forEach(u => window.open(u, '_blank'));
-autocmd DocLoad sp.nicovideo.jp js document.location.href = document.location.href.replace('sp.nicovideo.jp', 'www.nicovideo.jp');
 source ~/.config/tridactyl/pixiv.tridactyl
 
 " vim: set ft=vim:
