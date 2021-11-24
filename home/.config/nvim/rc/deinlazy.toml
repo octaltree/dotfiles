@@ -88,7 +88,7 @@ hook_add = '''
     call denite#custom#var('grep', 'final_opts', [])
   endif
 '''
-[[plugins]] # clap matcher {{{
+[[plugins]]
 repo = 'liuchengxu/vim-clap'
 on_cmd = 'Denite'
 depends = ['denite.nvim']
