@@ -57,9 +57,6 @@ nnoremap j gj
 nnoremap k gk
 nnoremap <c-k> zk
 nnoremap <c-j> zj
-inoremap <A-space> <ESC>
-vmap <c-[> <ESC>
-vmap <A-space> <ESC>
 
 syntax enable
 

@@ -31,9 +31,9 @@ bind <c-i> forward
 "bind --mode=insert <c-h> text.backward_kill_char
 "bind --mode=input <c-h> text.backward_kill_char
 "bind --mode=ex <c-h> text.backward_kill_char
-bind --mode=insert <A-space> composite unfocus | mode normal
-bind --mode=input <A-space> composite unfocus | mode normal
-bind --mode=ex <A-space> ex.hide_and_clear
+bind --mode=insert <c-3> composite unfocus | mode normal
+bind --mode=input <c-3> composite unfocus | mode normal
+bind --mode=ex <c-3> ex.hide_and_clear
 
 bindurl todoist.com f hint -c a,input,button,textarea,select,div.ist_checkbox,#gear_holder,.menu_item>td,li.filter,.clickable,.richtext_editor,.task_item_content_text,.task_content
 autocmd DocLoad ^https://moneyforward.com/users/two_step_verifications/new js document.getElementsByClassName('not-now')[0].click()
