@@ -14,6 +14,27 @@ hook_add = '''
 nnoremap <silent><space>s :<c-u>Denite rustdoc-index<CR>
 '''
 
+[[plugins]] # treesitter {{{
+repo = 'nvim-treesitter/nvim-treesitter'
+hook_add='''
+lua <<EOF
+local success, ts_config = pcall(require, 'nvim-treesitter.configs')
+if success then
+  ts_config.setup {
+    highlight = {
+      enable = true,
+      disable = {'json', 'csv'}
+    }
+  }
+end
+EOF
+
+"augroup cmdwin_highlight
+"  au!
+"  au CmdwinEnter * syntax on
+"augroup END
+''' # }}}
+
 [[plugins]] # solarized {{{
 repo = 'lifepillar/vim-solarized8'
 hook_add='''
