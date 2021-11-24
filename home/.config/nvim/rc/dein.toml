@@ -110,17 +110,42 @@ repo = 'vim-denops/denops.vim'
 [[plugins]]
 repo = 'Shougo/ddc.vim'
 hook_add='''
-call ddc#custom#patch_global('sources', ['around', 'look'])
+let sources = ['nvim-lsp', 'file', 'treesitter', 'around', 'tabnine', 'look']
+call ddc#custom#patch_global('sources', sources)
 call ddc#custom#patch_global('sourceOptions', {
       \ '_': {
       \   'matchers': ['matcher_head'],
       \   'sorters': ['sorter_rank']},
-      \ 'look': {'converters': ['loud', 'matcher_head'], 'matchers': [], 'mark': 'l', 'isVolatile': v:true},
-      \ 'around': {'mark': 'A'}
+      \ 'file': {'mark': 'F', 'forceCompletionPattern': '/'},
+      \ 'look': {'converters': ['loud', 'matcher_head'], 'matchers': [], 'mark': 'L', 'isVolatile': v:true, 'minAutoCompleteLength': 5},
+      \ 'around': {'mark': 'A'},
+      \ 'necovim': {'mark': 'V'},
+      \ 'nvim-lsp': {'minAutoCompleteLength': 0},
+      \ 'treesitter': {'mark': 'S'},
+      \ 'tabnine': {'isVolatile': v:true, 'maxCandidates': 3, 'mark': 'TN', 'minAutoCompleteLength': 5}
       \ })
+call ddc#custom#patch_filetype('vim', 'sources', ['necovim'] + sources)
 call ddc#custom#patch_global('sourceParams', {
       \ 'look': {'convertCase': v:true}
       \ })
+call ddc#custom#patch_filetype('rust', 'sourceOptions', {
+      \ 'nvim-lsp': {'forceCompletionPattern': '(::|[. (])\w*'}
+      \ })
+call ddc#custom#patch_filetype(['c', 'c++'], 'sourceOptions', {
+      \ 'nvim-lsp': {'forceCompletionPattern': '[. (]\w*'}
+      \ })
+call ddc#custom#patch_filetype('python', 'sourceOptions', {
+      \ 'nvim-lsp': {'forceCompletionPattern': '[. (]\w*'}
+      \ })
+call ddc#custom#patch_filetype(['javascript', 'typescript'], 'sourceOptions', {
+      \ 'nvim-lsp': {'forceCompletionPattern': '[. (]\w*'}
+      \ })
+call ddc#custom#patch_filetype('sh', 'sourceOptions', {
+      \ 'nvim-lsp': {'forceCompletionPattern': '[ ]\w*'}
+      \ })
+"call ddc#custom#patch_global('completionMenu', 'pum.vim')
+"inoremap <C-n>   <Cmd>call pum#map#select_relative(+1)<CR>
+"inoremap <C-p>   <Cmd>call pum#map#select_relative(-1)<CR>
 call ddc#enable()
 '''
 [[plugins]]
@@ -135,6 +160,12 @@ repo = 'octaltree/cmp-look'
 repo = 'LumaKernel/ddc-file'
 [[plugins]]
 repo = 'Shougo/ddc-nvim-lsp'
+[[plugins]]
+repo = 'Shougo/pum.vim'
+[[plugins]]
+repo = 'delphinus/ddc-treesitter'
+[[plugins]]
+repo = 'LumaKernel/ddc-tabnine'
 # }}}
 
 # vim: foldmethod=marker
