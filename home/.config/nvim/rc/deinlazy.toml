@@ -28,18 +28,6 @@ hook_add = '''
   nnoremap [Denite]c/ :<c-u>DeniteCursorWord line<CR>
   nnoremap [Denite]cg :<c-u>DeniteCursorWord grep<CR>
 
-  let s:denite_win_width_percent = 0.9
-  let s:denite_win_height_percent = 0.9
-  call denite#custom#option('default', {
-      \ 'split': 'horizontal',
-      \ 'winwidth': float2nr(&columns * s:denite_win_width_percent),
-      \ 'wincol': float2nr((&columns - (&columns * s:denite_win_width_percent)) / 2),
-      \ 'winheight': float2nr(&lines * s:denite_win_height_percent),
-      \ 'winrow': float2nr((&lines - (&lines * s:denite_win_height_percent)) / 2),
-      \ 'prompt': '> ',
-      \ })
-  call denite#custom#kind('file', 'default_action', 'switch')
-
   autocmd FileType denite call s:denite_my_settings()
   function! s:denite_my_settings() abort
     nnoremap <silent><buffer><expr> <cr>
@@ -64,6 +52,19 @@ hook_add = '''
     imap <silent><buffer> <ESC> <Plug>(denite_filter_update)
     imap <silent><buffer> <CR> <ESC><CR>
   endfunction
+'''
+hook_source='''
+  let s:denite_win_width_percent = 0.9
+  let s:denite_win_height_percent = 0.9
+  call denite#custom#option('default', {
+      \ 'split': 'horizontal',
+      \ 'winwidth': float2nr(&columns * s:denite_win_width_percent),
+      \ 'wincol': float2nr((&columns - (&columns * s:denite_win_width_percent)) / 2),
+      \ 'winheight': float2nr(&lines * s:denite_win_height_percent),
+      \ 'winrow': float2nr((&lines - (&lines * s:denite_win_height_percent)) / 2),
+      \ 'prompt': '> ',
+      \ })
+  call denite#custom#kind('file', 'default_action', 'switch')
 
   if executable("ag")
     call denite#custom#var('file/rec', 'command',
@@ -93,7 +94,7 @@ repo = 'liuchengxu/vim-clap'
 on_cmd = 'Denite'
 depends = ['denite.nvim']
 build='make'
-hook_add='''
+hook_source='''
 call denite#custom#filter('matcher/clap', 'clap_path', expand('~/.config/nvim/dein/repos/github.com/liuchengxu/vim-clap'))
 call denite#custom#source('_', 'matcher', ['matcher/clap'])
 '''
