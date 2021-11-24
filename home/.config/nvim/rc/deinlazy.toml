@@ -12,7 +12,7 @@ let g:virtualsnip#highlight_base = 'Comment'
 
 [[plugins]] # treesitter {{{
 repo = 'nvim-treesitter/nvim-treesitter'
-on_event = 'BufRead'
+on_event = 'Filetype'
 hook_source='''
 lua <<EOF
 local success, ts_config = pcall(require, 'nvim-treesitter.configs')
@@ -188,8 +188,8 @@ if executable('bash-language-server')
   lua require'lspconfig'.bashls.setup{}
   autocmd FileType sh call LC_maps()
 endif
-if executable('pyls')
-  lua require'lspconfig'.pyls.setup{}
+if executable('pylsp')
+  lua require'lspconfig'.pylsp.setup{}
   autocmd FileType python call LC_maps()
 endif
 if executable('deno')
