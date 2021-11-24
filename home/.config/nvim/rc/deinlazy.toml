@@ -108,19 +108,9 @@ nnoremap <silent><space>s :<c-u>Denite rustdoc-index<CR>
 '''
 # }}}
 
-[[plugins]] # deoplete source {{{
-repo = 'ujihisa/neco-look'
-depends = ['deoplete.nvim']
-on_event = 'InsertEnter'
-hook_source = '''
-call deoplete#custom#source('look', 'min_pattern_length', 7)
-'''
-# }}}
-
 [[plugins]] # snippet {{{
 repo = 'hrsh7th/vim-vsnip'
 on_event = 'InsertEnter'
-depends = ['deoplete.nvim']
 [[plugins]]
 repo = 'rafamadriz/friendly-snippets'
 on_event = 'InsertEnter'
@@ -201,25 +191,10 @@ au Filetype w3m nmap <buffer><c-o> <Plug>(w3m-back)
 repo = 'https://github.com/nvim-lua/lsp_extensions.nvim'
 on_ft = ['rust']
 [[plugins]]
-repo = 'Shougo/deoplete-lsp'
-on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex', 'javascript', 'typescript']
-hook_add='''
-let g:deoplete#lsp#use_icons_for_candidates = v:true
-'''
-[[plugins]]
 repo = 'neovim/nvim-lspconfig'
 depends = ['lsp_extensions.nvim']
 on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex', 'javascript', 'typescript']
-hook_source = '''
-doautocmd <nomodeline> User LspconfigSource
-call deoplete#custom#source('lsp', 'min_pattern_length', 0)
-call deoplete#custom#source('lsp', 'input_patterns', {
-    \ 'rust': '(::|[. (])\w*',
-    \ 'c': '[. (]\w*',
-    \ 'c++': '[. (]\w*',
-    \ 'sh': '[ ]\w*',
-    \ 'python': '[. (]\w*',
-    \ })
-''' # }}}
+hook_source = 'doautocmd <nomodeline> User LspconfigSource'
+# }}}
 
 # vim: foldmethod=marker
