@@ -9,6 +9,7 @@ repo = 'vim-jp/vimdoc-ja'
 
 [[plugins]] # linearf {{{
 repo = 'octaltree/linearf'
+merged = 0
 hook_add='''
 lua<<EOF
 local linearf = require('linearf')
