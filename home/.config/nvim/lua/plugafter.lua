@@ -198,9 +198,7 @@ do
     end
 
     function M.ready()
-        -- 必ずしもカレントバッファとは限らないが
-        local current = vim.bo.filetype
-        for ft, f in pairs(M.servers) do if current == ft then f() end end
+        for _, f in pairs(M.servers) do f() end
     end
 
     use_default({'c', 'cpp'}, 'clangd')
@@ -211,8 +209,4 @@ do
     use_default({'tex'}, 'texlab')
 
     au('User', 'LspconfigSource', "lua _G['_my_lsp'].ready()")
-    for ft, _ in pairs(M.servers) do
-        au('FileType', ft,
-           string.format("lua _G['_my_lsp'].servers['%s']()", ft))
-    end
 end
