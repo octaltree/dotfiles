@@ -1,15 +1,8 @@
 let g:python3_host_prog = '/usr/bin/python'
 let g:python_host_prog = '/usr/bin/python2'
 
-if executable('trans')
-  command! -nargs=+ JAEN split | execute "terminal echo " . <q-args> . "| trans ja:en"
-  command! -nargs=+ ENJA split | execute "terminal echo " . <q-args> . "| trans en:ja"
-endif
-
-if executable('tmux') && executable('w3m')
-  command! -nargs=+ W3ms execute 'silent ! tmux split-window -- w3m ' . <q-args>
-  command! -nargs=+ W3mv execute 'silent ! tmux split-window -h -- w3m ' . <q-args>
-endif
+command! -nargs=+ W3ms execute 'silent ! tmux split-window -- w3m ' . <q-args>
+command! -nargs=+ W3mv execute 'silent ! tmux split-window -h -- w3m ' . <q-args>
 
 augroup ccs
   au!

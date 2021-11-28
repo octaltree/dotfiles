@@ -209,78 +209,7 @@ repo = 'neovim/nvim-lspconfig'
 depends = ['lsp_extensions.nvim']
 on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex', 'javascript', 'typescript']
 hook_source = '''
-function LC_maps()
-  nnoremap <silent><buffer><c-]> :lua vim.lsp.buf.declaration()<CR>
-  nnoremap <silent><buffer>gd    :lua vim.lsp.buf.definition()<CR>
-  nnoremap <silent><buffer>K     :lua vim.lsp.buf.hover()<CR>
-  nnoremap <silent><buffer>gD    :lua vim.lsp.buf.implementation()<CR>
-  nnoremap <silent><buffer><c-k> :lua vim.lsp.buf.signature_help()<CR>
-  nnoremap <silent><buffer>1gD   :lua vim.lsp.buf.type_definition()<CR>
-  nnoremap <silent><buffer>gr    :lua vim.lsp.buf.references()<CR>
-  nnoremap <silent><buffer>g0    :lua vim.lsp.buf.document_symbol()<CR>
-  nnoremap <silent><buffer>gW    :lua vim.lsp.buf.workspace_symbol()<CR>
-  nnoremap <silent><buffer>ss    :lua vim.lsp.buf.formatting()<CR>
-  nnoremap <silent><buffer>ga    :lua vim.lsp.buf.code_action()<CR>
-  setlocal signcolumn=yes
-endfunction
-call LC_maps()
-
-if executable('rust-analyzer')
-  lua<<EOF
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities.textDocument.completion.completionItem.snippetSupport = true;
-  capabilities.textDocument.completion.completionItem.resolveSupport = {
-      properties = {
-          'documentation',
-          'detail',
-          'additionalTextEdits',
-      }
-  }
-  require'lspconfig'.rust_analyzer.setup{
-      capabilities = capabilities,
-      settings = {
-          ["rust-analyzer"] = {
-              procMacro = { enable = true },
-              lruCapacity = 512
-          }
-      },
-      on_attach = function()
-          vim.api.nvim_command(table.concat({
-            'au',
-            'CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost',
-            '*',
-            'lua require("lsp_extensions").inlay_hints{ prefix = " » ", highlight = "Comment", only_current_line = false, enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }'}, ' '))
-      end
-  }
-EOF
-  autocmd FileType rust call LC_maps()
-endif
-if executable('clangd')
-  lua require'lspconfig'.clangd.setup{}
-  autocmd FileType c call LC_maps()
-  autocmd FileType cpp call LC_maps()
-endif
-if executable('bash-language-server')
-  lua require'lspconfig'.bashls.setup{}
-  autocmd FileType sh call LC_maps()
-endif
-if executable('pylsp')
-  lua require'lspconfig'.pylsp.setup{}
-  autocmd FileType python call LC_maps()
-endif
-if executable('deno')
-  lua require'lspconfig'.denols.setup{}
-  autocmd FileType javascript call LC_maps()
-  autocmd FileType typescript call LC_maps()
-elseif executable('typescript-language-server')
-  lua require'lspconfig'.tsserver.setup{}
-  autocmd FileType javascript call LC_maps()
-  autocmd FileType typescript call LC_maps()
-endif
-if executable('texlab')
-  lua require'lspconfig'.texlab.setup{}
-  autocmd FileType tex call LC_maps()
-endif
+doautocmd <nomodeline> User LspconfigSource
 call deoplete#custom#source('lsp', 'min_pattern_length', 0)
 call deoplete#custom#source('lsp', 'input_patterns', {
     \ 'rust': '(::|[. (])\w*',

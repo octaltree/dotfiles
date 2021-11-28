@@ -17,11 +17,7 @@ augroup vimrc-auto-mkdir  " {{{
   endfunction  " }}}
 augroup END  " }}}
 
-if executable("cargo-play")
-  command! CargoPlay w ! cargo play --stdin
-endif
+command! CargoPlay w ! cargo play --stdin
 
-if executable('trans')
-  command! -nargs=+ JAEN split | execute "terminal echo " . <q-args> . "| trans ja:en"
-  command! -nargs=+ ENJA split | execute "terminal echo " . <q-args> . "| trans en:ja"
-endif
+command! -nargs=+ JAEN split | execute "terminal echo " . <q-args> . "| trans ja:en"
+command! -nargs=+ ENJA split | execute "terminal echo " . <q-args> . "| trans en:ja"
