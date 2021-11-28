@@ -158,7 +158,7 @@ do
     end
 
     function M.servers.rust()
-        local config = require('lspconfig')[server]
+        local config = require('lspconfig')['rust_analyzer']
         local cmd = config.document_config.default_config.cmd[1]
         if not executable(cmd) then return end
         local cap = vim.lsp.protocol.make_client_capabilities()
