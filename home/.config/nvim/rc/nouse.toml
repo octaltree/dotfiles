@@ -271,3 +271,8 @@ hook_add='''
   let g:solarized_visibility="low"
   let g:solarized_termcolors=256
 '''
+
+[[plugins]] # vimproc {{{
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+# }}}

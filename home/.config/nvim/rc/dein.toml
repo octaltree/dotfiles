@@ -38,11 +38,6 @@ hook_add = '''
 let g:NERDDefaultAlign = 'left'
 ''' # }}}
 
-[[plugins]] # vimproc {{{
-repo = 'Shougo/vimproc.vim'
-build = 'make'
-# }}}
-
 [[plugins]] # deoplete {{{
 repo = 'Shougo/deoplete.nvim'
 depends = 'context_filetype.vim'

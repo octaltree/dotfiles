@@ -153,7 +153,8 @@ let g:suda_smart_edit = 0
 repo = 'kannokanno/previm'
 on_cmd = 'PrevimOpen'
 hook_add = '''
-  let g:previm_open_cmd = 'firefox'
+let g:previm_open_cmd = 'firefox'
+let g:previm_disable_vimproc = 1
 ''' # }}}
 
 [[plugins]] # web {{{
@@ -190,6 +191,7 @@ let g:w3m#external_browser = 'firefox'
 let g:w3m#homepage = "http://www.google.co.jp/"
 let g:w3m#lang = 'ja_JP'
 let g:w3m#search_engine = 'http://www.google.com/search?ie=' . &encoding . '&q=%s'
+let g:w3m#disable_vimproc = 1
 au Filetype w3m setlocal foldnestmax=0
 au Filetype w3m nmap <buffer><c-o> <Plug>(w3m-back)
 ''' # }}}
