@@ -50,11 +50,7 @@ set wrapscan
 " ## status ##########
 set laststatus=0
 set rulerformat=%l,%c%=
-set statusline=
-set statusline+=%f
-set statusline+=\ (%Y,%{has('multi_byte')&&\&fileencoding!=''?&fileencoding:&encoding},%{&fileformat},bomb%{&bomb})
-set statusline+=%=
-set statusline+=\ %l,%c
+set statusline=%f\ (%Y,%{has('multi_byte')&&\&fileencoding!=''?&fileencoding:&encoding},%{&fileformat},bomb%{&bomb})%=\ %l,%c
 
 " ## ex ##########
 runtime! rc/autoload/*
