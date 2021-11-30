@@ -211,3 +211,5 @@ do
 
     au('User', 'LspconfigSource', "lua _G['_my_lsp'].ready()")
 end
+-- %! lua-format --no-keep-simple-function-one-line --chop-down-table
+-- vim: ts=4 sw=4
