@@ -8,13 +8,13 @@ do
         {name = "identity", path = "flavors_plain::Identity"},
         {name = "command", path = "flavors_tokio::Command"}
     }
+    linearf.recipe.converters = {
+        {name = "format_line", path = "flavors_plain::FormatLine"}
+    }
     linearf.recipe.matchers = {
         {name = "identity", path = "flavors_plain::Identity"},
         {name = "substring", path = "flavors_plain::Substring"},
         {name = "clap", path = "flavors_clap::Clap"}
-    }
-    linearf.recipe.converters = {
-        {name = "format_line", path = "flavors_plain::FormatLine"}
     }
     local alias_escape_querier = {
         linearf = {
@@ -26,7 +26,11 @@ do
             querier_nnoremap = {["<A-space>"] = flavors.actions.view.goto_list}
         }
     }
-    linearf.senarios['line'] = flavors.merge {
+    local function set(target, context_manager, senario)
+        linearf.context_managers[target] = context_manager
+        linearf.senarios[target] = senario
+    end
+    set('line', flavors.context_managers['line'], flavors.merge {
         flavors.senarios['line'],
         flavors.senarios.quit,
         flavors.senarios.no_list_insert,
@@ -44,9 +48,8 @@ do
             },
             view = {querier_on_start = 'insert'}
         }
-    }
-    linearf.context_managers['line'] = flavors.context_managers['line']
-    linearf.senarios['file'] = flavors.merge {
+    })
+    set('file', flavors.context_managers['file_rg'], flavors.merge {
         flavors.senarios['file_rg'],
         flavors.senarios.quit,
         flavors.senarios.no_list_insert,
@@ -66,9 +69,8 @@ do
                 }
             }
         }
-    }
-    linearf.context_managers['file'] = flavors.context_managers['file_rg']
-    linearf.senarios['grep'] = flavors.merge {
+    })
+    set('grep', flavors.context_managers['grep_rg'], flavors.merge {
         flavors.senarios['grep_rg'],
         flavors.senarios.quit,
         flavors.senarios.no_list_insert,
@@ -88,8 +90,7 @@ do
                 }
             }
         }
-    }
-    linearf.context_managers['grep'] = flavors.context_managers['grep_rg']
+    })
 
     linearf.bridge.try_build_if_not_exist = true
     linearf.bridge.try_build_on_error = false
