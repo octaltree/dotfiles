@@ -26,15 +26,15 @@ do
             querier_nnoremap = {["<A-space>"] = flavors.actions.view.goto_list}
         }
     }
-    local function set(target, context_manager, senario)
+    local function set(target, context_manager, scenario)
         linearf.context_managers[target] = context_manager
-        linearf.senarios[target] = senario
+        linearf.scenarios[target] = scenario
     end
     set('line', flavors.context_managers['line'], flavors.merge {
-        flavors.senarios['line'],
-        flavors.senarios.quit,
-        flavors.senarios.no_list_insert,
-        flavors.senarios.no_querier_normal,
+        flavors.scenarios['line'],
+        flavors.scenarios.quit,
+        flavors.scenarios.no_list_insert,
+        flavors.scenarios.no_querier_normal,
         alias_escape_querier,
         {
             linearf = {
@@ -50,10 +50,10 @@ do
         }
     })
     set('file', flavors.context_managers['file_rg'], flavors.merge {
-        flavors.senarios['file_rg'],
-        flavors.senarios.quit,
-        flavors.senarios.no_list_insert,
-        flavors.senarios.no_querier_normal,
+        flavors.scenarios['file_rg'],
+        flavors.scenarios.quit,
+        flavors.scenarios.no_list_insert,
+        flavors.scenarios.no_querier_normal,
         alias_escape_querier,
         {
             linearf = {
@@ -71,10 +71,10 @@ do
         }
     })
     set('grep', flavors.context_managers['grep_rg'], flavors.merge {
-        flavors.senarios['grep_rg'],
-        flavors.senarios.quit,
-        flavors.senarios.no_list_insert,
-        flavors.senarios.enter_list,
+        flavors.scenarios['grep_rg'],
+        flavors.scenarios.quit,
+        flavors.scenarios.no_list_insert,
+        flavors.scenarios.enter_list,
         {
             linearf = {
                 list_nnoremap = {
