@@ -91,13 +91,34 @@ do
             }
         }
     })
+    set('dir_line', flavors.context_managers['grep_rg'], flavors.merge {
+        flavors.scenarios['dir_line_rg'],
+        flavors.scenarios.quit,
+        flavors.scenarios.no_list_insert,
+        flavors.scenarios.enter_list,
+        {
+            linearf = {
+                list_nnoremap = {
+                    ["<CR>"] = flavors.hide_and(flavors.actions.dir_line.open),
+                    ["<nowait>s"] = flavors.hide_and(flavors.actions.dir_line.split),
+                    ["t"] = flavors.hide_and(flavors.actions.dir_line.tabopen),
+                    ["v"] = flavors.hide_and(flavors.actions.dir_line.vsplit)
+                },
+                querier_inoremap = {},
+                querier_nnoremap = {
+                    ["<nowait><ESC>"] = flavors.actions.view.goto_list,
+                    ["<A-space>"] = flavors.actions.view.goto_list
+                }
+            }
+        }
+    })
 
     linearf.bridge.try_build_if_not_exist = true
     linearf.bridge.try_build_on_error = false
 
     linearf.utils.command("nnoremap <silent><space>/ :<c-u>lua lnf('line')<CR>")
     linearf.utils.command("nnoremap <silent><space>f :<c-u>lua lnf('file')<CR>")
-    linearf.utils.command("nnoremap <silent><space>g :<c-u>lua lnf('grep')<CR>")
+    linearf.utils.command("nnoremap <silent><space>g :<c-u>lua lnf('dir_line')<CR>")
     linearf.utils.command("nnoremap <silent><space>l :<c-u>lua lnf.resume_last()<CR>")
 end
 
