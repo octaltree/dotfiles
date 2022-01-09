@@ -109,6 +109,9 @@ repo = 'ray-x/cmp-treesitter'
 repo = 'rafamadriz/friendly-snippets'
 [[plugins]]
 repo = 'hrsh7th/vim-vsnip'
+
+# https://github.com/topics/nvim-cmp
+# Array.from(document.querySelectorAll('article .f3 a.wb-break-word')).map(a => a.href)
 # }}}
 
 [[plugins]] # denite {{{
