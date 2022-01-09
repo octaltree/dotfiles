@@ -294,33 +294,45 @@ do
 end
 
 do
+    local M = {}
+    _G['_my_cmp'] = M
     local cmp = require('cmp')
     -- TODO: syntax, vim
+    local sources = {
+        {name = 'path'},
+        {name = 'nvim_lsp'},
+        {name = 'nvim_lsp_signature_help'},
+        {name = 'nvim_lua'},
+        -- {name = 'vsnip'},
+        {name = 'buffer'},
+        {name = 'treesitter'},
+        {name = 'tmux'},
+        {
+            name = 'look',
+            keyword_length = 5,
+            option = {convert_case = true, loud = true}
+        }
+    }
     cmp.setup({
-        sources = {
-            {name = 'path'},
-            {name = 'nvim_lsp'},
-            {name = 'nvim_lsp_signature_help'},
-            {name = 'nvim_lua'},
-            --{name = 'vsnip'},
-            {name = 'buffer'},
-            {name = 'treesitter'},
-            {
-                name = 'look',
-                keyword_length = 5,
-                option = {convert_case = true, loud = true}
-            }
-        },
+        sources = sources,
         snippet = {
             expand = function(args)
-                --print(vim.inspect(args))
+                -- print(vim.inspect(args))
                 vim.fn["vsnip#anonymous"](args.body)
             end
         },
-        mapping = {
-            ['<c-e>'] = cmp.mapping.confirm({ select = false }),
-        }
+        mapping = {['<c-e>'] = cmp.mapping.confirm({select = false})}
     })
+
+    function M.vim()
+        local ss = {}
+        for _, x in ipairs(sources) do table.insert(ss, x) end
+        table.insert(ss, {name = 'cmdline'})
+        cmp.setup.buffer({sources = ss})
+    end
+    vim.cmd('au Filetype vim lua _G["_my_cmp"].vim()')
+
+    cmp.setup.cmdline(':', {sources = {{name = 'cmdline'}}})
     vim.cmd('set completeopt+=menuone,noselect')
 end
 -- %! lua-format --no-keep-simple-function-one-line --chop-down-table

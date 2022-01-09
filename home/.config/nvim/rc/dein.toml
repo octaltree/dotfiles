@@ -93,8 +93,8 @@ repo = 'hrsh7th/nvim-cmp'
 repo = 'octaltree/cmp-look'
 [[plugins]]
 repo = 'hrsh7th/cmp-path'
-#[[plugins]]
-#repo = 'hrsh7th/cmp-vsnip'
+[[plugins]]
+repo = 'hrsh7th/cmp-vsnip'
 [[plugins]]
 repo = 'hrsh7th/cmp-nvim-lsp'
 [[plugins]]
@@ -109,6 +109,10 @@ repo = 'ray-x/cmp-treesitter'
 repo = 'rafamadriz/friendly-snippets'
 [[plugins]]
 repo = 'hrsh7th/vim-vsnip'
+[[plugins]]
+repo = 'hrsh7th/cmp-cmdline'
+[[plugins]]
+repo = 'andersevenrud/cmp-tmux'
 
 # https://github.com/topics/nvim-cmp
 # Array.from(document.querySelectorAll('article .f3 a.wb-break-word')).map(a => a.href)
