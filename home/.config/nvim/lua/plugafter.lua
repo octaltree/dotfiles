@@ -326,11 +326,17 @@ do
 
     function M.vim()
         local ss = {}
-        for _, x in ipairs(sources) do table.insert(ss, x) end
         table.insert(ss, {name = 'cmdline'})
+        for _, x in ipairs(sources) do table.insert(ss, x) end
         cmp.setup.buffer({sources = ss})
     end
     vim.cmd('au Filetype vim lua _G["_my_cmp"].vim()')
+
+    do
+        local cmdline = require('cmp_cmdline').new()
+        cmdline.is_available = function() return true end
+        cmp.register_source('cmdline', cmdline)
+    end
 
     cmp.setup.cmdline(':', {sources = {{name = 'cmdline'}}})
     vim.cmd('set completeopt+=menuone,noselect')
