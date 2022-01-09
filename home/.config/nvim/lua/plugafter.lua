@@ -321,7 +321,7 @@ do
             ['<c-e>'] = cmp.mapping.confirm({ select = false }),
         }
     })
-    vim.cmd('set completeopt+=menuone')
+    vim.cmd('set completeopt+=menuone,noselect')
 end
 -- %! lua-format --no-keep-simple-function-one-line --chop-down-table
 -- vim: ts=4 sw=4
