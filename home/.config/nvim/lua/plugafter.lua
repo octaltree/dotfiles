@@ -297,13 +297,12 @@ do
     local M = {}
     _G['_my_cmp'] = M
     local cmp = require('cmp')
-    -- TODO: syntax, vim
     local sources = {
         {name = 'path'},
         {name = 'nvim_lsp'},
         {name = 'nvim_lsp_signature_help'},
         {name = 'nvim_lua'},
-        -- {name = 'vsnip'},
+        {name = 'vsnip'},
         {name = 'buffer'},
         {name = 'treesitter'},
         {name = 'tmux'},
