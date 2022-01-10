@@ -314,6 +314,12 @@ do
     }
     cmp.setup({
         sources = sources,
+        completion = {
+            autocomplete = {
+                require('cmp.types').cmp.TriggerEvent.InsertEnter,
+                require('cmp.types').cmp.TriggerEvent.TextChanged
+            }
+        },
         snippet = {
             expand = function(args)
                 -- print(vim.inspect(args))
