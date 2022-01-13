@@ -228,8 +228,8 @@ do
     use_default({'c', 'cpp'}, 'clangd')
     use_default({'sh'}, 'bashls')
     use_default({'python'}, 'pylsp')
-    use_default({'javascript', 'typescript'}, 'denols')
-    -- use_default({'javascript', 'typescript'}, 'tsserver')
+    --use_default({'javascript', 'typescript'}, 'denols')
+    use_default({'javascript', 'typescript'}, 'tsserver')
     use_default({'tex'}, 'texlab')
 
     au('User', 'LspconfigSource', "lua _G['_my_lsp'].ready()")
