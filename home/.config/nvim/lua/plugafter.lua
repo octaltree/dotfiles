@@ -231,6 +231,30 @@ do
     --use_default({'javascript', 'typescript'}, 'denols')
     use_default({'javascript', 'typescript'}, 'tsserver')
     use_default({'tex'}, 'texlab')
+    -- ansiblels.lua
+    -- cmake.lua
+    -- dockerls.lua
+    -- dotls.lua
+    -- graphql.lua
+    -- cssls.lua
+    -- html.lua
+    -- stylelint_lsp.lua
+    -- sqlls.lua
+    -- sqls.lua
+    -- sumneko_lua.lua
+    -- vimls.lua
+
+    -- clojure_lsp.lua
+    -- csharp_ls.lua
+    -- dartls.lua
+    -- erlangls.lua
+    -- flow.lua
+    -- hls.lua
+    -- java_language_server.lua
+    -- jdtls.lua
+    -- kotlin_language_server.lua
+    -- metals.lua
+    -- purescriptls.lua
 
     au('User', 'LspconfigSource', "lua _G['_my_lsp'].ready()")
 end
