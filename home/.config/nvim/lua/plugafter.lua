@@ -314,6 +314,7 @@ do
     }
     cmp.setup({
         sources = sources,
+        preselect = false,
         completion = {
             autocomplete = {
                 require('cmp.types').cmp.TriggerEvent.InsertEnter,
