@@ -130,4 +130,11 @@ endfunction
 "  \ deoplete#close_popup() . "\<CR>"
 ''' # }}}
 
+[[plugins]]
+repo = 'machakann/vim-sandwich'
+hook_add='''
+let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
+'''
+
+
 # vim: foldmethod=marker
