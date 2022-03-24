@@ -42,4 +42,39 @@ autocmd DocLoad inoreader.com js document.body.innerHTML += '<style>.inno_dialog
 command openInoreader js Array.from(document.querySelectorAll('.article_magazine_title a')).map(a => a.href).forEach(u => window.open(u, '_blank'));
 source ~/.config/tridactyl/pixiv.tridactyl
 
+"[
+"  {
+"    "name": "oct",
+"    "icon": "fingerprint",
+"    "iconUrl": "resource://usercontext-content/fingerprint.svg",
+"    "color": "turquoise",
+"    "colorCode": "#00c79a",
+"    "cookieStoreId": "firefox-container-6"
+"  },
+"  {
+"    "name": "sol",
+"    "icon": "fingerprint",
+"    "iconUrl": "resource://usercontext-content/fingerprint.svg",
+"    "color": "orange",
+"    "colorCode": "#ff9f00",
+"    "cookieStoreId": "firefox-container-7"
+"  },
+"  {
+"    "name": "nic",
+"    "icon": "fingerprint",
+"    "iconUrl": "resource://usercontext-content/fingerprint.svg",
+"    "color": "pink",
+"    "colorCode": "#ff4bda",
+"    "cookieStoreId": "firefox-container-8"
+"  },
+"  {
+"    "name": "zen",
+"    "icon": "fingerprint",
+"    "iconUrl": "resource://usercontext-content/fingerprint.svg",
+"    "color": "purple",
+"    "colorCode": "#af51f5",
+"    "cookieStoreId": "firefox-container-9"
+"  }
+"]
+
 " vim: set ft=vim:
