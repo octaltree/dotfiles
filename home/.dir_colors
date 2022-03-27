@@ -69,6 +69,9 @@ TERM xterm-88color
 TERM xterm-color
 TERM xterm-debian
 
+TERM tmux-256color
+TERM alacritty
+
 # Below are the color init strings for the basic file types. A color init
 # string consists of one or more of the following numeric codes:
 # Attribute codes:
