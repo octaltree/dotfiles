@@ -1,0 +1,6 @@
+font:
+  size: 18
+
+colors:
+  primary:
+    background: '0x02060e'
