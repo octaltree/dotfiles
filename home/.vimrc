@@ -70,6 +70,8 @@ function! s:set_colorscheme() abort
 endfunction
 autocmd VimEnter * nested call s:set_colorscheme()
 
-source ~/.config/nvim/rc/own.vim
+if filereadable(expand('~/.config/nvim/rc/own.vim'))
+  source ~/.config/nvim/rc/own.vim
+endif
 
 let g:loaded_fzf=1
