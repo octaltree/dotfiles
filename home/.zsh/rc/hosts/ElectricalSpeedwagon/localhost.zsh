@@ -10,3 +10,5 @@
     tmux
   fi
 }
+
+alias opn=open
