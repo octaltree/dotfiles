@@ -4,3 +4,7 @@ font:
 colors:
   primary:
     background: '0x02060e'
+
+key_bindings:
+  - {key: H, mods: Alt, chars: "\x1bh"}
+  - {key: L, mods: Alt, chars: "\x1bl"}
