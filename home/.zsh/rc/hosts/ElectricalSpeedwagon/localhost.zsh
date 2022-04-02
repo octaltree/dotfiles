@@ -12,3 +12,6 @@
 }
 
 alias opn=open
+
+export PATH="/Users/octaltree/Library/handy:${PATH}"
+export EDITOR=nvim
