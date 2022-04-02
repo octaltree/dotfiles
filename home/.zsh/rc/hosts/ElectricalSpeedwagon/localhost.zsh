@@ -11,3 +11,16 @@ alias opn=open
 
 export PATH="/Users/octaltree/Library/handy:${PATH}"
 export EDITOR=nvim
+
+
+vi-pbpaste-a-x-selection(){
+  LBUFFER=$LBUFFER$RBUFFER[1]
+  RBUFFER=$(pbpaste)$RBUFFER[2,-1]
+}
+vi-pbpaste-b-x-selection(){
+  RBUFFER=$(pbpaste)$RBUFFER
+}
+zle -N vi-pbpaste-a-x-selection
+zle -N vi-pbpaste-b-x-selection
+bindkey -M vicmd 'p' vi-pbpaste-a-x-selection
+bindkey -M vicmd 'P' vi-pbpaste-b-x-selection
