@@ -24,3 +24,11 @@ zle -N vi-pbpaste-a-x-selection
 zle -N vi-pbpaste-b-x-selection
 bindkey -M vicmd 'p' vi-pbpaste-a-x-selection
 bindkey -M vicmd 'P' vi-pbpaste-b-x-selection
+
+
+function vi-yank-pbcopy {
+  zle vi-yank
+  echo "$CUTBUFFER" | pbcopy
+}
+zle -N vi-yank-pbcopy
+bindkey -M vicmd 'y' vi-yank-pbcopy
