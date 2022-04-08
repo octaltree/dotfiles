@@ -1,3 +1,5 @@
+[ -f /opt/homebrew/opt/fzf/shell/key-bindings.zsh ] && source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
+
 alias opn=open
 
 export PATH="/Users/octaltree/Library/handy:${PATH}"
@@ -23,6 +25,7 @@ function vi-yank-pbcopy {
 }
 zle -N vi-yank-pbcopy
 bindkey -M vicmd 'y' vi-yank-pbcopy
+
 
 if [ "$TERM" = "alacritty" ]; then
   if [ `tmux list-sessions| sed '/attached/d'| wc -l` -ne 0 ]; then
