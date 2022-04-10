@@ -100,7 +100,8 @@ do
             linearf = {
                 list_nnoremap = {
                     ["<CR>"] = flavors.hide_and(flavors.actions.dir_line.open),
-                    ["<nowait>s"] = flavors.hide_and(flavors.actions.dir_line.split),
+                    ["<nowait>s"] = flavors.hide_and(
+                        flavors.actions.dir_line.split),
                     ["t"] = flavors.hide_and(flavors.actions.dir_line.tabopen),
                     ["v"] = flavors.hide_and(flavors.actions.dir_line.vsplit)
                 },
@@ -118,8 +119,9 @@ do
 
     linearf.utils.command("nnoremap <silent><space>/ :<c-u>lua lnf('line')<CR>")
     linearf.utils.command("nnoremap <silent><space>f :<c-u>lua lnf('file')<CR>")
-    linearf.utils.command("nnoremap <silent><space>g :<c-u>lua lnf('dir_line')<CR>")
-    linearf.utils.command("nnoremap <silent><space>l :<c-u>lua lnf.resume_last()<CR>")
+    linearf.utils.command("nnoremap <silent><space>g :<c-u>lua lnf('grep')<CR>")
+    linearf.utils.command(
+        "nnoremap <silent><space>l :<c-u>lua lnf.resume_last()<CR>")
 end
 
 do
@@ -228,7 +230,7 @@ do
     use_default({'c', 'cpp'}, 'clangd')
     use_default({'sh'}, 'bashls')
     use_default({'python'}, 'pylsp')
-    --use_default({'javascript', 'typescript'}, 'denols')
+    -- use_default({'javascript', 'typescript'}, 'denols')
     use_default({'javascript', 'typescript'}, 'tsserver')
     use_default({'tex'}, 'texlab')
     -- ansiblels.lua
