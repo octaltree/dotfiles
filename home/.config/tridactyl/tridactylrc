@@ -41,6 +41,7 @@ autocmd DocLoad ^https://sp.nicovideo.jp js document.location.href = document.lo
 autocmd DocLoad inoreader.com js document.body.innerHTML += '<style>.inno_dialog[id*="wrapper"], .inno_dialog_modal_overlay[id*="overlay"], .inno_dialog_scroll_overlay[id*="overlay"] { display: none; }</style>'; (function loop(){ const xs = document.querySelectorAll('.adb_right_link_passive > a'); if( xs.length ) xs[0].click(); else setTimeout(loop, 100); }());
 command openInoreader js Array.from(document.querySelectorAll('.article_magazine_title a')).map(a => a.href).forEach(u => window.open(u, '_blank'));
 source ~/.config/tridactyl/pixiv.tridactyl
+source_quiet ~/.config/tridactyl/localhost.tridactyl
 
 "[
 "  {
