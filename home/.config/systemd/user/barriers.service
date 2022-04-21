@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 PassEnvironment=DISPLAY
-ExecStart=/usr/bin/barriers --address %i --no-restart --no-daemon
+ExecStart=/usr/bin/barriers --no-restart --no-daemon
 Type=simple
 ProtectHome=read-only
 ProtectSystem=true
