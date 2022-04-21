@@ -27,6 +27,11 @@ zle -N vi-yank-pbcopy
 bindkey -M vicmd 'y' vi-yank-pbcopy
 
 
+function barrier {
+  local ipv4=`traceroute coorie.local 2>/dev/null| awk '{print $2}'`
+  /Applications/Barrier.app/Contents/MacOS/barrierc --no-daemon --no-restart $ipv4
+}
+
 if [ "$TERM" = "alacritty" ]; then
   if [ `tmux list-sessions| sed '/attached/d'| wc -l` -ne 0 ]; then
     target=`tmux list-sessions| sed '/attached/d'| awk -F: '{print $1}'| head -n 1`
