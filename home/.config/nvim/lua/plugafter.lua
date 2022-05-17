@@ -327,7 +327,11 @@ do
                 vim.fn["vsnip#anonymous"](args.body)
             end
         },
-        mapping = {['<c-e>'] = cmp.mapping.confirm({select = false})}
+        mapping = {
+            ['<c-n>'] = cmp.mapping.select_next_item(),
+            ['<c-p>'] = cmp.mapping.select_prev_item(),
+            ['<c-e>'] = cmp.mapping.confirm({select = false})
+        }
     })
 
     function M.vim()
