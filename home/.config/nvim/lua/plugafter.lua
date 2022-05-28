@@ -139,6 +139,7 @@ do
     linearf.utils.command("nnoremap <silent><space>/ :<c-u>lua lnf('line')<CR>")
     linearf.utils.command("nnoremap <silent><space>f :<c-u>lua lnf('file')<CR>")
     linearf.utils.command("nnoremap <silent><space>g :<c-u>lua lnf('grep')<CR>")
+    linearf.utils.command("nnoremap <silent><space>s :<c-u>lua lnf('rustdoc')<CR>")
     linearf.utils.command(
         "nnoremap <silent><space>l :<c-u>lua lnf.resume_last()<CR>")
 end
