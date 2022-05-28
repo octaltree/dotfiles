@@ -6,7 +6,8 @@ do
     linearf.init(require('linearf-vanilla').new())
     linearf.recipe.sources = {
         {name = "identity", path = "flavors_plain::Identity"},
-        {name = "command", path = "flavors_tokio::Command"}
+        {name = "command", path = "flavors_tokio::Command"},
+        {name = "rustdoc", path = "flavors_rustdoc::Rustdoc"}
     }
     linearf.recipe.converters = {
         {name = "format_line", path = "flavors_plain::FormatLine"}
@@ -15,6 +16,9 @@ do
         {name = "identity", path = "flavors_plain::Identity"},
         {name = "substring", path = "flavors_plain::Substring"},
         {name = "clap", path = "flavors_clap::Clap"}
+    }
+    linearf.recipe.actions = {
+        {name = "rustdoc_item", path = "flavors_rustdoc::RustdocItem"}
     }
     local alias_escape_querier = {
         linearf = {
@@ -109,6 +113,21 @@ do
                 querier_nnoremap = {
                     ["<nowait><ESC>"] = flavors.actions.view.goto_list,
                     ["<A-space>"] = flavors.actions.view.goto_list
+                }
+            }
+        }
+    })
+    set('rustdoc', flavors.context_managers['rustdoc'], flavors.merge {
+        flavors.scenarios['rustdoc'],
+        flavors.scenarios.quit,
+        flavors.scenarios.no_list_insert,
+        flavors.scenarios.no_querier_normal,
+        alias_escape_querier,
+        {
+            linearf = {
+                list_nnoremap = {
+                    ["<CR>"] = flavors.hide_and(
+                        flavors.actions.rustdoc.open_firefox)
                 }
             }
         }
