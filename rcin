@@ -109,7 +109,7 @@ function update(){
   nvim --headless \
     -c "set rtp+=~/.local/share/dein/repos/github.com/nvim-treesitter/nvim-treesitter" \
     -c "source ~/.local/share/dein/repos/github.com/nvim-treesitter/nvim-treesitter/plugin/nvim-treesitter.vim" \
-    -c "TSInstallSync maintained" \
+    -c "TSInstallSync all" \
     -c "TSUpdateSync" \
     -c "q"
   return $?
