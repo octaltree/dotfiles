@@ -277,63 +277,62 @@ repo = 'Shougo/vimproc.vim'
 build = 'make'
 # }}}
 
-#[[plugins]] # deoplete {{{
-#repo = 'Shougo/deoplete.nvim'
-#depends = 'context_filetype.vim'
-#on_event = 'InsertEnter'
-#hook_add = '''
-#let g:deoplete#enable_at_startup = 1
-#set completeopt+=noselect
-#"set completeopt-=preview
-#
-#autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | silent! pclose | endif
-#call deoplete#custom#option('auto_refresh_delay', 1)
-#call deoplete#custom#option('min_pattern_length', 1)
-#
-#inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-#inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
-#imap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-#function! s:my_cr_function() abort
-#  return deoplete#close_popup() . "\<CR>"
-#endfunction
-#"let g:cache_completed = {}
-#"function! s:my_cr_function() abort
-#"  if has_key(v:completed_item, 'word') && g:cache_completed != v:completed_item
-#"    let g:cache_completed = v:completed_item
-#"    return deoplete#close_popup()
-#"  else
-#"    return deoplete#close_popup() . "\<CR>"
-#"  endif
-#"endfunction
-#"imap <silent><expr> <cr> neosnippet#expandable_or_jumpable()?
-#"  \ "\<Plug>(neosnippet_expand_or_jump)":
-#"  \ deoplete#close_popup() . "\<CR>"
-#''' # }}}
+[[plugins]] # deoplete {{{
+repo = 'Shougo/deoplete.nvim'
+depends = 'context_filetype.vim'
+on_event = 'InsertEnter'
+hook_add = '''
+let g:deoplete#enable_at_startup = 1
+set completeopt+=noselect
+"set completeopt-=preview
 
-#[[plugins]] # deoplete source {{{
-#repo = 'ujihisa/neco-look'
-#depends = ['deoplete.nvim']
-#on_event = 'InsertEnter'
-#hook_source = '''
-#call deoplete#custom#source('look', 'min_pattern_length', 7)
-#'''
-## }}}
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | silent! pclose | endif
+call deoplete#custom#option('auto_refresh_delay', 1)
+call deoplete#custom#option('min_pattern_length', 1)
 
-#[[plugins]]
-#repo = 'Shougo/deoplete-lsp'
-#on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex', 'javascript', 'typescript']
-#hook_add='''
-#let g:deoplete#lsp#use_icons_for_candidates = v:true
-#'''
+inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
+imap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function() abort
+  return deoplete#close_popup() . "\<CR>"
+endfunction
+"let g:cache_completed = {}
+"function! s:my_cr_function() abort
+"  if has_key(v:completed_item, 'word') && g:cache_completed != v:completed_item
+"    let g:cache_completed = v:completed_item
+"    return deoplete#close_popup()
+"  else
+"    return deoplete#close_popup() . "\<CR>"
+"  endif
+"endfunction
+"imap <silent><expr> <cr> neosnippet#expandable_or_jumpable()?
+"  \ "\<Plug>(neosnippet_expand_or_jump)":
+"  \ deoplete#close_popup() . "\<CR>"
+''' # }}}
+[[plugins]] # deoplete source {{{
+repo = 'ujihisa/neco-look'
+depends = ['deoplete.nvim']
+on_event = 'InsertEnter'
+hook_source = '''
+call deoplete#custom#source('look', 'min_pattern_length', 7)
+'''
+# }}}
 
-"call deoplete#custom#source('lsp', 'min_pattern_length', 0)
-"call deoplete#custom#source('lsp', 'input_patterns', {
-"    \ 'rust': '(::|[. (])\w*',
-"    \ 'c': '[. (]\w*',
-"    \ 'c++': '[. (]\w*',
-"    \ 'sh': '[ ]\w*',
-"    \ 'python': '[. (]\w*',
-"    \ })
+
+[[plugins]]
+repo = 'Shougo/deoplete-lsp'
+on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex', 'javascript', 'typescript']
+hook_add='''
+let g:deoplete#lsp#use_icons_for_candidates = v:true
+'''
+call deoplete#custom#source('lsp', 'min_pattern_length', 0)
+call deoplete#custom#source('lsp', 'input_patterns', {
+    \ 'rust': '(::|[. (])\w*',
+    \ 'c': '[. (]\w*',
+    \ 'c++': '[. (]\w*',
+    \ 'sh': '[ ]\w*',
+    \ 'python': '[. (]\w*',
+    \ })
 
 [[plugins]] # denite {{{
 repo = 'Shougo/denite.nvim'

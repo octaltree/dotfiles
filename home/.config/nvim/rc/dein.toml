@@ -118,106 +118,75 @@ repo = 'andersevenrud/cmp-tmux'
 # Array.from(document.querySelectorAll('article .f3 a.wb-break-word')).map(a => a.href)
 # }}}
 
-[[plugins]] # denite {{{
-repo = 'Shougo/denite.nvim'
-on_cmd = 'Denite'
-hook_add = '''
-  nnoremap [Denite] <Nop>
-  nmap <silent><space> [Denite]
-  nnoremap [Denite]f :<c-u>Denite file/rec<CR>
-  nnoremap [Denite]o :<c-u>Denite file/old<CR>
-  nnoremap [Denite]/ :<c-u>Denite line<CR>
-  nnoremap [Denite]g :<c-u>Denite grep<CR>
-  nnoremap [Denite]r :<c-u>Denite -resume<CR>
-  nnoremap [Denite]<space> :Denite source<CR>
-  nnoremap [Denite]t :Denite buffer -default-action=tabswitch<CR>
-  nnoremap [Denite]d :Denite lsp_references<CR>
-  nnoremap [Denite]c/ :<c-u>DeniteCursorWord line<CR>
-  nnoremap [Denite]cg :<c-u>DeniteCursorWord grep<CR>
-
-  autocmd FileType denite call s:denite_my_settings()
-  function! s:denite_my_settings() abort
-    nnoremap <silent><buffer><expr> <cr>
-    \ denite#do_map('do_action')
-    nnoremap <silent><buffer><expr> s
-    \ denite#do_map('do_action', 'split')
-    nnoremap <silent><buffer><expr> v
-    \ denite#do_map('do_action', 'vsplit')
-    nnoremap <silent><buffer><expr> t
-    \ denite#do_map('do_action', 'tabopen')
-    nnoremap <silent><buffer><expr> p
-    \ denite#do_map('do_action', 'preview')
-    nnoremap <silent><buffer><expr><nowait> q
-    \ denite#do_map('quit')
-    nnoremap <silent><buffer><expr> i
-    \ denite#do_map('open_filter_buffer')
-    nnoremap <silent><buffer><expr> <space>
-    \ denite#do_map('toggle_select')
-  endfunction
-  autocmd FileType denite-filter call s:denite_filter_my_settings()
-  function! s:denite_filter_my_settings() abort
-    imap <silent><buffer> <ESC> <Plug>(denite_filter_update)
-    imap <silent><buffer> <CR> <ESC><CR>
-  endfunction
-  let s:denite_win_width_percent = 0.9
-  let s:denite_win_height_percent = 0.9
-  call denite#custom#option('default', {
-      \ 'split': 'horizontal',
-      \ 'winwidth': float2nr(&columns * s:denite_win_width_percent),
-      \ 'wincol': float2nr((&columns - (&columns * s:denite_win_width_percent)) / 2),
-      \ 'winheight': float2nr(&lines * s:denite_win_height_percent),
-      \ 'winrow': float2nr((&lines - (&lines * s:denite_win_height_percent)) / 2),
-      \ 'prompt': '> ',
-      \ })
-  call denite#custom#kind('file', 'default_action', 'switch')
-
-  if executable("ag")
-    call denite#custom#var('file/rec', 'command',
-        \ ['ag', '--hidden', '--follow', '--nocolor', '--nogroup', '-g', ''])
-    call denite#custom#var('grep', 'command', ['ag'])
-    call denite#custom#var('grep', 'default_opts',
-        \ ['--hidden', '--follow', '-S', '--vimgrep'])
-    call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'pattern_opt', [])
-    call denite#custom#var('grep', 'separator', ['--'])
-    call denite#custom#var('grep', 'final_opts', [])
-  endif
-  if executable("rg")
-    call denite#custom#var('file/rec', 'command',
-        \ ['rg', '--hidden', '--follow', '--files', '-g', '!.git'])
-    call denite#custom#var('grep', 'command', ['rg'])
-    call denite#custom#var('grep', 'default_opts',
-        \ ['--hidden', '--follow', '-S', '--no-heading', '--vimgrep', '-g', '!.git'])
-    call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'pattern_opt', [])
-    call denite#custom#var('grep', 'separator', ['--'])
-    call denite#custom#var('grep', 'final_opts', [])
-  endif
-'''
-[[plugins]]
-repo = 'liuchengxu/vim-clap'
-on_cmd = 'Denite'
-depends = ['denite.nvim']
-build='make'
-hook_add='''
-call denite#custom#filter('matcher/clap', 'clap_path', expand('~/.config/nvim/dein/repos/github.com/liuchengxu/vim-clap'))
-call denite#custom#source('_', 'matcher', ['matcher/clap'])
-'''
-[[plugins]]
-repo = 'octaltree/rustdoc-index'
-on_cmd = 'Denite'
-depends = ['denite.nvim']
-build = 'make denite'
-hook_add = '''
-nnoremap <silent><space>s :<c-u>Denite rustdoc-index<CR>
-'''
-# }}}
-
 [[plugins]]
 repo = 'machakann/vim-sandwich'
 hook_add='''
 let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 '''
 
+[[plugins]]
+repo = 'vim-denops/denops.vim'
+
+# ddc {{{
+[[plugins]]
+repo = 'Shougo/ddc.vim'
+hook_add='''
+let sources = ['nvim-lsp', 'file', 'treesitter', 'around', 'tabnine', 'look']
+call ddc#custom#patch_global('sources', sources)
+call ddc#custom#patch_global('sourceOptions', {
+      \ '_': {
+      \   'matchers': ['matcher_head'],
+      \   'sorters': ['sorter_rank']},
+      \ 'file': {'mark': 'F', 'forceCompletionPattern': '/'},
+      \ 'look': {'converters': ['loud', 'matcher_head'], 'matchers': [], 'mark': 'L', 'isVolatile': v:true, 'minAutoCompleteLength': 5},
+      \ 'around': {'mark': 'A'},
+      \ 'necovim': {'mark': 'V'},
+      \ 'nvim-lsp': {'minAutoCompleteLength': 0},
+      \ 'treesitter': {'mark': 'S'},
+      \ 'tabnine': {'isVolatile': v:true, 'maxCandidates': 3, 'mark': 'TN', 'minAutoCompleteLength': 5}
+      \ })
+call ddc#custom#patch_filetype('vim', 'sources', ['necovim'] + sources)
+call ddc#custom#patch_global('sourceParams', {
+      \ 'look': {'convertCase': v:true}
+      \ })
+call ddc#custom#patch_filetype('rust', 'sourceOptions', {
+      \ 'nvim-lsp': {'forceCompletionPattern': '(::|[. (])\w*'}
+      \ })
+call ddc#custom#patch_filetype(['c', 'c++'], 'sourceOptions', {
+      \ 'nvim-lsp': {'forceCompletionPattern': '[. (]\w*'}
+      \ })
+call ddc#custom#patch_filetype('python', 'sourceOptions', {
+      \ 'nvim-lsp': {'forceCompletionPattern': '[. (]\w*'}
+      \ })
+call ddc#custom#patch_filetype(['javascript', 'typescript'], 'sourceOptions', {
+      \ 'nvim-lsp': {'forceCompletionPattern': '[. (]\w*'}
+      \ })
+call ddc#custom#patch_filetype('sh', 'sourceOptions', {
+      \ 'nvim-lsp': {'forceCompletionPattern': '[ ]\w*'}
+      \ })
+"call ddc#custom#patch_global('completionMenu', 'pum.vim')
+"inoremap <C-n>   <Cmd>call pum#map#select_relative(+1)<CR>
+"inoremap <C-p>   <Cmd>call pum#map#select_relative(-1)<CR>
+call ddc#enable()
+'''
+[[plugins]]
+repo = 'Shougo/ddc-around'
+[[plugins]]
+repo = 'Shougo/ddc-matcher_head'
+[[plugins]]
+repo = 'Shougo/ddc-sorter_rank'
+[[plugins]]
+repo = 'octaltree/cmp-look'
+[[plugins]]
+repo = 'LumaKernel/ddc-file'
+[[plugins]]
+repo = 'Shougo/ddc-nvim-lsp'
+[[plugins]]
+repo = 'Shougo/pum.vim'
+[[plugins]]
+repo = 'delphinus/ddc-treesitter'
+[[plugins]]
+repo = 'LumaKernel/ddc-tabnine'
+# }}}
 
 # vim: foldmethod=marker
