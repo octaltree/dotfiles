@@ -176,8 +176,6 @@ repo = 'Shougo/ddc-matcher_head'
 [[plugins]]
 repo = 'Shougo/ddc-sorter_rank'
 [[plugins]]
-repo = 'octaltree/cmp-look'
-[[plugins]]
 repo = 'LumaKernel/ddc-file'
 [[plugins]]
 repo = 'Shougo/ddc-nvim-lsp'
