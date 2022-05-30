@@ -1,3 +1,4 @@
+
 [[plugins]] # virtualsnip {{{
 repo = 'octaltree/virtualsnip'
 build = 'make'
@@ -10,132 +11,12 @@ let g:virtualsnip#sign = ' » '
 let g:virtualsnip#highlight_base = 'Comment'
 ''' # }}}
 
-[[plugins]] # denite {{{
-repo = 'Shougo/denite.nvim'
-on_cmd = 'Denite'
-hook_add = '''
-  nnoremap [Denite] <Nop>
-  nmap <silent><space> [Denite]
-  nnoremap [Denite]f :<c-u>Denite file/rec<CR>
-  nnoremap [Denite]o :<c-u>Denite file/old<CR>
-  nnoremap [Denite]/ :<c-u>Denite line<CR>
-  nnoremap [Denite]g :<c-u>Denite grep<CR>
-  nnoremap [Denite]r :<c-u>Denite -resume<CR>
-  nnoremap [Denite]<space> :Denite source<CR>
-  nnoremap [Denite]t :Denite buffer -default-action=tabswitch<CR>
-  nnoremap [Denite]d :Denite lsp_references<CR>
-
-  nnoremap [Denite]c/ :<c-u>DeniteCursorWord line<CR>
-  nnoremap [Denite]cg :<c-u>DeniteCursorWord grep<CR>
-
-  autocmd FileType denite call s:denite_my_settings()
-  function! s:denite_my_settings() abort
-    nnoremap <silent><buffer><expr> <cr>
-    \ denite#do_map('do_action')
-    nnoremap <silent><buffer><expr> s
-    \ denite#do_map('do_action', 'split')
-    nnoremap <silent><buffer><expr> v
-    \ denite#do_map('do_action', 'vsplit')
-    nnoremap <silent><buffer><expr> t
-    \ denite#do_map('do_action', 'tabopen')
-    nnoremap <silent><buffer><expr> p
-    \ denite#do_map('do_action', 'preview')
-    nnoremap <silent><buffer><expr><nowait> q
-    \ denite#do_map('quit')
-    nnoremap <silent><buffer><expr> i
-    \ denite#do_map('open_filter_buffer')
-    nnoremap <silent><buffer><expr> <space>
-    \ denite#do_map('toggle_select')
-  endfunction
-  autocmd FileType denite-filter call s:denite_filter_my_settings()
-  function! s:denite_filter_my_settings() abort
-    imap <silent><buffer> <ESC> <Plug>(denite_filter_update)
-    imap <silent><buffer> <CR> <ESC><CR>
-  endfunction
-'''
+[[plugins]] # whitespace {{{
+repo = 'bronson/vim-trailing-whitespace'
+on_event = 'InsertLeave,TextChanged'
 hook_source='''
-  let s:denite_win_width_percent = 0.9
-  let s:denite_win_height_percent = 0.9
-  call denite#custom#option('default', {
-      \ 'split': 'horizontal',
-      \ 'winwidth': float2nr(&columns * s:denite_win_width_percent),
-      \ 'wincol': float2nr((&columns - (&columns * s:denite_win_width_percent)) / 2),
-      \ 'winheight': float2nr(&lines * s:denite_win_height_percent),
-      \ 'winrow': float2nr((&lines - (&lines * s:denite_win_height_percent)) / 2),
-      \ 'prompt': '> ',
-      \ })
-  call denite#custom#kind('file', 'default_action', 'switch')
-
-  if executable("ag")
-    call denite#custom#var('file/rec', 'command',
-        \ ['ag', '--hidden', '--follow', '--nocolor', '--nogroup', '-g', ''])
-    call denite#custom#var('grep', 'command', ['ag'])
-    call denite#custom#var('grep', 'default_opts',
-        \ ['--hidden', '--follow', '-S', '--vimgrep'])
-    call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'pattern_opt', [])
-    call denite#custom#var('grep', 'separator', ['--'])
-    call denite#custom#var('grep', 'final_opts', [])
-  endif
-  if executable("rg")
-    call denite#custom#var('file/rec', 'command',
-        \ ['rg', '--hidden', '--follow', '--files', '-g', '!.git'])
-    call denite#custom#var('grep', 'command', ['rg'])
-    call denite#custom#var('grep', 'default_opts',
-        \ ['--hidden', '--follow', '-S', '--no-heading', '--vimgrep', '-g', '!.git'])
-    call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'pattern_opt', [])
-    call denite#custom#var('grep', 'separator', ['--'])
-    call denite#custom#var('grep', 'final_opts', [])
-  endif
-'''
-[[plugins]]
-repo = 'liuchengxu/vim-clap'
-on_cmd = 'Denite'
-depends = ['denite.nvim']
-build='make'
-hook_source='''
-call denite#custom#filter('matcher/clap', 'clap_path', expand('~/.config/nvim/dein/repos/github.com/liuchengxu/vim-clap'))
-call denite#custom#source('_', 'matcher', ['matcher/clap'])
-'''
-[[plugins]]
-repo = 'octaltree/rustdoc-index'
-on_cmd = 'Denite'
-depends = ['denite.nvim']
-build = 'make denite'
-hook_add = '''
-nnoremap <silent><space>s :<c-u>Denite rustdoc-index<CR>
-'''
-# }}}
-
-[[plugins]] # deoplete source {{{
-repo = 'ujihisa/neco-look'
-depends = ['deoplete.nvim']
-on_event = 'InsertEnter'
-hook_source = '''
-call deoplete#custom#source('look', 'min_pattern_length', 7)
-'''
-# }}}
-
-[[plugins]] # snippet {{{
-repo = 'hrsh7th/vim-vsnip'
-on_event = 'InsertEnter'
-depends = ['deoplete.nvim']
-[[plugins]]
-repo = 'rafamadriz/friendly-snippets'
-on_event = 'InsertEnter'
-depends = ['vim-vsnip']
-# }}}
-
-[[plugins]] # echodoc {{{
-repo = 'Shougo/echodoc.vim'
-on_event = 'CompleteDone'
-hook_source = '''
-"set noshowmode
-"let g:echodoc#enable_at_startup = 1
-let g:echodoc#type = 'floating'
-let g:echodoc#use_nvim_lsp = v:true
-call echodoc#enable()
+let g:extra_whitespace_ignored_filetypes=['markdown']
+autocmd BufRead,BufNewFile * if ShouldMatchWhitespace() | match ExtraWhitespace /\\\@<![\u3000[:space:]]\+$/ | else | match ExtraWhitespadce /^^/ | endif
 ''' # }}}
 
 [[plugins]] # winresizer {{{
@@ -146,7 +27,7 @@ on_cmd = 'WinResizerStartResize' # }}}
 repo = 'lambdalisue/suda.vim'
 on_event = 'BufRead'
 hook_add = '''
-let g:suda_smart_edit = 0
+let g:suda_smart_edit = 1
 ''' # }}}
 
 [[plugins]] # markdown {{{
@@ -171,11 +52,6 @@ hook_add = '''
         \}
 ''' # }}}
 
-[[plugins]] # vim {{{
-repo = 'Shougo/neco-vim'
-on_ft = 'vim'
-# }}}
-
 [[plugins]] # rust {{{
 repo = 'rust-lang/rust.vim'
 on_ft = 'rust'
@@ -183,43 +59,15 @@ hook_add='''
 let g:rustfmt_autosave = 1
 ''' # }}}
 
-[[plugins]] # w3m {{{
-repo = 'yuratomo/w3m.vim'
-on_cmd = ['W3m', 'W3mTab', 'W3mSplit', 'W3mVSplit']
-hook_add='''
-let g:w3m#external_browser = 'firefox'
-let g:w3m#homepage = "http://www.google.co.jp/"
-let g:w3m#lang = 'ja_JP'
-let g:w3m#search_engine = 'http://www.google.com/search?ie=' . &encoding . '&q=%s'
-let g:w3m#disable_vimproc = 1
-au Filetype w3m setlocal foldnestmax=0
-au Filetype w3m nmap <buffer><c-o> <Plug>(w3m-back)
-''' # }}}
-
  # lsp {{{
 [[plugins]]
 repo = 'https://github.com/nvim-lua/lsp_extensions.nvim'
 on_ft = ['rust']
 [[plugins]]
-repo = 'Shougo/deoplete-lsp'
-on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex', 'javascript', 'typescript']
-hook_add='''
-let g:deoplete#lsp#use_icons_for_candidates = v:true
-'''
-[[plugins]]
 repo = 'neovim/nvim-lspconfig'
 depends = ['lsp_extensions.nvim']
 on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex', 'javascript', 'typescript']
-hook_source = '''
-doautocmd <nomodeline> User LspconfigSource
-call deoplete#custom#source('lsp', 'min_pattern_length', 0)
-call deoplete#custom#source('lsp', 'input_patterns', {
-    \ 'rust': '(::|[. (])\w*',
-    \ 'c': '[. (]\w*',
-    \ 'c++': '[. (]\w*',
-    \ 'sh': '[ ]\w*',
-    \ 'python': '[. (]\w*',
-    \ })
-''' # }}}
+hook_source = 'doautocmd <nomodeline> User LspconfigSource'
+# }}}
 
 # vim: foldmethod=marker
