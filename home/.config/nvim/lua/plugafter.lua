@@ -182,12 +182,20 @@ do
         vim.api.nvim_command('setlocal signcolumn=yes')
     end
 
+    local function cmp(cap)
+        local ok, mod = pcall(require, 'cmp_nvim_lsp')
+        if not ok then return cap end
+        return mod.update_capabilities(cap)
+    end
+
     local function default(server)
         return function()
             local config = require('lspconfig')[server]
             local cmd = config.document_config.default_config.cmd[1]
             if not executable(cmd) then return end
+            local cap = cmp(vim.lsp.protocol.make_client_capabilities())
             config.setup({
+                capabilities = cap,
                 on_attach = function(_client, bufnr)
                     default_keybind(bufnr)
                 end
@@ -207,11 +215,15 @@ do
         local config = require('lspconfig')['rust_analyzer']
         local cmd = config.document_config.default_config.cmd[1]
         if not executable(cmd) then return end
-        local cap = vim.lsp.protocol.make_client_capabilities()
-        cap.textDocument.completion.completionItem.snippetSupport = true;
-        cap.textDocument.completion.completionItem.resolveSupport = {
-            properties = {'documentation', 'detail', 'additionalTextEdits'}
-        }
+        local cap
+        do
+            cap = vim.lsp.protocol.make_client_capabilities()
+            cap.textDocument.completion.completionItem.snippetSupport = true;
+            cap.textDocument.completion.completionItem.resolveSupport = {
+                properties = {'documentation', 'detail', 'additionalTextEdits'}
+            }
+            cap = cmp(cap)
+        end
         config.setup {
             capabilities = cap,
             settings = {
@@ -279,6 +291,65 @@ do
     -- purescriptls.lua
 
     au('User', 'LspconfigSource', "lua _G['_my_lsp'].ready()")
+end
+
+if vim.g.completion == 'cmp' then
+    local M = {}
+    _G['_my_cmp'] = M
+    local cmp = require('cmp')
+    local sources = {
+        {name = 'path'},
+        {name = 'nvim_lsp'},
+        {name = 'nvim_lsp_signature_help'},
+        {name = 'nvim_lua'},
+        {name = 'vsnip'},
+        {name = 'buffer'},
+        {name = 'treesitter'},
+        {name = 'tmux'},
+        {
+            name = 'look',
+            keyword_length = 5,
+            option = {convert_case = true, loud = true}
+        }
+    }
+    cmp.setup({
+        sources = sources,
+        preselect = false,
+        completion = {
+            autocomplete = {
+                require('cmp.types').cmp.TriggerEvent.InsertEnter,
+                require('cmp.types').cmp.TriggerEvent.TextChanged
+            }
+        },
+        snippet = {
+            expand = function(args)
+                -- print(vim.inspect(args))
+                vim.fn["vsnip#anonymous"](args.body)
+            end
+        },
+        mapping = {
+            ['<c-n>'] = cmp.mapping.select_next_item(),
+            ['<c-p>'] = cmp.mapping.select_prev_item(),
+            ['<c-e>'] = cmp.mapping.confirm({select = false})
+        }
+    })
+
+    function M.vim()
+        local ss = {}
+        table.insert(ss, {name = 'cmdline'})
+        for _, x in ipairs(sources) do table.insert(ss, x) end
+        cmp.setup.buffer({sources = ss})
+    end
+    vim.cmd('au Filetype vim lua _G["_my_cmp"].vim()')
+
+    do
+        local cmdline = require('cmp_cmdline').new()
+        cmdline.is_available = function() return true end
+        cmp.register_source('cmdline', cmdline)
+    end
+
+    cmp.setup.cmdline(':', {sources = {{name = 'cmdline'}}})
+    vim.cmd('set completeopt+=menuone,noselect')
 end
 -- %! lua-format --no-keep-simple-function-one-line --chop-down-table
 -- vim: ts=4 sw=4

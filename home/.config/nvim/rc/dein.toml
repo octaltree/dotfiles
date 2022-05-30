@@ -1,9 +1,5 @@
 [[plugins]]
-repo = 'Shougo/context_filetype.vim'
-[[plugins]]
 repo = 'tpope/vim-surround'
-[[plugins]]
-repo = 'Shougo/neco-syntax'
 [[plugins]]
 repo = 'vim-jp/vimdoc-ja'
 [[plugins]]
@@ -23,13 +19,6 @@ let g:solarized_extra_hi_groups = 1
 autocmd VimEnter * nested colorscheme solarized8
 autocmd ColorScheme * hi Folded guifg=#839496 guibg=None guisp=#002b36 gui=None cterm=None
 autocmd ColorScheme * hi NormalFloat guibg=None
-''' # }}}
-
-[[plugins]] # whitespace {{{
-repo = 'bronson/vim-trailing-whitespace'
-hook_add='''
-let g:extra_whitespace_ignored_filetypes=['denite', 'markdown']
-autocmd BufRead,BufNewFile * if ShouldMatchWhitespace() | match ExtraWhitespace /\\\@<![\u3000[:space:]]\+$/ | else | match ExtraWhitespadce /^^/ | endif
 ''' # }}}
 
 [[plugins]] # nerdcommenter {{{
@@ -97,38 +86,49 @@ endfunction
 call s:CreateMaps('nx', 'Toggle',     'Toggle', 'c<Space>')
 ''' # }}}
 
-[[plugins]] # deoplete {{{
-repo = 'Shougo/deoplete.nvim'
-depends = 'context_filetype.vim'
-on_event = 'InsertEnter'
-hook_add = '''
-let g:deoplete#enable_at_startup = 1
-set completeopt+=noselect
-"set completeopt-=preview
+# cmp {{{
+[[plugins]]
+repo = 'hrsh7th/nvim-cmp'
+if = 'g:completion == "cmp"'
+[[plugins]]
+repo = 'octaltree/cmp-look'
+[[plugins]]
+repo = 'hrsh7th/cmp-path'
+if = 'g:completion == "cmp"'
+[[plugins]]
+repo = 'hrsh7th/cmp-vsnip'
+if = 'g:completion == "cmp"'
+[[plugins]]
+repo = 'hrsh7th/cmp-nvim-lsp'
+if = 'g:completion == "cmp"'
+[[plugins]]
+repo = 'hrsh7th/cmp-buffer'
+if = 'g:completion == "cmp"'
+[[plugins]]
+repo = 'hrsh7th/cmp-nvim-lsp-signature-help'
+if = 'g:completion == "cmp"'
+[[plugins]]
+repo = 'hrsh7th/cmp-nvim-lua'
+if = 'g:completion == "cmp"'
+[[plugins]]
+repo = 'ray-x/cmp-treesitter'
+if = 'g:completion == "cmp"'
+[[plugins]]
+repo = 'rafamadriz/friendly-snippets'
+if = 'g:completion == "cmp"'
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip'
+if = 'g:completion == "cmp"'
+[[plugins]]
+repo = 'hrsh7th/cmp-cmdline'
+if = 'g:completion == "cmp"'
+[[plugins]]
+repo = 'andersevenrud/cmp-tmux'
+if = 'g:completion == "cmp"'
 
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | silent! pclose | endif
-call deoplete#custom#option('auto_refresh_delay', 1)
-call deoplete#custom#option('min_pattern_length', 1)
-
-inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
-imap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function() abort
-  return deoplete#close_popup() . "\<CR>"
-endfunction
-"let g:cache_completed = {}
-"function! s:my_cr_function() abort
-"  if has_key(v:completed_item, 'word') && g:cache_completed != v:completed_item
-"    let g:cache_completed = v:completed_item
-"    return deoplete#close_popup()
-"  else
-"    return deoplete#close_popup() . "\<CR>"
-"  endif
-"endfunction
-"imap <silent><expr> <cr> neosnippet#expandable_or_jumpable()?
-"  \ "\<Plug>(neosnippet_expand_or_jump)":
-"  \ deoplete#close_popup() . "\<CR>"
-''' # }}}
+# https://github.com/topics/nvim-cmp
+# Array.from(document.querySelectorAll('article .f3 a.wb-break-word')).map(a => a.href)
+# }}}
 
 [[plugins]]
 repo = 'machakann/vim-sandwich'
@@ -136,5 +136,77 @@ hook_add='''
 let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 '''
 
+[[plugins]]
+repo = 'vim-denops/denops.vim'
+if = 'g:completion == "ddc"'
+
+# ddc {{{
+[[plugins]]
+repo = 'Shougo/ddc.vim'
+if = 'g:completion == "ddc"'
+hook_add='''
+let sources = ['nvim-lsp', 'file', 'treesitter', 'around', 'tabnine', 'look']
+call ddc#custom#patch_global('sources', sources)
+call ddc#custom#patch_global('sourceOptions', {
+      \ '_': {
+      \   'matchers': ['matcher_head'],
+      \   'sorters': ['sorter_rank']},
+      \ 'file': {'mark': 'F', 'forceCompletionPattern': '/'},
+      \ 'look': {'converters': ['loud', 'matcher_head'], 'matchers': [], 'mark': 'L', 'isVolatile': v:true, 'minAutoCompleteLength': 5},
+      \ 'around': {'mark': 'A'},
+      \ 'necovim': {'mark': 'V'},
+      \ 'nvim-lsp': {'minAutoCompleteLength': 0},
+      \ 'treesitter': {'mark': 'S'},
+      \ 'tabnine': {'isVolatile': v:true, 'maxCandidates': 3, 'mark': 'TN', 'minAutoCompleteLength': 5}
+      \ })
+call ddc#custom#patch_filetype('vim', 'sources', ['necovim'] + sources)
+call ddc#custom#patch_global('sourceParams', {
+      \ 'look': {'convertCase': v:true}
+      \ })
+call ddc#custom#patch_filetype('rust', 'sourceOptions', {
+      \ 'nvim-lsp': {'forceCompletionPattern': '(::|[. (])\w*'}
+      \ })
+call ddc#custom#patch_filetype(['c', 'c++'], 'sourceOptions', {
+      \ 'nvim-lsp': {'forceCompletionPattern': '[. (]\w*'}
+      \ })
+call ddc#custom#patch_filetype('python', 'sourceOptions', {
+      \ 'nvim-lsp': {'forceCompletionPattern': '[. (]\w*'}
+      \ })
+call ddc#custom#patch_filetype(['javascript', 'typescript'], 'sourceOptions', {
+      \ 'nvim-lsp': {'forceCompletionPattern': '[. (]\w*'}
+      \ })
+call ddc#custom#patch_filetype('sh', 'sourceOptions', {
+      \ 'nvim-lsp': {'forceCompletionPattern': '[ ]\w*'}
+      \ })
+"call ddc#custom#patch_global('completionMenu', 'pum.vim')
+"inoremap <C-n>   <Cmd>call pum#map#select_relative(+1)<CR>
+"inoremap <C-p>   <Cmd>call pum#map#select_relative(-1)<CR>
+call ddc#enable()
+'''
+[[plugins]]
+repo = 'Shougo/ddc-around'
+if = 'g:completion == "ddc"'
+[[plugins]]
+repo = 'Shougo/ddc-matcher_head'
+if = 'g:completion == "ddc"'
+[[plugins]]
+repo = 'Shougo/ddc-sorter_rank'
+if = 'g:completion == "ddc"'
+[[plugins]]
+repo = 'LumaKernel/ddc-file'
+if = 'g:completion == "ddc"'
+[[plugins]]
+repo = 'Shougo/ddc-nvim-lsp'
+if = 'g:completion == "ddc"'
+[[plugins]]
+repo = 'Shougo/pum.vim'
+if = 'g:completion == "ddc"'
+[[plugins]]
+repo = 'delphinus/ddc-treesitter'
+if = 'g:completion == "ddc"'
+[[plugins]]
+repo = 'LumaKernel/ddc-tabnine'
+if = 'g:completion == "ddc"'
+# }}}
 
 # vim: foldmethod=marker

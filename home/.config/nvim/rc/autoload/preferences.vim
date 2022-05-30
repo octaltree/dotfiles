@@ -1,3 +1,4 @@
+let g:completion = 'cmp'
 let g:vim_syn_embed='lP'
 
 augroup vimrc-auto-mkdir  " {{{
