@@ -89,30 +89,42 @@ call s:CreateMaps('nx', 'Toggle',     'Toggle', 'c<Space>')
 # cmp {{{
 [[plugins]]
 repo = 'hrsh7th/nvim-cmp'
+if = 'g:completion == "cmp"'
 [[plugins]]
 repo = 'octaltree/cmp-look'
 [[plugins]]
 repo = 'hrsh7th/cmp-path'
+if = 'g:completion == "cmp"'
 [[plugins]]
 repo = 'hrsh7th/cmp-vsnip'
+if = 'g:completion == "cmp"'
 [[plugins]]
 repo = 'hrsh7th/cmp-nvim-lsp'
+if = 'g:completion == "cmp"'
 [[plugins]]
 repo = 'hrsh7th/cmp-buffer'
+if = 'g:completion == "cmp"'
 [[plugins]]
 repo = 'hrsh7th/cmp-nvim-lsp-signature-help'
+if = 'g:completion == "cmp"'
 [[plugins]]
 repo = 'hrsh7th/cmp-nvim-lua'
+if = 'g:completion == "cmp"'
 [[plugins]]
 repo = 'ray-x/cmp-treesitter'
+if = 'g:completion == "cmp"'
 [[plugins]]
 repo = 'rafamadriz/friendly-snippets'
+if = 'g:completion == "cmp"'
 [[plugins]]
 repo = 'hrsh7th/vim-vsnip'
+if = 'g:completion == "cmp"'
 [[plugins]]
 repo = 'hrsh7th/cmp-cmdline'
+if = 'g:completion == "cmp"'
 [[plugins]]
 repo = 'andersevenrud/cmp-tmux'
+if = 'g:completion == "cmp"'
 
 # https://github.com/topics/nvim-cmp
 # Array.from(document.querySelectorAll('article .f3 a.wb-break-word')).map(a => a.href)
@@ -126,10 +138,12 @@ let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 
 [[plugins]]
 repo = 'vim-denops/denops.vim'
+if = 'g:completion == "ddc"'
 
 # ddc {{{
 [[plugins]]
 repo = 'Shougo/ddc.vim'
+if = 'g:completion == "ddc"'
 hook_add='''
 let sources = ['nvim-lsp', 'file', 'treesitter', 'around', 'tabnine', 'look']
 call ddc#custom#patch_global('sources', sources)
@@ -171,20 +185,28 @@ call ddc#enable()
 '''
 [[plugins]]
 repo = 'Shougo/ddc-around'
+if = 'g:completion == "ddc"'
 [[plugins]]
 repo = 'Shougo/ddc-matcher_head'
+if = 'g:completion == "ddc"'
 [[plugins]]
 repo = 'Shougo/ddc-sorter_rank'
+if = 'g:completion == "ddc"'
 [[plugins]]
 repo = 'LumaKernel/ddc-file'
+if = 'g:completion == "ddc"'
 [[plugins]]
 repo = 'Shougo/ddc-nvim-lsp'
+if = 'g:completion == "ddc"'
 [[plugins]]
 repo = 'Shougo/pum.vim'
+if = 'g:completion == "ddc"'
 [[plugins]]
 repo = 'delphinus/ddc-treesitter'
+if = 'g:completion == "ddc"'
 [[plugins]]
 repo = 'LumaKernel/ddc-tabnine'
+if = 'g:completion == "ddc"'
 # }}}
 
 # vim: foldmethod=marker

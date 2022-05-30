@@ -293,7 +293,7 @@ do
     au('User', 'LspconfigSource', "lua _G['_my_lsp'].ready()")
 end
 
-do
+if vim.g.completion == 'cmp' then
     local M = {}
     _G['_my_cmp'] = M
     local cmp = require('cmp')
