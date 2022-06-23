@@ -8,6 +8,8 @@ merged = 0
 [[plugins]]
 repo = 'octaltree/linearf-my-flavors'
 [[plugins]]
+repo = 'hrsh7th/vim-vsnip'
+[[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
 merged = 0
 
@@ -115,9 +117,6 @@ repo = 'ray-x/cmp-treesitter'
 if = 'g:completion == "cmp"'
 [[plugins]]
 repo = 'rafamadriz/friendly-snippets'
-if = 'g:completion == "cmp"'
-[[plugins]]
-repo = 'hrsh7th/vim-vsnip'
 if = 'g:completion == "cmp"'
 [[plugins]]
 repo = 'hrsh7th/cmp-cmdline'
