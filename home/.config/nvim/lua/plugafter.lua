@@ -149,7 +149,7 @@ if pcall(require, 'nvim-treesitter') then
     ts_config.setup {highlight = {enable = true, disable = {'json', 'csv'}}}
 end
 
-if pcall(require, 'lspconfig') then
+do
     local M = {servers = {}, cache = {executable = {}}}
     _G['_my_lsp'] = M
 
@@ -265,6 +265,7 @@ if pcall(require, 'lspconfig') then
     use_default({'javascript', 'typescript'}, 'denols')
     -- use_default({'javascript', 'typescript'}, 'tsserver')
     use_default({'tex'}, 'texlab')
+    use_default({'graphql'}, 'graphql')
     -- ansiblels.lua
     -- cmake.lua
     -- dockerls.lua
