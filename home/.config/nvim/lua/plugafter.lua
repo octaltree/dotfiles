@@ -1,4 +1,4 @@
-do
+if pcall(require, 'linearf') and pcall(require, 'linearf-my-flavors') then
     local linearf = require('linearf')
     local flavors = require('linearf-my-flavors')
     -- linearf._debug = true
@@ -144,12 +144,12 @@ do
         "nnoremap <silent><space>l :<c-u>lua lnf.resume_last()<CR>")
 end
 
-do
+if pcall(require, 'nvim-treesitter') then
     local ts_config = require('nvim-treesitter.configs')
     ts_config.setup {highlight = {enable = true, disable = {'json', 'csv'}}}
 end
 
-do
+if pcall(require, 'lspconfig') then
     local M = {servers = {}, cache = {executable = {}}}
     _G['_my_lsp'] = M
 
