@@ -48,7 +48,6 @@ set smartcase
 set wrapscan
 
 " ## status ##########
-set cmdheight=0
 set laststatus=2
 set rulerformat=%l,%c%=
 set statusline=%f\ (%Y,%{has('multi_byte')&&\&fileencoding!=''?&fileencoding:&encoding},%{&fileformat},bomb%{&bomb})%=\ %l,%c
