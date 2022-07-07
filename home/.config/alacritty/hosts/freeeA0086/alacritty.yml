@@ -16,3 +16,6 @@ colors:
 key_bindings:
   - {key: H, mods: Alt, chars: "\x1bh"}
   - {key: L, mods: Alt, chars: "\x1bl"}
+
+window:
+    startup_mode: Fullscreen
