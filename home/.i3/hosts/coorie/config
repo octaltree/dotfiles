@@ -389,7 +389,7 @@ mode "$mode_gaps_outer" {
 
 #exec --no-startup-id alacritty
 exec --no-startup-id alacritty
-exec --no-startup-id firefox
+exec --no-startup-id sleep 10 && firefox
 no_focus [class="Slack"]
 assign [class="Slack"] 4
 exec --no-startup-id sleep 120 && slack --startup
