@@ -11,6 +11,10 @@ nnoremap q? ?
 vnoremap ; q:a
 vnoremap : ;
 
+au CmdWinEnter * nnoremap <buffer>; :
+au CmdWinEnter * nnoremap <buffer>/ /
+au CmdWinEnter * nnoremap <buffer>? ?
+
 nnoremap j gj
 nnoremap k gk
 nnoremap <c-k> zk
