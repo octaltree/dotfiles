@@ -185,7 +185,9 @@ do
     local function cmp(cap)
         local ok, mod = pcall(require, 'cmp_nvim_lsp')
         if not ok then return cap end
-        return mod.update_capabilities(cap)
+        return mod.update_capabilities(cap, {
+            snippetSupport = false
+        })
     end
 
     local function default(server)
