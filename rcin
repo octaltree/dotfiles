@@ -161,6 +161,9 @@ function newSym(){ # {{{
   if [ -e $to ]; then
     if [ -h $to ] && [ `readlink $to` = $from ]; then
       return 0
+    elif [ "`cat $from`" = "`cat $to`" ]; then
+      # コンテンツが同じときバックアップつくらずsymに
+      rm $to
     else
       bakForDeploy $to
     fi
