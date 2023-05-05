@@ -1,3 +1,5 @@
+export NVM_LAZY_LOAD=true
+
 source ~/.zsh/plug/zinit/zinit.zsh
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
@@ -8,6 +10,7 @@ zinit ice lucid wait'' atinit'zpcompinit'; zinit load zsh-users/zsh-autosuggesti
 zinit ice lucid wait'!1'; zinit load _local/sandbox
 zinit ice lucid wait'!1'; zinit load zsh-users/zsh-syntax-highlighting
 zinit ice lucid wait'!1'; zinit load zsh-users/zsh-completions
+zinit light lukechilds/zsh-nvm
 
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
