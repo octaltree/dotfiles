@@ -16,7 +16,7 @@ set clipboard=unnamed,unnamedplus
 set pumblend=30
 set winblend=30
 set shortmess+=I
-set cmdwinheight=14
+set cmdwinheight=5
 
 au QuickfixCmdPost make,grep,grepadd,vimgrep cwindow
 
