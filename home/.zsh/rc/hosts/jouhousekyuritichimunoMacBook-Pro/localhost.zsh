@@ -2,6 +2,7 @@
 
 alias opn=open
 
+export PATH="/opt/homerew/opt/coreutils/libexec/gnubin:${PATH}"
 export PATH="/Users/octaltree/Library/handy:${PATH}"
 export EDITOR=nvim
 
