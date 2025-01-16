@@ -1,0 +1,31 @@
+[[keyboard.bindings]]
+chars = "\u001Bh"
+key = "H"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bl"
+key = "L"
+mods = "Alt"
+
+[colors.primary]
+background = "0x02060e"
+
+[font]
+size = 16
+
+[font.bold]
+family = "Ricty Diminished"
+style = "Bold"
+
+[font.italic]
+family = "Ricty Diminished"
+style = "Oblique"
+
+[font.normal]
+family = "Ricty Diminished"
+
+[window]
+startup_mode = "Fullscreen"
+
+[keyboard]
