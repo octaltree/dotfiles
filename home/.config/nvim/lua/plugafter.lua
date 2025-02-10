@@ -178,6 +178,7 @@ do
         nnor('gW', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
         nnor('ss', '<cmd>lua vim.lsp.buf.formatting()<CR>')
         nnor('ga', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+        nnor('gc', '<cmd>lua vim.diagnostic.setloclist()<CR>')
         -- 必ずしもカレントバッファとは限らないが
         vim.api.nvim_command('setlocal signcolumn=yes')
     end
@@ -230,6 +231,16 @@ do
             capabilities = cap,
             settings = {
                 ["rust-analyzer"] = {
+                    check = {command = "clippy"},
+                    diagnostics = {
+                        enable = true,
+                        experimental = {enable = true}
+                    },
+                    cargo = {
+                        buildScripts = {
+                            enable = true,
+                        },
+                    },
                     procMacro = {enable = true},
                     lruCapacity = 512
                 }
