@@ -40,11 +40,17 @@ bindsym XF86AudioRaiseVolume exec "pulsemixer --change-volume +1; notify-send `p
 bindsym XF86AudioLowerVolume exec "pulsemixer --change-volume -1; notify-send `pulsemixer --get-volume| sed 's/ /:/'`"
 bindsym XF86MonBrightnessUp exec "light -A 1; notify-send 'brightness up'"
 bindsym XF86MonBrightnessDown exec "light -U 1; notify-send 'brightness down'"
+
+bindsym XF86Tools focus left
+bindsym XF86Mail focus right
+bindsym XF86Search kill
+
+
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+space focus mode_toggle
 # あまり使わない
-bindsym $mod+z exec --no-startup-id morc_menu # categorized menu
+#bindsym $mod+z exec --no-startup-id morc_menu # categorized menu
 bindsym $mod+F3 exec pcmanfm
 bindsym $mod+Shift+F3 exec gksu pcmanfm
 bindsym $mod+f fullscreen toggle
@@ -76,6 +82,7 @@ bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart du
 # change focus
 #bindsym Mod1+Tab focus right
 bindsym $mod+h focus left
+bindsym $mod+z focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
@@ -149,6 +156,7 @@ mode "$mode_move_workspace" {
   bindsym Ctrl+[ mode "default"
   bindsym Ctrl+c mode "default"
 }
+
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
