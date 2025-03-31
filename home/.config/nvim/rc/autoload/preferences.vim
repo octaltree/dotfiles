@@ -19,3 +19,14 @@ command! CargoPlay w ! cargo play --stdin
 
 command! -nargs=+ JAEN split | execute "terminal echo " . <q-args> . "| trans ja:en"
 command! -nargs=+ ENJA split | execute "terminal echo " . <q-args> . "| trans en:ja"
+
+command! -nargs=+ CargoOpen call CargoOpen(<f-args>)
+function! CargoOpen(...)
+  let xs = split(a:2, ":")
+  let n = len(xs)
+  let col = xs[n - 1]
+  let row = xs[n - 2]
+  let path = join(xs[0:n-3], ":")
+  execute "e " . path
+  call cursor(row, col)
+endfunction
