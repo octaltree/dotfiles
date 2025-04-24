@@ -68,6 +68,12 @@ repo = 'neovim/nvim-lspconfig'
 depends = ['lsp_extensions.nvim']
 on_ft = ['rust', 'c', 'cpp', 'sh', 'python', 'tex', 'javascript', 'typescript', 'graphql']
 hook_source = 'doautocmd <nomodeline> User LspconfigSource'
+[[plugins]]
+repo = 'folke/trouble.nvim'
+cmd = 'TroubleToggle'
+hook_add = '''
+  lua require("trouble").setup {}
+'''
 # }}}
 
 # vim: foldmethod=marker
