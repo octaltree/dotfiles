@@ -71,7 +71,7 @@ hook_source = 'doautocmd <nomodeline> User LspconfigSource'
 [[plugins]]
 repo = 'folke/trouble.nvim'
 cmd = 'TroubleToggle'
-hook_add = '''
+hook_post_source = '''
   lua require("trouble").setup {}
 '''
 # }}}
