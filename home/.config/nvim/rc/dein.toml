@@ -19,6 +19,10 @@ hook_add='''
 let g:solarized_termtrans=1
 let g:solarized_extra_hi_groups = 1
 autocmd VimEnter * nested colorscheme solarized8
+autocmd ColorScheme * hi Normal guibg=None ctermbg=None
+autocmd ColorScheme * hi NonText guibg=None ctermbg=None
+autocmd ColorScheme * hi LineNr guibg=None ctermbg=None
+autocmd ColorScheme * hi SignColumn guibg=None ctermbg=None
 autocmd ColorScheme * hi Folded guifg=#839496 guibg=None guisp=#002b36 gui=None cterm=None
 autocmd ColorScheme * hi NormalFloat guibg=None
 ''' # }}}
