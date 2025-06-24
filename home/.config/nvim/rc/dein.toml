@@ -130,6 +130,9 @@ if = 'g:completion == "cmp"'
 # }}}
 
 [[plugins]]
+repo = 'coder/claudecode.nvim'
+
+[[plugins]]
 repo = 'machakann/vim-sandwich'
 hook_add='''
 let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)

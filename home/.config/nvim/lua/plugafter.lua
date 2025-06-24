@@ -365,5 +365,38 @@ if vim.g.completion == 'cmp' and pcall(require, 'cmp') then
     cmp.setup.cmdline(':', {sources = {{name = 'cmdline'}}})
     vim.cmd('set completeopt+=menuone,noselect')
 end
+
+-- claudecode.nvim setup
+if pcall(require, 'claudecode') then
+    require('claudecode').setup({
+        -- Server Configuration
+        port_range = { min = 10000, max = 65535 },
+        auto_start = true,
+        log_level = "info",
+
+        -- Terminal Configuration
+        terminal = {
+            split_side = "right",
+            split_width_percentage = 0.30,
+            provider = "auto",
+            auto_close = true
+        },
+
+        -- Diff Integration
+        diff_opts = {
+            auto_close_on_accept = true,
+            vertical_split = true,
+            open_in_current_tab = true
+        }
+    })
+
+    -- Key mappings
+    vim.keymap.set('n', '<leader>ac', '<cmd>ClaudeCode<cr>', { desc = 'Toggle Claude' })
+    vim.keymap.set('n', '<leader>af', '<cmd>ClaudeCodeFocus<cr>', { desc = 'Focus Claude' })
+    vim.keymap.set('v', '<leader>as', '<cmd>ClaudeCodeSend<cr>', { desc = 'Send to Claude' })
+    vim.keymap.set('n', '<leader>ad', '<cmd>ClaudeCodeDiffAccept<cr>', { desc = 'Accept Claude diff' })
+    vim.keymap.set('n', '<leader>ar', '<cmd>ClaudeCodeDiffDeny<cr>', { desc = 'Reject Claude diff' })
+end
+
 -- %! lua-format --no-keep-simple-function-one-line --chop-down-table
 -- vim: ts=4 sw=4
