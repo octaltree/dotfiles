@@ -378,7 +378,7 @@ if pcall(require, 'claudecode') then
         terminal = {
             split_side = "right",
             split_width_percentage = 0.30,
-            provider = "auto",
+            provider = "native",
             auto_close = true
         },
 
