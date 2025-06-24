@@ -391,11 +391,11 @@ if pcall(require, 'claudecode') then
     })
 
     -- Key mappings
-    vim.keymap.set('n', '<leader>ac', '<cmd>ClaudeCode<cr>', { desc = 'Toggle Claude' })
-    vim.keymap.set('n', '<leader>af', '<cmd>ClaudeCodeFocus<cr>', { desc = 'Focus Claude' })
-    vim.keymap.set('v', '<leader>as', '<cmd>ClaudeCodeSend<cr>', { desc = 'Send to Claude' })
-    vim.keymap.set('n', '<leader>ad', '<cmd>ClaudeCodeDiffAccept<cr>', { desc = 'Accept Claude diff' })
-    vim.keymap.set('n', '<leader>ar', '<cmd>ClaudeCodeDiffDeny<cr>', { desc = 'Reject Claude diff' })
+    vim.keymap.set('n', '<space>cc', '<cmd>ClaudeCode<cr>', { desc = 'Toggle Claude' })
+    vim.keymap.set('n', '<space>cf', '<cmd>ClaudeCodeFocus<cr>', { desc = 'Focus Claude' })
+    vim.keymap.set('v', '<space>cs', '<cmd>ClaudeCodeSend<cr>', { desc = 'Send to Claude' })
+    vim.keymap.set('n', '<space>cd', '<cmd>ClaudeCodeDiffAccept<cr>', { desc = 'Accept Claude diff' })
+    vim.keymap.set('n', '<space>cr', '<cmd>ClaudeCodeDiffDeny<cr>', { desc = 'Reject Claude diff' })
 end
 
 -- %! lua-format --no-keep-simple-function-one-line --chop-down-table
