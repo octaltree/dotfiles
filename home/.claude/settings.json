@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "List(*)",
+      "Fetch(https://*)",
+      "Bash(ls:*)",
+      "Bash(rg:*)",
+      "Bash(mv:*)",
+      "Bash(git commit:*)",
+      "Bash(git branch:*)",
+      "Bash(git diff:*)"
+    ],
+    "deny": []
+  },
+  "includeCoAuthoredBy": false,
+  "env": {}
+}
