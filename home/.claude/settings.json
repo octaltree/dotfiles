@@ -6,6 +6,7 @@
       "Bash(ls:*)",
       "Bash(rg:*)",
       "Bash(mv:*)",
+      "Bash(gemini --prompt)",
       "Bash(git commit:*)",
       "Bash(git branch:*)",
       "Bash(git diff:*)"
@@ -14,5 +15,5 @@
   },
   "includeCoAuthoredBy": false,
   "env": {},
-  "promptTemplate": "日本語で返して"
+  "promptTemplate": "日本語で返して。url閲覧はFetchで行いつつ、webから情報を取得したり、疑問の解決に`gemini --prompt`を使用して"
 }
