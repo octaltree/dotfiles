@@ -178,7 +178,10 @@ do
         nnor('gW', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
         nnor('ss', '<cmd>lua vim.lsp.buf.formatting()<CR>')
         nnor('ga', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-        nnor('gc', '<cmd>lua vim.diagnostic.setloclist()<CR>')
+        vim.keymap.set('n', 'gc', function()
+            vim.diagnostic.setqflist()
+            vim.cmd('copen')
+        end, { noremap = true, silent = true })
         -- 必ずしもカレントバッファとは限らないが
         vim.api.nvim_command('setlocal signcolumn=yes')
     end
@@ -201,6 +204,7 @@ do
                 capabilities = cap,
                 on_attach = function(_client, bufnr)
                     default_keybind(bufnr)
+                    vim.api.nvim_buf_set_option(bufnr, 'statusline', '%f %h%m%r %= %{v:lua.lsp_status()}')
                 end
             })
         end
@@ -212,6 +216,11 @@ do
 
     local function au(evt, target, cmd)
         vim.api.nvim_command(string.format('au %s %s %s', evt, target, cmd))
+    end
+
+    function _G.lsp_status()
+        local msg = vim.lsp.status()
+        return (msg and msg ~= '') and msg or ''
     end
 
     function M.servers.rust()
@@ -247,6 +256,7 @@ do
             },
             on_attach = function(_client, bufnr)
                 default_keybind(bufnr)
+                vim.api.nvim_buf_set_option(bufnr, 'statusline', '%f %h%m%r %= %{v:lua.lsp_status()}')
                 M._rust = function()
                     require('lsp_extensions').inlay_hints {
                         prefix = " » ",
