@@ -143,7 +143,15 @@ if = 'g:completion == "cmp"'
 # }}}
 
 [[plugins]]
-repo = 'coder/claudecode.nvim'
+repo = 'nvim-lua/plenary.nvim'
+
+[[plugins]]
+repo = 'MunifTanjim/nui.nvim'
+
+[[plugins]]
+repo = 'yetone/avante.nvim'
+build = 'make'
+depends = ['plenary.nvim', 'nui.nvim']
 
 [[plugins]]
 repo = 'machakann/vim-sandwich'

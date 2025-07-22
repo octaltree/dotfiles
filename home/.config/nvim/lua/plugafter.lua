@@ -286,7 +286,6 @@ do
     use_default({'sh'}, 'bashls')
     use_default({'python'}, 'pylsp')
     use_default({'javascript', 'typescript'}, 'denols')
-    -- use_default({'javascript', 'typescript'}, 'tsserver')
     use_default({'tex'}, 'texlab')
     use_default({'graphql'}, 'graphql')
     -- ansiblels.lua
@@ -376,36 +375,111 @@ if vim.g.completion == 'cmp' and pcall(require, 'cmp') then
     vim.cmd('set completeopt+=menuone,noselect')
 end
 
--- claudecode.nvim setup
-if pcall(require, 'claudecode') then
-    require('claudecode').setup({
-        -- Server Configuration
-        port_range = { min = 10000, max = 65535 },
-        auto_start = true,
-        log_level = "info",
 
-        -- Terminal Configuration
-        terminal = {
-            split_side = "right",
-            split_width_percentage = 0.30,
-            provider = "native",
-            auto_close = true
+-- Avante.nvim setup
+if pcall(require, 'avante') then
+    -- Function to read Claude Code credentials
+    local function get_claude_token()
+      local home = os.getenv("HOME")
+      
+      -- Check for macOS first (using uname)
+      local handle = io.popen("uname")
+      local system = handle:read("*a"):gsub("%s+", "")
+      handle:close()
+      
+      if system == "Darwin" then
+        -- macOS: Try to get from Keychain
+        local keychain_handle = io.popen('security find-generic-password -s "Claude Code" -w 2>/dev/null')
+        if keychain_handle then
+          local token = keychain_handle:read("*a"):gsub("%s+", "")
+          keychain_handle:close()
+          if token and token ~= "" then
+            return token
+          end
+        end
+      else
+        -- Linux: Read from credentials file
+        local credentials_path = home .. "/.claude/.credentials.json"
+        local file = io.open(credentials_path, "r")
+        if file then
+          local content = file:read("*all")
+          file:close()
+          
+          local ok, json = pcall(vim.fn.json_decode, content)
+          if ok and json and json.claudeAiOauth and json.claudeAiOauth.accessToken then
+            return json.claudeAiOauth.accessToken
+          end
+        end
+      end
+      
+      return nil
+    end
+
+    local claude_token = get_claude_token()
+
+    local avante = require('avante')
+    avante.setup({
+      provider = "claude",
+      auto_suggestions = true,
+      providers = {
+        claude = {
+          endpoint = "https://api.anthropic.com",
+          model = "claude-3-5-sonnet-20241022",
+          timeout = 30000,
+          api_key_name = claude_token and ("cmd:echo " .. claude_token) or "ANTHROPIC_API_KEY",
+          extra_request_body = {
+            temperature = 0,
+            max_tokens = 4096,
+          },
         },
-
-        -- Diff Integration
-        diff_opts = {
-            auto_close_on_accept = true,
-            vertical_split = true,
-            open_in_current_tab = true
-        }
+      },
+      behaviour = {
+        auto_suggestions = false,
+        auto_set_highlight_group = true,
+        auto_set_keymaps = false,
+        auto_apply_diff_after_generation = false,
+        support_paste_from_clipboard = false,
+      },
+      mappings = {
+        ask = "<leader>cc",
+        edit = "<leader>cf",
+        refresh = "<leader>cr",
+        diff = {
+          ours = "<leader>cd",
+          theirs = "ct",
+          both = "cb",
+          next = "]x",
+          prev = "[x",
+        },
+        suggestion = {
+          accept = "<M-l>",
+          next = "<M-]>",
+          prev = "<M-[>",
+          dismiss = "<C-]>",
+        },
+      },
+      hints = { enabled = true },
+      windows = {
+        position = "right",
+        wrap = true,
+        width = 30,
+        sidebar_header = {
+          align = "center",
+          rounded = true,
+        },
+        ask = {
+          floating = false,
+          border = { " ", " ", " ", " ", " ", " ", " ", " " },
+          start_insert = true,  
+        },
+      },
+      ask = {
+        floating = false,
+        border = { " ", " ", " ", " ", " ", " ", " ", " " },
+        start_insert = true,
+        focus_on_apply = "ours",
+      },
     })
-
-    -- Key mappings
-    vim.keymap.set('n', '<space>cc', '<cmd>ClaudeCode<cr>', { desc = 'Toggle Claude' })
-    vim.keymap.set('n', '<space>cf', '<cmd>ClaudeCodeFocus<cr>', { desc = 'Focus Claude' })
-    vim.keymap.set('v', '<space>cs', '<cmd>ClaudeCodeSend<cr>', { desc = 'Send to Claude' })
-    vim.keymap.set('n', '<space>cd', '<cmd>ClaudeCodeDiffAccept<cr>', { desc = 'Accept Claude diff' })
-    vim.keymap.set('n', '<space>cr', '<cmd>ClaudeCodeDiffDeny<cr>', { desc = 'Reject Claude diff' })
 end
 
 -- %! lua-format --no-keep-simple-function-one-line --chop-down-table
