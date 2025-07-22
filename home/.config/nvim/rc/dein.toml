@@ -10,6 +10,15 @@ repo = 'octaltree/linearf-my-flavors'
 [[plugins]]
 repo = 'hrsh7th/vim-vsnip'
 [[plugins]]
+repo = 'christoomey/vim-tmux-navigator'
+hook_add = '''
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <C-c>h :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-c>j :TmuxNavigateDown<cr>
+nnoremap <silent> <C-c>k :TmuxNavigateUp<cr>
+nnoremap <silent> <C-c>l :TmuxNavigateRight<cr>
+'''
+[[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
 merged = 0
 
@@ -152,7 +161,7 @@ repo = 'Shougo/ddc.vim'
 if = 'g:completion == "ddc"'
 hook_add='''
 call ddc#custom#patch_global('ui', 'native')
-let sources = ['lsp', 'file', 'treesitter', 'around', 'look']
+let sources = ['lsp', 'file', 'treesitter', 'around', 'look', 'tmux']
 call ddc#custom#patch_global('sources', sources)
 call ddc#custom#patch_global('sourceOptions', {
       \ '_': {
@@ -163,7 +172,8 @@ call ddc#custom#patch_global('sourceOptions', {
       \ 'around': {'mark': 'A'},
       \ 'necovim': {'mark': 'V'},
       \ 'lsp': {'minAutoCompleteLength': 0},
-      \ 'treesitter': {'mark': 'S'}
+      \ 'treesitter': {'mark': 'S'},
+      \ 'tmux': {'mark': 'T', 'minAutoCompleteLength': 0}
       \ })
 call ddc#custom#patch_filetype('vim', 'sources', ['necovim'] + sources)
 call ddc#custom#patch_global('sourceParams', {
@@ -215,6 +225,9 @@ repo = 'Shougo/pum.vim'
 if = 'g:completion == "ddc"'
 [[plugins]]
 repo = 'delphinus/ddc-treesitter'
+if = 'g:completion == "ddc"'
+[[plugins]]
+repo = 'delphinus/ddc-source-tmux'
 if = 'g:completion == "ddc"'
 # }}}
 
