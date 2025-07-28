@@ -16,7 +16,7 @@
   },
   "includeCoAuthoredBy": false,
   "env": {},
-  "mcpServers": {
+  "mcp": {
     "playwright": {
       "command": "npx",
       "args": ["@playwright/mcp"],
