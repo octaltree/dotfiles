@@ -15,5 +15,14 @@
     "deny": []
   },
   "includeCoAuthoredBy": false,
-  "env": {}
+  "env": {},
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-playwright"],
+      "env": {
+        "PLAYWRIGHT_HEADLESS": "true"
+      }
+    }
+  }
 }
