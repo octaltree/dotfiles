@@ -1,6 +1,9 @@
 [[plugins]]
 repo = 'tpope/vim-surround'
 [[plugins]]
+repo = 'sindrets/diffview.nvim'
+depends = ['plenary.nvim']
+[[plugins]]
 repo = 'vim-jp/vimdoc-ja'
 [[plugins]]
 repo = 'octaltree/linearf'
