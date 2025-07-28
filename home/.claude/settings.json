@@ -19,7 +19,7 @@
   "mcpServers": {
     "playwright": {
       "command": "npx",
-      "args": ["@modelcontextprotocol/server-playwright"],
+      "args": ["@playwright/mcp"],
       "env": {
         "PLAYWRIGHT_HEADLESS": "true"
       }
