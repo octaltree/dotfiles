@@ -404,74 +404,58 @@ end
 
 -- Avante.nvim setup
 if pcall(require, 'avante') then
-    -- Function to read Claude Code credentials
-    local function get_claude_token()
+    -- Function to read OpenRouter credentials
+    local function get_openrouter_token()
       local home = os.getenv("HOME")
-      
-      -- Check for macOS first (using uname)
-      local handle = io.popen("uname")
-      local system = handle:read("*a"):gsub("%s+", "")
-      handle:close()
-      
-      if system == "Darwin" then
-        -- macOS: Try to get from Keychain
-        local keychain_handle = io.popen('security find-generic-password -s "Claude Code" -w 2>/dev/null')
-        if keychain_handle then
-          local token = keychain_handle:read("*a"):gsub("%s+", "")
-          keychain_handle:close()
-          if token and token ~= "" then
-            return token
-          end
-        end
-      else
-        -- Linux: Read from credentials file
-        local credentials_path = home .. "/.claude/.credentials.json"
-        local file = io.open(credentials_path, "r")
-        if file then
-          local content = file:read("*all")
-          file:close()
-          
-          local ok, json = pcall(vim.fn.json_decode, content)
-          if ok and json and json.claudeAiOauth and json.claudeAiOauth.accessToken then
-            return json.claudeAiOauth.accessToken
-          end
+      local credentials_path = home .. "/.config/openrouter/credentials.json"
+      local file = io.open(credentials_path, "r")
+      if file then
+        local content = file:read("*all")
+        file:close()
+        
+        local ok, json = pcall(vim.fn.json_decode, content)
+        if ok and json and json.api_key then
+          return json.api_key
         end
       end
       
       return nil
     end
 
-    local claude_token = get_claude_token()
+    local openrouter_token = get_openrouter_token()
 
     local avante = require('avante')
     avante.setup({
-      provider = "claude",
+      provider = "openai",
       auto_suggestions = true,
       providers = {
-        claude = {
-          endpoint = "https://api.anthropic.com",
-          model = "claude-3-5-sonnet-20241022",
+        openai = {
+          endpoint = "https://openrouter.ai/api/v1",
+          model = "qwen/qwen3-coder:free",
           timeout = 30000,
-          api_key_name = claude_token and ("cmd:echo " .. claude_token) or "ANTHROPIC_API_KEY",
+          api_key_name = openrouter_token and ("cmd:echo " .. openrouter_token) or "OPENROUTER_API_KEY",
           extra_request_body = {
             temperature = 0,
-            max_tokens = 4096,
+          },
+          extra_headers = {
+            ["HTTP-Referer"] = "https://github.com/yetone/avante.nvim",
+            ["X-Title"] = "Avante.nvim",
           },
         },
       },
       behaviour = {
         auto_suggestions = false,
         auto_set_highlight_group = true,
-        auto_set_keymaps = false,
+        auto_set_keymaps = true,
         auto_apply_diff_after_generation = false,
         support_paste_from_clipboard = false,
       },
       mappings = {
-        ask = "<leader>cc",
-        edit = "<leader>cf",
-        refresh = "<leader>cr",
+        ask = "<space>cc",
+        edit = "<space>cf",
+        refresh = "<space>cr",
         diff = {
-          ours = "<leader>cd",
+          ours = "<space>cd",
           theirs = "ct",
           both = "cb",
           next = "]x",
@@ -1305,6 +1289,93 @@ if pcall(require, 'diffview') then
             end, { buffer = true, desc = 'Open diffview for this commit' })
         end
     })
+end
+
+-- Neogit setup
+if pcall(require, 'neogit') then
+    local neogit = require('neogit')
+    neogit.setup({
+        disable_signs = false,
+        disable_hint = false,
+        disable_context_highlighting = false,
+        disable_commit_confirmation = false,
+        auto_refresh = true,
+        disable_builtin_notifications = false,
+        use_magit_keybindings = false,
+        commit_popup = {
+            kind = "split",
+        },
+        kind = "tab",
+        signs = {
+            section = { ">", "v" },
+            item = { ">", "v" },
+            hunk = { "", "" },
+        },
+        integrations = {
+            diffview = true
+        },
+        sections = {
+            untracked = {
+                folded = false,
+                hidden = false
+            },
+            unstaged = {
+                folded = false,
+                hidden = false
+            },
+            staged = {
+                folded = false,
+                hidden = false
+            },
+            stashes = {
+                folded = true,
+                hidden = false
+            },
+            unpulled = {
+                folded = true,
+                hidden = false
+            },
+            unmerged = {
+                folded = false,
+                hidden = false
+            },
+            recent = {
+                folded = true,
+                hidden = false
+            },
+        },
+        mappings = {
+            status = {
+                ["q"] = "Close",
+                ["1"] = "Depth1",
+                ["2"] = "Depth2", 
+                ["3"] = "Depth3",
+                ["4"] = "Depth4",
+                ["<tab>"] = "Toggle",
+                ["x"] = "Discard",
+                ["s"] = "Stage",
+                ["S"] = "StageUnstaged",
+                ["<c-s>"] = "StageAll",
+                ["u"] = "Unstage",
+                ["U"] = "UnstageStaged",
+                ["$"] = "CommandHistory",
+                ["<c-r>"] = "RefreshBuffer",
+                ["<enter>"] = "GoToFile",
+                ["<c-v>"] = "VSplitOpen",
+                ["<c-x>"] = "SplitOpen",
+                ["<c-t>"] = "TabOpen",
+                ["{"] = "GoToPreviousHunkHeader",
+                ["}"] = "GoToNextHunkHeader",
+            }
+        }
+    })
+    
+    -- Global keymaps for Neogit
+    vim.keymap.set('n', '<space>ng', ':Neogit<CR>', { noremap = true, silent = true, desc = 'Open Neogit' })
+    vim.keymap.set('n', '<space>nc', ':Neogit commit<CR>', { noremap = true, silent = true, desc = 'Open Neogit commit' })
+    vim.keymap.set('n', '<space>nl', ':Neogit log<CR>', { noremap = true, silent = true, desc = 'Open Neogit log' })
+    vim.keymap.set('n', '<space>np', ':Neogit pull<CR>', { noremap = true, silent = true, desc = 'Neogit pull' })
+    vim.keymap.set('n', '<space>nP', ':Neogit push<CR>', { noremap = true, silent = true, desc = 'Neogit push' })
 end
 
 -- %! lua-format --no-keep-simple-function-one-line --chop-down-table
