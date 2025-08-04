@@ -178,10 +178,36 @@ do
         nnor('gW', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
         nnor('ss', '<cmd>lua vim.lsp.buf.formatting()<CR>')
         nnor('ga', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+        nnor('gn', '<cmd>lua vim.lsp.buf.rename()<CR>')
         vim.keymap.set('n', 'gc', function()
             vim.diagnostic.setqflist()
             vim.cmd('copen')
         end, { noremap = true, silent = true })
+        
+        -- Toggle underscore prefix
+        vim.keymap.set('n', 'g_', function()
+            local word = vim.fn.expand('<cword>')
+            local col = vim.fn.col('.')
+            local line = vim.fn.getline('.')
+            
+            -- Find the actual start of the identifier (including any leading underscores)
+            local start_col = col
+            while start_col > 1 and line:sub(start_col - 1, start_col - 1):match('[%w_]') do
+                start_col = start_col - 1
+            end
+            
+            -- Move cursor to the beginning of the identifier
+            vim.fn.cursor(vim.fn.line('.'), start_col)
+            
+            if word:sub(1, 1) == '_' then
+                -- Remove underscore
+                vim.cmd('normal! ciw' .. word:sub(2))
+            else
+                -- Add underscore
+                vim.cmd('normal! ciw_' .. word)
+            end
+        end, { buffer = bufnr, noremap = true, silent = true, desc = 'Toggle underscore prefix' })
+        
         -- 必ずしもカレントバッファとは限らないが
         vim.api.nvim_command('setlocal signcolumn=yes')
     end
