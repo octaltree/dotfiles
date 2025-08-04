@@ -2,7 +2,10 @@
 repo = 'tpope/vim-surround'
 [[plugins]]
 repo = 'sindrets/diffview.nvim'
-depends = ['plenary.nvim']
+depends = ['nvim-lua/plenary.nvim']
+[[plugins]]
+repo = 'NeogitOrg/neogit'
+depends = ['nvim-lua/plenary.nvim', 'sindrets/diffview.nvim']
 [[plugins]]
 repo = 'vim-jp/vimdoc-ja'
 [[plugins]]
@@ -154,7 +157,7 @@ repo = 'MunifTanjim/nui.nvim'
 [[plugins]]
 repo = 'yetone/avante.nvim'
 build = 'make'
-depends = ['plenary.nvim', 'nui.nvim']
+depends = ['nvim-lua/plenary.nvim', 'MunifTanjim/nui.nvim']
 
 [[plugins]]
 repo = 'machakann/vim-sandwich'
