@@ -13,7 +13,7 @@
 # bold.style = "Bold"
 # italic.family = "Ricty"
 # italic.style = "Oblique"
-size = 10
+size = 15
 
 [colors.primary]
 # background = "0x000000"
