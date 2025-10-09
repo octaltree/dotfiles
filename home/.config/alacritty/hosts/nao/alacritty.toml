@@ -1,0 +1,22 @@
+[font]
+# NOTE: use fontconfig
+# normal.family = "Cica"
+# normal.style = "Regular"
+# bold.family = "Cica"
+# bold.style = "Bold"
+# italic.family = "Cica"
+# italic.style = "RegularItalic"
+#
+# normal.family = "Ricty"
+# normal.style = "Regular"
+# bold.family = "Ricty"
+# bold.style = "Bold"
+# italic.family = "Ricty"
+# italic.style = "Oblique"
+size = 10
+
+[colors.primary]
+# background = "0x000000"
+# background = "0x1d1f21"
+# background = "0x000a15"
+background = "0x02060e"
