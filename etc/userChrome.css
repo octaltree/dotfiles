@@ -22,6 +22,32 @@
     opacity: 0;
 }
 
+
+/* 通常時は URLバーとそのコンテナを完全に非表示に */
+:root:not([customizing])
+    #navigator-toolbox:not(:hover):not(:focus-within)
+    #nav-bar #urlbar-container,
+:root:not([customizing])
+    #navigator-toolbox:not(:hover):not(:focus-within)
+    #nav-bar #urlbar {
+    max-height: 0 !important;
+    min-height: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+}
+
+/* ホバー時には元に戻す */
+#navigator-toolbox:hover #nav-bar #urlbar-container,
+#navigator-toolbox:hover #nav-bar #urlbar {
+    max-height: none !important;
+    height: auto !important;
+    opacity: 1 !important;
+    overflow: visible !important;
+    pointer-events: auto !important;
+}
+
 /* Reduce the "white flash" in new tabs */
 browser[type="content-primary"], browser[type="content"] {
   background: #212121 !important;
