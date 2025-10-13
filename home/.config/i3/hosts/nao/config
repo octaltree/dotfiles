@@ -44,6 +44,10 @@ bindsym XF86MonBrightnessDown exec "light -U 1; notify-send 'brightness down'"
 bindsym XF86Tools focus left
 bindsym XF86Mail focus right
 bindsym XF86Search kill
+#bindsym XF86HomePage exec xdotool key w
+bindsym XF86HomePage exec xdotool key --clearmodifiers w
+bindsym XF86WWW exec xdotool key --clearmodifiers w
+bindsym XF86Explorer exec xdotool key --clearmodifiers w
 
 
 bindsym Print exec --no-startup-id i3-scrot
