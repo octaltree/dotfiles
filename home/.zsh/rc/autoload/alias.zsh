@@ -31,6 +31,43 @@ alias st='git status'
 alias reb='git rebase'
 alias dim='git difftool --tool vimdiff --no-prompt'
 
+# Claudeでコミットメッセージを生成してコミット
+function cmm() {
+  # stagedな変更があるか確認
+  if git diff --staged --quiet; then
+    echo "Error: ステージングされた変更がありません" >&2
+    echo "まず 'git add' で変更をステージングしてください" >&2
+    return 1
+  fi
+
+  # stagedな差分を取得
+  local diff=$(git diff --staged)
+
+  # Claudeでコミットメッセージを生成
+  echo "コミットメッセージを生成中..."
+  local commit_msg=$(echo "$diff" | claude -p "以下のgit diffからコミットメッセージを生成してください。
+ルール:
+- 1行目: 変更の要約（50文字以内、日本語可）
+- Conventional Commits形式（feat:, fix:, refactor:, docs:, chore: など）を使用
+- 複数の変更がある場合は主要な変更を1行目に、詳細を空行後に箇条書き
+- コミットメッセージのみを出力（説明や前置きは不要）
+
+diff:
+")
+
+  if [[ -z "$commit_msg" ]]; then
+    echo "Error: コミットメッセージの生成に失敗しました" >&2
+    return 1
+  fi
+
+  echo "----------------------------------------"
+  echo "$commit_msg"
+  echo "----------------------------------------"
+
+  # コミット実行
+  git commit -m "$commit_msg"
+}
+
 function mkdcd(){
   mkdir "$1" && cd "$1"
 }
