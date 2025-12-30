@@ -8,4 +8,5 @@ start-pulseaudio-x11
 redshift -O 4500k
 xset r rate 170 60
 xset b off
-xset s off -dpms
+xset s off
+xset -dpms
