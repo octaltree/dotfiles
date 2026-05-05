@@ -183,22 +183,22 @@ do
             vim.diagnostic.setqflist()
             vim.cmd('copen')
         end, { noremap = true, silent = true })
-        
+
         -- Toggle underscore prefix
         vim.keymap.set('n', 'g_', function()
             local word = vim.fn.expand('<cword>')
             local col = vim.fn.col('.')
             local line = vim.fn.getline('.')
-            
+
             -- Find the actual start of the identifier (including any leading underscores)
             local start_col = col
             while start_col > 1 and line:sub(start_col - 1, start_col - 1):match('[%w_]') do
                 start_col = start_col - 1
             end
-            
+
             -- Move cursor to the beginning of the identifier
             vim.fn.cursor(vim.fn.line('.'), start_col)
-            
+
             if word:sub(1, 1) == '_' then
                 -- Remove underscore
                 vim.cmd('normal! ciw' .. word:sub(2))
@@ -207,7 +207,7 @@ do
                 vim.cmd('normal! ciw_' .. word)
             end
         end, { buffer = bufnr, noremap = true, silent = true, desc = 'Toggle underscore prefix' })
-        
+
         -- 必ずしもカレントバッファとは限らないが
         vim.api.nvim_command('setlocal signcolumn=yes')
     end
@@ -220,19 +220,29 @@ do
         })
     end
 
+    local server_bins = {
+        clangd = 'clangd',
+        bashls = 'bash-language-server',
+        pylsp = 'pylsp',
+        denols = 'deno',
+        texlab = 'texlab',
+        graphql = 'graphql-lsp',
+        rust_analyzer = 'rust-analyzer',
+    }
+
     local function default(server)
         return function()
-            local config = require('lspconfig')[server]
-            local cmd = config.document_config.default_config.cmd[1]
-            if not executable(cmd) then return end
+            local bin = server_bins[server]
+            if bin and not executable(bin) then return end
             local cap = cmp(vim.lsp.protocol.make_client_capabilities())
-            config.setup({
+            vim.lsp.config(server, {
                 capabilities = cap,
                 on_attach = function(_client, bufnr)
                     default_keybind(bufnr)
                     vim.api.nvim_buf_set_option(bufnr, 'statusline', '%f %h%m%r %= %{v:lua.lsp_status()}')
                 end
             })
+            vim.lsp.enable(server)
         end
     end
 
@@ -250,9 +260,7 @@ do
     end
 
     function M.servers.rust()
-        local config = require('lspconfig')['rust_analyzer']
-        local cmd = config.document_config.default_config.cmd[1]
-        if not executable(cmd) then return end
+        if not executable('rust-analyzer') then return end
         local cap
         do
             cap = vim.lsp.protocol.make_client_capabilities()
@@ -262,7 +270,7 @@ do
             }
             cap = cmp(cap)
         end
-        config.setup {
+        vim.lsp.config('rust_analyzer', {
             capabilities = cap,
             settings = {
                 ["rust-analyzer"] = {
@@ -301,7 +309,8 @@ do
                 }, ',')
                 au(evt, '*', "lua _G['_my_lsp']._rust()")
             end
-        }
+        })
+        vim.lsp.enable('rust_analyzer')
     end
 
     function M.ready()
@@ -314,32 +323,11 @@ do
     use_default({'javascript', 'typescript'}, 'denols')
     use_default({'tex'}, 'texlab')
     use_default({'graphql'}, 'graphql')
-    -- ansiblels.lua
-    -- cmake.lua
-    -- dockerls.lua
-    -- dotls.lua
-    -- graphql.lua
-    -- cssls.lua
-    -- html.lua
-    -- stylelint_lsp.lua
-    -- sqlls.lua
-    -- sqls.lua
-    -- sumneko_lua.lua
-    -- vimls.lua
 
-    -- clojure_lsp.lua
-    -- csharp_ls.lua
-    -- dartls.lua
-    -- erlangls.lua
-    -- flow.lua
-    -- hls.lua
-    -- java_language_server.lua
-    -- jdtls.lua
-    -- kotlin_language_server.lua
-    -- metals.lua
-    -- purescriptls.lua
-
-    au('User', 'LspconfigSource', "lua _G['_my_lsp'].ready()")
+    vim.api.nvim_create_autocmd('VimEnter', {
+        once = true,
+        callback = function() M.ready() end
+    })
 end
 
 if vim.g.completion == 'cmp' and pcall(require, 'cmp') then
