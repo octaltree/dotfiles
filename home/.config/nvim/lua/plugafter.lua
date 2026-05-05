@@ -323,6 +323,30 @@ do
     use_default({'javascript', 'typescript'}, 'denols')
     use_default({'tex'}, 'texlab')
     use_default({'graphql'}, 'graphql')
+    -- ansiblels.lua
+    -- cmake.lua
+    -- dockerls.lua
+    -- dotls.lua
+    -- graphql.lua
+    -- cssls.lua
+    -- html.lua
+    -- stylelint_lsp.lua
+    -- sqlls.lua
+    -- sqls.lua
+    -- sumneko_lua.lua
+    -- vimls.lua
+
+    -- clojure_lsp.lua
+    -- csharp_ls.lua
+    -- dartls.lua
+    -- erlangls.lua
+    -- flow.lua
+    -- hls.lua
+    -- java_language_server.lua
+    -- jdtls.lua
+    -- kotlin_language_server.lua
+    -- metals.lua
+    -- purescriptls.lua
 
     vim.api.nvim_create_autocmd('VimEnter', {
         once = true,
