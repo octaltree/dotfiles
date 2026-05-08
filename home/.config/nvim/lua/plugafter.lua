@@ -145,8 +145,8 @@ if pcall(require, 'linearf') and pcall(require, 'linearf-my-flavors') then
 end
 
 if pcall(require, 'nvim-treesitter') then
-    local ts_config = require('nvim-treesitter.configs')
-    ts_config.setup {highlight = {enable = true, disable = {'json', 'csv'}}}
+    -- main branch: highlighting is built into Neovim, no setup needed
+    -- parsers/queries are managed by TSInstall/TSUpdate
 end
 
 do
